@@ -1,0 +1,10 @@
+{
+    "autoload": {
+       "psr-4": {"App\\": "app/"}
+    },
+    "require": {
+        "symfony/var-dumper": "^4.2",
+        "illuminate/support": "^5.7",
+        "twig/twig": "^2.6"
+    }
+}

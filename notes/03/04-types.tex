@@ -1,0 +1,12 @@
+\section{Object Types \& Type Declarations}
+
+We looked at ``types'' with JavaScript: numbers, strings, booleans, arrays, \&c. PHP has a similar set of built-in types. In OOP we generally talk of objects of having the type of their class: e.g. a \texttt{Person} object instance is of the type \texttt{Person}.
+\\
+
+PHP supports \textbf{type declarations}.\footnote{In previous versions of PHP these were called type hints} These let us say that the arguments passed to a function or method must be of a certain type. For example, say we had a \texttt{MailingList} class with a \texttt{sendWith()} method. It would be useful to say that we can only pass \texttt{Mail} objects into this method\footnote{This is an example of \textbf{dependency injection}.}:
+
+\phpinputminted{03/figures/03/05-MailingList}
+
+Before accepting the \texttt{\$mailer} parameter, we add the type declaration/hint of \texttt{Mail}. Now, if the user of that class tries to pass in something that isn't an instance of \texttt{Mail}, PHP will throw an error.
+
+\phpinputminted{03/figures/03/06-type-error}

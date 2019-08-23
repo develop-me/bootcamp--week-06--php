@@ -1,0 +1,9 @@
+{
+    "autoload": {
+       "psr-4": {"App\\": "app/"}
+    },
+    "require": {
+        "illuminate/support": "^5.7",
+        "symfony/var-dumper": "^4.2"
+    }
+}

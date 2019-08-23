@@ -1,0 +1,66 @@
+% setup the document
+\documentclass[b5paper,openany]{book}
+
+% setup variables ------------------------------
+
+% your name
+\newcommand\instructor{Mark Wales \& Oli Ward}
+
+% the week number
+\newcommand\weekno{6}
+
+% week main title
+\newcommand\maintitle{Object-Oriented Programming}
+
+% week subtitle
+\newcommand\subtitle{with PHP}
+
+% link to notes - relative to github.com/develop-me/
+\newcommand\github{week-06--php/blob/master/notes/}
+
+% setup functions, styling, etc.
+\input{../../templates/template.tex}
+
+% the structure of the document
+\begin{document}
+
+% render the title page (uses variables above)
+\tp
+
+\quotepage{Certainly not every good program is object-oriented, and not every object-oriented program is good.}{Bjarne Stroustrup, Creator of C++}
+
+\tableofcontents
+
+\input{../../templates/preface.tex}
+
+\chapter{PHP Basics}
+
+\chapter{Regex}
+
+\chapter{Classes in PHP}
+\input{02/02-classes.tex}
+
+
+\chapter{Namespaces}
+\input{03/01-namespaces.tex}
+
+\chapter{Composer}
+\input{03/02-composer.tex}
+
+\chapter{Encapsulation}
+\input{03/03-encapsulation.tex}
+
+\chapter{Types}
+\input{03/04-types.tex}
+
+\chapter{Polymorphism}
+\input{04/01-polymorphism.tex}
+
+
+\nchapter{Glossary}
+\input{glossary.tex}
+
+
+\input{../../templates/colophon.tex}
+
+\end{document}

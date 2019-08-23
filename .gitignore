@@ -1,0 +1,14 @@
+*.log
+*.aux
+*.out
+*.pdf
+*.toc
+*.pyg
+_minted-*/
+.phpintel/
+examples/
+vendor/
+cache/
+
+.brokdb
+.cmt.bkp
