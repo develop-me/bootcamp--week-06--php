@@ -1,0 +1,41 @@
+``Regular Expressions'' are a way to search a string for a pattern as opposed to a specific string.
+
+
+\section{Quantifiers}
+
+Quantifiers allow us to specify that a character should appear zero, one, or many times.
+
+
+\section{Ranges}
+
+Ranges allow us to specify a range of characters that we're interested in.
+
+
+\section{Character Classes}
+
+Character classes are shortcuts for specific ranges.
+
+
+\section{Positions}
+
+Sometimes \textit{where} the substring appears is important.
+
+
+\section{The Dangers of Regex}
+
+\quoteinline{Some people, when confronted with a problem, think ``I know, I'll use regular expressions.'' Now they have two problems.}{Jamie Zawinski}
+
+
+It's not uncommon for people new to programming to try and solve complex string manipulations using regular expressions. This can lead to hard to read and inefficient code. There are many problems that require a ``parser'': a much more clever sort of algorithm that can elegantly cope with things like matching start/end tags.
+\\
+
+As a general rule, if your regular expressions isn't easy to understand in one glance, then you probably shouldn't be using them.
+
+
+
+\section{Additional Resources}
+
+\begin{itemize}[leftmargin=*]
+    \item \href{https://blog.codinghorror.com/regular-expressions-now-you-have-two-problems/}{Regular Expressions: Now You Have Two Problems}
+    \item \href{http://www.regexcrossword.com/}{RegEx Crossword}
+\end{itemize}

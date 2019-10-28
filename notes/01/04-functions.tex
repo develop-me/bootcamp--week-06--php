@@ -1,0 +1,84 @@
+Functions in PHP serve the same purpose as functions in JavaScript: they allow us to reuse bits of code.
+\\
+
+They are written in the same way as functions were historically written in most C-style language (including JavaScript):
+
+\phpinputminted{01/figures/04/01-function}
+
+
+\section{Scope}
+
+Because we don't declare variables in PHP it takes a very explicit approach to scope: by default variables used inside functions are assumed to be locally scoped.
+\\
+
+The following will cause an error as \texttt{\$message} is assumed to be in local scope:
+
+\phpinputminted{01/figures/04/02-scope-no-global}
+
+This means if we want to access a non-local variable we need to use the \texttt{global} keyword:
+
+\phpinputminted{01/figures/04/03-scope-global}
+
+This can actually be seen as a positive, as it makes it harder to write non-pure functions by accident.
+
+
+\section{Anonymous Functions}
+
+Standard functions in PHP are not values like they are in JavaScript, so we can't just pass them round and assign them to variables in quite the same way. However, passing functions around is such a useful thing to be able to do that recent versions of PHP added ``Closures'' as a way to do this
+
+
+
+\section{Strict Types}
+
+As a general rule functions should only accept arguments of a specific type and return arguments of a specific type: e.g. \texttt{add} should only accept numbers. We can enforce this using ``type declarations''.
+\\
+
+First we turn on strict typing:
+
+\begin{minted}{php}
+    <?php
+
+    declare(strict_types=1); // always first line after opening tag
+\end{minted}
+
+Next we add type declarations to our function parameters:
+
+\begin{minted}{php}
+    function add(float $a, float $b) : float {
+        return $a + $b;
+    }
+\end{minted}
+
+The parameter types and return types needn't match:
+
+\begin{minted}{php}
+    function repeat(string $str, int $times) : string {
+        $output = "";
+
+        for ($i = 0; $i < $times; $i += 1) {
+            $output .= $string;
+        }
+
+        return $output;
+    }
+\end{minted}
+
+The possible type declarations are:
+
+
+
+\begin{itemize}
+    \item \texttt{int}: for numbers that have to be whole (e.g. a limit of a \texttt{for} loop)
+    \item \texttt{float}: for any numbers
+    \item \texttt{string}
+    \item \texttt{bool}
+    \item \texttt{array}
+    \item \texttt{callable}: a closure
+\end{itemize}
+
+
+\section{Additional Resources}
+
+\begin{itemize}[leftmargin=*]
+    \item %
+\end{itemize}

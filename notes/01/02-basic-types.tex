@@ -1,0 +1,139 @@
+PHP has the same basic types as JavaScript: numbers, strings, and booleans. They work in much the same way.
+
+
+\section{Numbers}
+
+Unlike JavaScript PHP does have a sense of whether a number is an integer (whole number) or a ``floating point number'' (one with a decimal place). This means that some of the issues we had with JavaScript and decimal numbers don't cause issues in PHP:
+
+\phpinputminted{01/figures/02/01-numbers}
+
+
+The operators should be familiar:
+\\
+
+\begin{small}
+    \begin{tabu}{c l X}
+        \textbf{Operator} & \textbf{Name} & \textbf{Description} \\
+        \texttt{+}  & addition        & adds two numbers together \\
+        \texttt{-}  & subtraction     & subtracts the second number from the first number \\
+        \texttt{*}  & multiplication  & multiplies two numbers \\
+        \texttt{/}  & division        & divides the first number by the second \\
+        \texttt{\%} & modulus         & remainder after dividing the first number by the second
+    \end{tabu}
+\end{small}
+
+\par\bigskip
+
+
+We don't have a \texttt{Math} object in PHP, instead there are just lots of functions - but the naming should be familiar:
+
+\phpinputminted{01/figures/02/02-number-functions}
+
+
+But we can still run into weird issues with numbers in PHP. As a general rule \textit{never trust floating point numbers}
+
+\begin{minted}{php}
+    floor((0.1 + 0.7) * 10); // 7 - oop!
+\end{minted}
+
+
+\section{Strings}
+
+Strings are also very similar to JavaScript.
+\\
+
+You can use single- or double-quotes:
+
+\begin{minted}{php}
+    $firstName = "Casper";
+    $lastName = 'Spoooky';
+\end{minted}
+
+Double-quotes allow you to interpolate values:
+
+\begin{minted}{php}
+    $fullName = "{$firstName} {$lastName}";
+\end{minted}
+
+We use curly-braces to enter interpolation mode and then use the variable name inside. The \texttt{\$} here is part of the variable, whereas in JavaScript interpolation it's part of the syntax for interpolation (so the dollar is \textit{outside} the curly-braces).
+\\
+
+Because interpolation is such a common thing to do, generally we'll use double-quotes for strings.
+
+\subsection{Concatenation}
+
+PHP uses \texttt{.} for concatenation, this avoids the issues that JavaScript had with the overloaded \texttt{+} operator. It can, however, lead to many a brain-fart as you try and use \texttt{+} when you mean \texttt{.}
+
+\begin{minted}{php}
+    var_dump($firstName . $lastName); // "CasperSpooky"
+    var_dump($firstName + $lastName); // PHP Warning - A non-numeric value encountered
+    var_dump("1" + "2"); // 3 - coerces to numbers
+\end{minted}
+
+
+\section{Booleans}
+
+As with JavaScript, PHP has the boolean values \texttt{true} and \texttt{false}. The only difference in PHP is that it's not case sensitive:
+
+\begin{minted}{php}
+    $bool = true;
+    $bool = True; // also valid
+    $bool = TRUE; // still valid
+    $bool = TrUe; // totes valid
+\end{minted}
+
+For consistency it's best to stick with the lowercase version.
+
+\subsection{Boolean Logic}
+
+PHP has \texttt{\&\&} and \texttt{||} which work in the same way as in JavaScript. It also has the written versions \texttt{and} and \texttt{or}:
+
+\begin{minted}{php}
+    true && false; // false
+    true || false; // true
+    true and false; // false
+    true or false; // true
+\end{minted}
+
+If you're coming from JavaScript, you should use the \texttt{\&\&} and \texttt{||} versions. The other versions have different ``precedence'' and will not always work as you expect.
+
+\subsection{Comparison Operators}
+
+All your favourite comparison operators are back:
+\\
+
+\begin{small}
+    \begin{tabu}{c l X}
+        \textbf{Operator} & \textbf{Name} & \textbf{Description} \\
+        \texttt{===} & strict equality & \texttt{true} if the values are the same \\
+        \texttt{!==} & non-equality & \texttt{false} if the values are the same\\
+        \texttt{<} & less than & \texttt{true} if the first value is less than the second value  \\
+        \texttt{>} & greater than & \texttt{true} if the first value is greater than the second value\\
+        \texttt{<=} & less than or equal to & \texttt{true} if the first value is less than or equal to the second value  \\
+        \texttt{>=} & greater than or equal to & \texttt{true} if the first value is greater than or equal to the second value
+    \end{tabu}
+\end{small}
+
+
+\subsection{Falsy Values}
+
+PHP has the same falsy values as JavaScript. Empty arrays are also falsy in PHP (which they are not in JavaScript).
+
+\begin{itemize}
+    \item \texttt{false} itself
+    \item The number zero: \texttt{0}, \texttt{0.0}, \texttt{-0}, \texttt{-0.0}
+    \item The empty string: \texttt{""}
+    \item An empty array
+    \item \texttt{NULL}
+\end{itemize}
+
+
+
+\section{Additional Resources}
+
+\begin{itemize}[leftmargin=*]
+    \item \href{https://www.php.net/manual/en/language.operators.arithmetic.php}{PHP: Arithmetic Operators}
+    \item \href{https://www.php.net/manual/en/ref.math.php}{PHP: Maths Functions}
+    \item \href{http://php.net/manual/en/language.operators.logical.php}{PHP: Logical Operators}
+    \item \href{http://php.net/manual/en/language.operators.comparison.php}{PHP: Comparison Operators}
+\end{itemize}
