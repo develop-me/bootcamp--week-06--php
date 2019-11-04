@@ -26,20 +26,93 @@ We can also find out how many items are in an array:
     count($values); // 5
 \end{minted}
 
+\begin{infobox}{Old Skool Arrays}
+    If you're working with older PHP you may see arrays written using the older notation:
+
+    \begin{minted}{php}
+        $values = array(1, 2, 3, 4, 5);
+    \end{minted}
+
+    This isn't actually a function, although it does look like one.
+    \\
+
+    The newer notation was added in PHP 5.4, which has reached end-of-life, so you should not need to use the older notation.
+\end{infobox}
 
 \section{Associative Arrays}
 
 Associative arrays are effectively PHP's version of object literals: in PHP ``objects'' are always instances of a \texttt{class}, but the key-value pairing of object literals is still a useful concept.
+
+\begin{minted}{php}
+    $assoc = [
+        "firstName" => "Ben",
+        "lastName" => "Wales",
+        "dob" => "2018-08-24",
+    ];
+
+    var_dump($assoc["lastName"]); // string(5) "Wales"
+\end{minted}
+
+\begin{infobox}{All Arrays Are Associative}
+    Technically speaking, all arrays in PHP are actually associative, they're just automatically given a numerical key if you don't provide one. This does mean you can run into some unusual results if you're not careful:
+
+    \begin{minted}{php}
+        $arr = [];
+        $arr["key"] = 1; // key provided
+        $arr[] = 2; // no key, so starts at 0
+
+        var_dump($arr); // ["key" => 1, 0 => 2]
+    \end{minted}
+
+    You should not deliberately mix numerically indexed and associative arrays as things can get weird.
+\end{infobox}
 
 
 \section{Iterating Over Arrays}
 
 We can use a \texttt{foreach} loop to iterate over every item in an array.
 
+\begin{minted}{php}
+    $values = [1, 2, 3, 4, 5];
+
+    foreach ($values as $value) {
+        // $value will be each value in turn
+    }
+\end{minted}
+
+You can also get the key:
+
+\begin{minted}{php}
+    $assoc = [
+        "firstName" => "Ben",
+        "lastName" => "Wales",
+        "dob" => "2018-08-24",
+    ];
+
+    foreach ($assoc as $key => $value) {
+        // $key will be each key in turn
+        // $value will be each value in turn
+    }
+\end{minted}
+
+As numerical indexes are just associative arrays with numerical keys, you can also use this syntax to get the index of a numerical array:
+
+\begin{minted}{php}
+    $values = [1, 2, 3, 4, 5];
+
+    foreach ($values as $index => $value) {
+        // $index will be each index in turn
+        // $value will be each value in turn
+    }
+\end{minted}
+
+
 
 
 \section{Additional Resources}
 
 \begin{itemize}[leftmargin=*]
+    \item \href{http://www.php.net/manual/en/language.types.array.php}{PHP: Arrays}
     \item \href{https://www.php.net/manual/en/ref.array.php}{PHP: Array Functions}
+    \item \href{http://www.php.net/manual/en/control-structures.foreach.php}{PHP: \texttt{foreach}}
 \end{itemize}

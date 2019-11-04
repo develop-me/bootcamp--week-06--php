@@ -1,21 +1,153 @@
+Because they're both C-based languages, loops and conditionals in PHP and JavaScript are syntactically identical. Just remember that variables in PHP are not declared and always start with a \texttt{\$}.
+
 \section{Conditionals}
 
 \subsection{\texttt{if} Statements}
 
+A basic \texttt{if} statement:
+
+\begin{minted}{php}
+    if ($x < 10) {
+        // do a thing
+    }
+\end{minted}
+
+With an \texttt{else}:
+
+\begin{minted}{php}
+    if ($x < 10) {
+        // do a thing
+    } else {
+        // do the other thing
+    }
+\end{minted}
+
+An \texttt{else if}:
+
+\begin{minted}{php}
+    if ($x < 10) {
+        // do a thing
+    } else if ($x < 20) {
+        // do this thing
+    } else {
+        // do the other thing
+    }
+\end{minted}
+
+In PHP the space between \texttt{else} and \texttt{if} can be omitted:
+
+\begin{minted}{php}
+    if ($x < 10) {
+        // do a thing
+    } elseif ($x < 20) {
+        // do this thing
+    } else {
+        // do the other thing
+    }
+\end{minted}
+
+Although they're not technically necessary for single line blocks, you should \textit{always} use the curly braces around a block.
+
+
 \subsection{Ternary Operator}
 
+PHP also has the ternary operator. As with JavaScript, a ternary operator is an \textit{expression}:
+
+\begin{minted}{php}
+    // if $index is less than 0, set it to 5
+    // otherwise decrement it
+    $index = $index < 0 ? 5 : $index - 1;
+\end{minted}
+
 \subsection{\texttt{switch} Statements}
+
+\texttt{switch} statements are also available:
+
+\begin{minted}{php}
+    switch ($x) {
+        case 1:
+            $message = "It's One";
+            break;
+        case 2:
+            $message = "It's Two";
+            break;
+        default:
+            $message = "No idea";
+    }
+\end{minted}
+
+Don't forget to \texttt{break} at the end of each \texttt{case}; and, remember, \texttt{switch} statements are only useful if you want to run different bits of code based on the same expression.
 
 
 \section{Loops}
 
 \subsection{\texttt{for} Loops}
 
+\texttt{for} loops are much the same as in JavaScript (except we don't declare the counter variable and there's dollars everywhere):
+
+\begin{minted}{php}
+    $total = 0;
+
+    for ($i = 1; $i <= 10; $i += 0) {
+        $total += $i;
+    }
+
+    var_dump($total); // int(55)
+\end{minted}
+
+Remember three parts:
+
+\begin{enumerate}
+    \item Setup the counter variable (runs once before the loop starts)
+    \item Run the loop as long as this is \texttt{true}
+    \item Evaluated after each iteration
+\end{enumerate}
+
 \subsection{\texttt{while} Loops}
+
+While loops are useful if you don't know how many times the loop needs to run:
+
+\begin{minted}{php}
+    $i = 0;
+    $total = 0;
+
+    while ($total < 100) {
+        $i += 1;
+        $total += $i;
+    }
+
+    var_dump($total); // int(105)
+\end{minted}
+
+\subsection{\texttt{do-while} Loops}
+
+A \texttt{do-while} loop is the same as a \texttt{while} loop, except that the \texttt{do} block will always run at least once. They can sometimes be a little easier to work out.
+
+\begin{minted}{php}
+    $i = 0;
+    $total = 0;
+
+    do {
+        $i += 1;
+        $total += $i;
+    } while ($total < 100);
+
+    var_dump($total); // int(105)
+\end{minted}
+
+\hr
+
+As with all loops, be careful not to create an infinite loop!
 
 
 \section{Additional Resources}
 
 \begin{itemize}[leftmargin=*]
-    \item %
+    \item \href{http://www.php.net/manual/en/control-structures.if.php}{PHP: \texttt{if}}
+    \item \href{http://www.php.net/manual/en/control-structures.elseif.php}{PHP: \texttt{else if}}
+    \item \href{https://www.php.net/manual/en/language.operators.comparison.php#language.operators.comparison.ternary}{PHP: The Ternary Operator}
+    \item \href{http://www.php.net/manual/en/control-structures.switch.php}{PHP: \texttt{switch}}
+    \item \href{http://www.php.net/manual/en/control-structures.for.php}{PHP: \texttt{for} Loops}
+    \item \href{http://www.php.net/manual/en/control-structures.while.php}{PHP: \texttt{while} loops}
+    \item \href{http://www.php.net/manual/en/control-structures.do.while.php}{PHP: \texttt{do-while} loops}
 \end{itemize}

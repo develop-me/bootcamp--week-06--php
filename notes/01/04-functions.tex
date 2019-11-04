@@ -19,13 +19,47 @@ This means if we want to access a non-local variable we need to use the \texttt{
 
 \phpinputminted{01/figures/04/03-scope-global}
 
-This can actually be seen as a positive, as it makes it harder to write non-pure functions by accident.
+This can actually be seen as a positive, as it makes it harder to write impure functions by accident.
 
 
 \section{Anonymous Functions}
 
-Standard functions in PHP are not values like they are in JavaScript, so we can't just pass them round and assign them to variables in quite the same way. However, passing functions around is such a useful thing to be able to do that recent versions of PHP added ``Closures'' as a way to do this
+Standard functions in PHP are not values like they are in JavaScript, so we can't just pass them round and assign them to variables in quite the same way. However, passing functions around is such a useful thing to be able to do that recent versions of PHP added ``Closures'' as a way to do this:
 
+\begin{minted}{php}
+    $add = function ($a, $b) {
+        return $a + $b;
+    };
+
+    $result = $add(1, 2);
+    var_dump($result); // int(3)
+\end{minted}
+
+As you can see, because it's stored in a variable we need to use the \texttt{\$} when calling the function.
+\\
+
+Some functions in PHP require a \texttt{callable} argument, which just means a function:
+
+\begin{minted}{php}
+    $result = array_map(function ($value) {
+        return $value * $value;
+    }, [1, 2, 3, 4, 5]);
+
+    var_dump($result); // [1, 4, 9, 16, 25]
+\end{minted}
+
+Closures don't have access to variables declared outside of themselves. In order to use these you use the \texttt{use} keyword:
+
+\begin{minted}{php}
+    $message = "Hello";
+
+    $say = function ($a) use ($message) {
+        return "{$message} {$a}";
+    };
+
+    $result = $say("Wombat");
+    var_dump($result); // string(12) "Hello Wombat"
+\end{minted}
 
 
 \section{Strict Types}
@@ -65,8 +99,6 @@ The parameter types and return types needn't match:
 
 The possible type declarations are:
 
-
-
 \begin{itemize}
     \item \texttt{int}: for numbers that have to be whole (e.g. a limit of a \texttt{for} loop)
     \item \texttt{float}: for any numbers
@@ -80,5 +112,7 @@ The possible type declarations are:
 \section{Additional Resources}
 
 \begin{itemize}[leftmargin=*]
-    \item %
+    \item \href{http://www.php.net/manual/en/functions.user-defined.php}{PHP: Functions}
+    \item \href{http://www.php.net/manual/en/language.types.callable.php}{PHP: Callable}
+    \item \href{http://www.php.net/manual/en/functions.arguments.php#functions.arguments.type-declaration.strict}{PHP: Strict Typing}
 \end{itemize}
