@@ -4,7 +4,7 @@
 // so it has the same properties and methods
 class Mail extends Mailer
 {
-  public function send($subject, $message)
+  public function send(string $subject, string $message) : Mailer
   {
     // send using local mail server
   }
@@ -14,7 +14,7 @@ class Mail extends Mailer
 // so it has the same properties and methods
 class MailChimp extends Mailer
 {
-  public function send($subject, $message)
+  public function send(string $subject, string $message) : Mailer
   {
     // send using mail chimp
   }

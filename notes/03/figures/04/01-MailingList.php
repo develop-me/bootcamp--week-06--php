@@ -7,13 +7,12 @@ class MailingList
   private $message;
   private $from;
 
-  // mailing list code
-  // to set from, subject, and message
-  // and to add email addresses
+  // ...mailing list code: getters, setters, etc.
 
   // use the Mail type-declaration to
   // only allow Mail classes
-  public function sendWith(Mail $mailer)
+  // returns $this, which is an instance of MailingList
+  public function sendWith(Mail $mailer) : MailingList
   {
     // setup the from address
     $mailer->from($this->from);
@@ -22,5 +21,7 @@ class MailingList
     foreach ($this->emails as $email) {
       $mailer->to($email)->send($this->subject, $this->message);
     }
+
+    return $this;
   }
 }

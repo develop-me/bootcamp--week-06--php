@@ -7,11 +7,9 @@ $message = null;
 $subject = null;
 $characterSet = "utf8";
 
-function sendMail()
-{
+function sendMail() {
   // ... use the global variables
 }
-
 
 // elsewhere
 $to = "bob@bob.com";

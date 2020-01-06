@@ -1,10 +1,13 @@
-You might look at the above example and think, ``What's the point of passing in the \texttt{Mail} object?'' And you'd be right. If we can only pass in a \texttt{Mail} object, then we may as well just create it in the \texttt{MailingList} class. What if we wanted to be able to sometimes send our mailing list emails using the server's built-in mail program and sometimes using MailChimp? We can't type-hint two different classes, but if we don't type-hint at all then you could accidentally pass in something that will break your code completely.
+You might look at the \texttt{MailingList} example from the previous chapter and think, ``What's the point of passing in the \texttt{Mail} object?'' And you'd be right. If we can only pass in a \texttt{Mail} object, then we may as well just create it in the \texttt{MailingList} class.
+\\
+
+But what if we wanted to be able to sometimes send our mailing list emails using the server's built-in mail program and sometimes using MailChimp? We can't have a type declaration for two different classes, but if we don't limit the type at all then you could accidentally pass in something that will break your code completely.
 \\
 
 This is where the idea of \textbf{polymorphism} comes in. Polymorphism is when two \textit{different} types of object share enough in common that they can take each other's place in a specific context.
 \\
 
-There are two ways to achieve this in most OO languages:
+There are two ways to enforce this in most OO languages:
 
 \begin{itemize}
     \item \textbf{Interfaces}: when an object implements a defined set of methods.
@@ -13,10 +16,9 @@ There are two ways to achieve this in most OO languages:
 
 
 
-
 \section{Interfaces}
 
-Interfaces are the other way that we can take advantage of polymorphism. An \textbf{interface} is a list of \textbf{method signatures} that a class can say it conforms to. It is a contract: if a class implements an interface then we are guaranteed that it has a certain set of methods taking a specified set of arguments.
+One way we can take advantage of polymorphism is to use ``interfaces''. An \textbf{interface} is a list of \textbf{method signatures} that a class can say it conforms to. It is a contract: if a class implements an interface then we are guaranteed that it has a certain set of methods taking a specified set of arguments.
 \\
 
 For example, rather than creating a \texttt{Mailer} abstract class, we could instead create an interface:
@@ -155,10 +157,9 @@ The idea of \textit{composition over inheritance} is that rather than sharing be
 \section{Additional Resources}
 
 \begin{itemize}[leftmargin=*]
-    \item \href{https://phpapprentice.com/classes-inheritance.html}{PHP Apprentice: Inheritance}
     \item \href{https://phpapprentice.com/interfaces.html}{PHP Apprentice: Interfaces}
+    \item \href{https://phpapprentice.com/classes-inheritance.html}{PHP Apprentice: Inheritance}
     \item \href{https://en.wikipedia.org/wiki/Composition\_over\_inheritance}{Wikipedia: Composition over Inheritance}
-    \item \href{https://en.wikipedia.org/wiki/Law\_of\_Demeter}{Wikipedia: The Law of Demeter}
     \item \href{https://www.poodr.com}{Practical Object-Oriented Design in Ruby}: An intermediate book about OOP. In Ruby, but all the key concepts work in PHP too.
     \item \href{https://en.wikipedia.org/wiki/SOLID}{Wikipedia: The SOLID Principles of OOP}: Quite advanced, but incredibly useful if you can get your head round it.
     \item \href{https://www.youtube.com/channel/UCk3yOoaVtORwXipuLZ3jWNg}{YouTube: Sandi Metz Videos}: If you're doing OOP in a few years time, watch all of these. There's a lifetime of experience in these talks.

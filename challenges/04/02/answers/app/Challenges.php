@@ -11,71 +11,59 @@ class Challenges
         echo "\nChallenges\n";
 
         // load challenges
-        $this->shapes();
-        $this->extrude();
-        $this->library();
+        $this->spoon();
+        $this->languages();
+        $this->greet();
 
         // load Tricksy challenges
         $tricksy = new Tricksy();
         $tricksy->start();
     }
 
-    public function shapes()
+    public function spoon()
     {
-        echo "\n01) Shapes\n";
+        echo "\n01) Spoon\n";
 
-        // create new shapes
-        $square = new Shapes\Square(4);
-        $circle = new Shapes\Circle(4);
-        $rectangle = new Shapes\Rectangle(4, 5);
+        $spoon = new Cutlery\Spoon();
+        $runcible = new Cutlery\RuncibleSpoon();
 
-        // log the areas of each
+        $spoon->scoop()->scoop();
+        $runcible->scoop()->scoop();
+
         dump(
-            $square->area(), // 16
-            $circle->area(), // 50.265482457437
-            $rectangle->area() // 20
+            $spoon->howManyScoops(), // 2
+            $runcible->howManyScoops() // 4
         );
     }
 
-    public function extrude()
+    public function languages()
     {
-        echo "\n02) Extrude\n";
+        echo "\n02) Languages\n";
 
-        // create 2D objects
-        $square = new Shapes\Square(4);
-        $circle = new Shapes\Circle(4);
-        $rectangle = new Shapes\Rectangle(4, 5);
+        $english = new Languages\English();
+        $french = new Languages\French();
+        $arabic = new Languages\Arabic();
 
-        // turn into 3D objects
-        $cube = new Shapes\Extrude($square, 4);
-        $cylinder = new Shapes\Extrude($circle, 4);
-        $cuboid = new Shapes\Extrude($rectangle, 7);
-
-        // log the volumes of each
         dump(
-            $cube->volume(), // 64
-            $cylinder->volume(), // 201.06192982975
-            $cuboid->volume() // 140
+            $english->name(), // "English"
+            $english->hello(), // "Hello"
+            $french->name(), // "French"
+            $french->hello(), // "Bonjour
+            $arabic->name(), // "Arabic"
+            $arabic->hello() // "مرحبا"
         );
     }
 
-    public function library()
+    public function greet()
     {
-        echo "\n03) Library\n";
+        echo "\n03) Greet\n";
 
-        $shelf = new Library\Shelf();
-        $shelf->addItem(new Library\Book("Zero: The Biography of a Dangerous Idea", 256));
-        $shelf->addItem(new Library\DVD("Hunt for the Wilderpeople"));
-        $shelf->addItem(new Library\CD("Teal Album"));
+        $english = new Languages\English();
+        $french = new Languages\French();
 
-        $otherShelf = new Library\Shelf();
-        $otherShelf->addItem(new Library\Book("The Power Broker", 1336));
-        $otherShelf->addItem(new Library\DVD("Black Sheep"));
-
-        $library = new Library\Library();
-        $library->addShelf($shelf);
-        $library->addShelf($otherShelf);
-
-        dump($library->titles()); // array:5 [ 0 => "Zero: The Biography of a Dangerous Idea" 1 => "Hunt for the Wilderpeople" 2 => "Teal Album" 3 => "The Power Broker" 4 => "Black Sheep" ]
+        dump(
+            (new Greeter\Greeter($english))->greet("Sandi"), // "Hello Sandi"
+            (new Greeter\Greeter($french))->greet("Tom"), // "Bonjour Tom"
+        );
     }
 }

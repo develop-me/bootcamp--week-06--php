@@ -2,7 +2,7 @@
 
 class MailChimp extends Mailer
 {
-  public function to($address)
+  public function to(string $address) : Mailer
   {
     // call the to method of the parent
     // passing in the address argument

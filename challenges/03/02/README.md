@@ -13,7 +13,7 @@ First, go back over all of the previous challenges this week and add appropriate
     app/
     vendor/
     composer.json
-    index.php
+    bootstrap.php
     ```
 - Include the Composer auto-loading file at the top of `bootstrap.php`
 - Create a new class `Challenges` in the `App` namespace. It should have a `start` method.
@@ -41,7 +41,13 @@ First, go back over all of the previous challenges this week and add appropriate
 
 ### Instructions
 
-For each question, create the class(es) in the correct namespace and then copy the given code as a method in your `Challenges` class, then call the new method from the `start()` method. The `Challenges` class will get quite long and [look something like this](https://github.com/develop-me/week-08--laravel/blob/master/challenges/02/01/answers/app/Challenges.php).
+For each question:
+
+- Create the class(es) in the correct namespace
+- Copy the given code as a method in your `Challenges` class
+- Call the new method from the `start()` method
+
+The `Challenges` class will get quite long and [look something like this](https://github.com/develop-me/week-08--laravel/blob/master/challenges/02/01/answers/app/Challenges.php).
 
 To check your answers run `php bootstrap.php`.
 

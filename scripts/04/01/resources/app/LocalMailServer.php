@@ -17,7 +17,7 @@ class LocalMailServer
 
     public function from($address)
     {
-        $this->from = "1+{$address}";
+        $this->from = $address;
         return $this;
     }
 

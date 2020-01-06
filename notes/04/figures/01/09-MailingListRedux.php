@@ -6,7 +6,7 @@ class MailingList
 
   // use the Mailer type-declaration to
   // allows all children of Mailer
-  public function sendWith(Mailer $mailer)
+  public function sendWith(Mailer $mailer) : MailingList
   {
     // setup the from address
     $mailer->from($this->from);
@@ -15,6 +15,8 @@ class MailingList
     foreach ($this->emails as $email) {
       $mailer->to($email)->send($this->subject, $this->message);
     }
+
+    return $this;
   }
 }
 

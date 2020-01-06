@@ -64,7 +64,7 @@ Closures don't have access to variables declared outside of themselves. In order
 
 \section{Strict Types}
 
-As a general rule functions should only accept arguments of a specific type and return arguments of a specific type: e.g. \texttt{add} should only accept numbers. We can enforce this using ``type declarations''.
+As a general rule functions should only accept arguments of a specific type and return arguments of a specific type: e.g. \texttt{add} should only accept numbers. We can enforce this using ``type declarations''\footnote{In previous versions of PHP these were called ``type hints''}.
 \\
 
 First we turn on strict typing:
@@ -101,7 +101,7 @@ The possible type declarations are:
 
 \begin{itemize}
     \item \texttt{int}: for numbers that have to be whole (e.g. a limit of a \texttt{for} loop)
-    \item \texttt{float}: for any numbers
+    \item \texttt{float}: for any numbers (an integer passed to \texttt{float} \textit{will} work)
     \item \texttt{string}
     \item \texttt{bool}
     \item \texttt{array}

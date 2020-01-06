@@ -1,4 +1,4 @@
-So far we've had to put all of our classes into a single file, when ideally we'd like \textit{one class per file}\footnote{It makes it much easier to find what you're looking for}.
+So far we've had to put all of our classes into a single file, when ideally we'd like \textit{one class per file}\footnote{It makes your code much more reusable}.
 
 \section{\texttt{require\_once}}
 
@@ -88,6 +88,26 @@ You can \textbf{alias} a class to give it a different name in the file you're wo
     new Post(); // actually new Blog\Data\Post()
     new SlackPost(); // actually new Services\Slack\Post()
 \end{minted}
+
+
+\begin{infobox}{The static \texttt{class} property}
+    Sometimes it's useful to get the fully namespaced name of a class as a string (e.g. in a configuration file). All classes have a static \texttt{class} property:
+
+    \begin{minted}{php}
+        $class = Services\Slack\Post::class;
+        var_dump($class); // string(19) "Services\Slack\Post"
+    \end{minted}
+
+    This is particularly useful as backslashes need escaping in strings, meaning if you were to write the string out by hand you'd have to write:
+
+    \begin{minted}{php}
+        $class = "Services\\Slack\\Post"; // need to escape every backslash
+    \end{minted}
+
+    It also means you'll get an error if you try and use a class that doesn't exist.
+\end{infobox}
+
+
 
 
 

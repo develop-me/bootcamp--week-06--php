@@ -11,59 +11,78 @@ class Challenges
         echo "\nChallenges\n";
 
         // load challenges
-        $this->spoon();
-        $this->languages();
-        $this->greet();
+        $this->shapes();
+        $this->extrude();
+        $this->library();
 
         // load Tricksy challenges
         $tricksy = new Tricksy();
         $tricksy->start();
     }
 
-    public function spoon()
+    public function shapes()
     {
-        echo "\n01) Spoon\n";
+        echo "\n01) Shapes\n";
 
-        $spoon = new Cutlery\Spoon();
-        $runcible = new Cutlery\RuncibleSpoon();
+        // create new shapes
+        $square = new Shapes\Square(4);
+        $circle = new Shapes\Circle(4);
+        $rectangle = new Shapes\Rectangle(4, 5);
 
-        $spoon->scoop()->scoop();
-        $runcible->scoop()->scoop();
-
+        // log the areas of each
         dump(
-            $spoon->howManyScoops(), // 2
-            $runcible->howManyScoops() // 4
+            $square->area(), // 16
+            $circle->area(), // 50.265482457437
+            $rectangle->area() // 20
         );
     }
 
-    public function languages()
+    public function extrude()
     {
-        echo "\n02) Languages\n";
+        echo "\n02) Extrude\n";
 
-        $english = new Languages\English();
-        $french = new Languages\French();
-        $arabic = new Languages\Arabic();
+        // create 2D objects
+        $square = new Shapes\Square(4);
+        $circle = new Shapes\Circle(4);
+        $rectangle = new Shapes\Rectangle(4, 5);
 
+        // turn into 3D objects
+        $cube = new Shapes\Extrude($square, 4);
+        $cylinder = new Shapes\Extrude($circle, 4);
+        $cuboid = new Shapes\Extrude($rectangle, 7);
+
+        // log the volumes of each
         dump(
-            $english->name(), // "English"
-            $english->hello(), // "Hello"
-            $french->name(), // "French"
-            $french->hello(), // "Bonjour
-            $arabic->name(), // "Arabic"
-            $arabic->hello() // "مرحبا"
+            $cube->volume(), // 64
+            $cylinder->volume(), // 201.06192982975
+            $cuboid->volume() // 140
         );
+
+        try {
+            new Shapes\Extrude($cube, 12); // shouldn't work
+            dump("Accepted. Oops!"); // if you see this, something's not right
+        } catch (\TypeError $e) {
+            dump("Not accepted. Good work!"); // if you see this, you've done it right
+        }
     }
 
-    public function greet()
+    public function library()
     {
-        echo "\n03) Greet\n";
+        echo "\n03) Library\n";
 
-        $english = new Languages\English();
-        $french = new Languages\French();
+        $shelf = new Library\Shelf();
+        $shelf->addItem(new Library\Book("Zero: The Biography of a Dangerous Idea", 256));
+        $shelf->addItem(new Library\DVD("Hunt for the Wilderpeople"));
+        $shelf->addItem(new Library\CD("Teal Album"));
 
-        dump(
-            (new Greeter\Greeter($english))->greet("Sandi"), // "Hello Sandi"
-            (new Greeter\Greeter($french))->greet("Tom"), // "Bonjour Tom"
-        );
+        $otherShelf = new Library\Shelf();
+        $otherShelf->addItem(new Library\Book("The Power Broker", 1336));
+        $otherShelf->addItem(new Library\DVD("Black Sheep"));
+
+        $library = new Library\Library();
+        $library->addShelf($shelf);
+        $library->addShelf($otherShelf);
+
+        dump($library->titles()); // array:5 [ 0 => "Zero: The Biography of a Dangerous Idea" 1 => "Hunt for the Wilderpeople" 2 => "Teal Album" 3 => "The Power Broker" 4 => "Black Sheep" ]
     }
 }

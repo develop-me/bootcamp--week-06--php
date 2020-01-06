@@ -1,5 +1,6 @@
 ## To Do
 
+- Easy static challenge on day 2
 - Interfaces before Inheritance
     * [ ] Always use interfaces for polymorphism
     * [ ] Only use inheritance for definitely shared behaviour
@@ -10,7 +11,7 @@
     * [ ] Does it accept arguments: __construct
     * [ ] Does it need default values?
     * [ ] What methods does it need?
-- Type hinting arrays, scalars
+- Inheritance challenge with two parts: a) use inheritance b) use composition
 - Better static property example in script
 - Mention use partial namespace with `use` - e.g. `App\Cutlery` so you can then do `new Cutlerty\Spoon()`
 - Talk about `unsigned()` integers in foreign key stuff
@@ -26,3 +27,4 @@
 
 ## Done
 
+- Type hinting arrays, scalars

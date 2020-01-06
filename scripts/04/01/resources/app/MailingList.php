@@ -11,7 +11,7 @@ class MailingList
         $this->subscribers = $subscribers;
     }
 
-    public function send(Mail $mail)
+    public function send($mail)
     {
         foreach ($this->subscribers as $subscriber) {
             $mail->to($subscriber)->mail();

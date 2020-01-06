@@ -2,47 +2,51 @@
 
 namespace App\Tricksy;
 
+use App\Tricksy\Person;
+use App\Tricksy\Vehicles;
+
 class Challenges
 {
     public function start()
     {
         echo "\nTricksy Challenges\n";
 
-        $this->alphabet();
-        $this->range();
+        $this->vehicles();
     }
 
-    public function alphabet()
+    public function vehicles()
     {
-        echo "\n01) Alphabet\n";
+        echo "\n01) Vehicles\n";
 
-        // create new Alphabet object
-        $alphabet = new Alphabet();
+        $car = new Vehicles\Car();
+        $plane = new Vehicles\Plane();
+        $boat = new Vehicles\Boat();
 
-        // logs A -> Z on separate lines
-        foreach ($alphabet as $letter) {
-            dump($letter);
-        }
-    }
+        // setup $car
+        $car->setDriver(new Person("Matt", "LeBlanc"))
+            ->setPassengers([new Person("Sue", "Baker"), new Person("Tiff", "Needell")]);
 
-    public function range()
-    {
-        echo "\n02) Range\n";
+        // setup $plane
+        $plane->setPilot(new Person("Jacqueline", "Auriol"))
+              ->setCopilot(new Person("Ringo", "Starr"))
+              ->setStewards([new Person("Rod", "Steward"), new Person("Kristen", "Steward")])
+              ->setPassengers([new Person("John", "Lennon"), new Person("Paul", "McCartney"), new Person("George", "Harrison")]);
 
-        // create new Range object
-        $range = new Range(10, 50);
+        // setup $boat
+        $boat->setCaptain(new Person("Captain", "Haddock"))
+              ->setPassengers([new Person("Donald", "Duck"), new Person("Minnie", "Mouse"), new Person("Mickey", "Mouse")]);
 
-        // logs 10 -> 50 on separate lines
-        foreach ($range as $n) {
-            dump($n);
-        }
+        dump(
+            $car->listOccupants(), // array(3) [ 0 => "Matt LeBlanc", ... ]
+            $plane->listOccupants(), // array(7) [ 0 => "George Harrison", ... ]
+            $boat->listOccupants() // array(4) [ 0 => "Captain Haddock", ... ]
+        );
 
-        // create new Range object
-        $range = new Range(1, 5);
+        // set a different co-pilot
+        $plane->setCopilot(new Person("Bob", "Dylan"));
 
-        // logs 1 -> 5 on separate lines
-        foreach ($range as $n) {
-            dump($n);
-        }
+        dump(
+            $plane->listOccupants(), // array(7) [ 0 => "Bob Dylan", ... ]
+        );
     }
 }

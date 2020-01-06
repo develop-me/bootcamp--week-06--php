@@ -9,17 +9,7 @@ As you can see, it's much the same as a JavaScript class: we have the \texttt{cl
 \\
 
 As in JavaScript, we call functions that belong to an object \textbf{methods} and the values \textbf{properties}.
-
-\begin{infobox}{Closing Tags}
-    If you're been writing procedural PHP, you might be used to adding \texttt{?>} at the end of any PHP that you write. This allows you to go between HTML and PHP easily. However, when we're writing PHP with classes we'll never mix HTML and PHP.
-    \\
-
-    It's considered good practice to never use a PHP closing tag.
-    \\
-
-    From now on code examples won't include the opening tag, but you will need to add it as the first line in all your files.
-\end{infobox}
-
+\\
 
 However, there are some things we've not seen in JavaScript: the words \texttt{private} and \texttt{public}; and we declare our properties outside of the constructor method. We'll look at these in more detail shortly.
 \\
@@ -154,7 +144,6 @@ Say we needed to create a \texttt{\$renderer} object that all our object instanc
 \phpinputminted{02/figures/01/09-static-property}
 
 Privately declared \texttt{static} variables are accessible from inside object instances.
-
 
 
 \section{Additional Resources}

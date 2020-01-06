@@ -149,6 +149,20 @@ You'll need to look at how the class is being used in the test code to work out 
     var_dump($validator->postcode("blah blah BS5 8RJ blah blah")); // bool(false)
     ```
 
+    You might want to use [Regexr](https://regexr.com) to test any regexes. Make sure you set it to use the PCRE engine.
+
+    Here's the list of postcode test data:
+
+    ```
+    BS4 3UH
+    S10 4GR
+    BS14 9DI
+    SW1A 1AA
+    12B DI9
+    EST4 DD29
+    blah blah BS5 8RJ blah blah
+    ```
+
 1) Create a class that performs a series of transformations on a string. You can use the `get()` method to get the final result.
 
     ```php
@@ -167,43 +181,6 @@ You'll need to look at how the class is being used in the test code to work out 
     ```
 
 ## Tricksy Challenges
-
-1) Create a `Person` class which takes a name and age in the constructor. Also create a `House` class which has an `addDweller()` method, which you can pass a person into. The house should keep track of its dwellers. The `House` class should have a static method called `census()` which you pass an array of `House` objects: it should return a flat array of all the `Person` objects those houses. It should have a static method called `averageAge` which you pass an array of `House` objects: it should return the average age of everyone in all the houses.
-
-    **Hint**: PHP has an [`array_merge`](http://php.net/manual/en/function.array-merge.php) function
-
-    ```php
-    <?php
-
-    // ... your classes here
-
-    // create some people
-    $carlton = new Person("Carlton", 25);
-    $ida = new Person("Ida", 32);
-    $estelle = new Person("Estelle", 57);
-    $jana = new Person("Jana", 48);
-
-    // create a house and put some peeps in
-    $house1 = new House();
-    $house1->addDweller($carlton)
-           ->addDweller($ida);
-
-    // create another house and put some other peeps in
-    $house2 = new House();
-    $house2->addDweller($estelle)
-           ->addDweller($jana);
-
-    // get back an array with all Person objects from the houses
-    // the actual output will be a bit messier
-    // but check it has the right number of people
-    var_dump(House::census([$house1, $house2])); // array(4) [$carlton, $ida, $estelle, $jana]
-    var_dump(House::census([$house2])); // array(2) [$estelle, $jana]
-
-    // return the average ages of the houses
-    var_dump(House::averageAge([$house1, $house2])); // float(40.5)
-    var_dump(House::averageAge([$house1])); // float(28.5)
-    ```
-
 
 1) Create an class that represents a shopping basket. It should have a property, `items`, that keeps track of the items in the basket. It should have an `add` method to add items to the basket. It should have a `total` method that returns the value of all the items' prices. It should have a `items` method that returns an array of item names.
 
@@ -282,6 +259,43 @@ You'll need to look at how the class is being used in the test code to work out 
     ```
 
     Try adding a few more ingredients/recipes to double check everything works.
+
+
+1) Create a `Person` class which takes a name and age in the constructor. Also create a `House` class which has an `addDweller()` method, which you can pass a person into. The house should keep track of its dwellers. The `House` class should have a static method called `census()` which you pass an array of `House` objects: it should return a flat array of all the `Person` objects those houses. It should have a static method called `averageAge` which you pass an array of `House` objects: it should return the average age of everyone in all the houses.
+
+    **Hint**: PHP has an [`array_merge`](http://php.net/manual/en/function.array-merge.php) function
+
+    ```php
+    <?php
+
+    // ... your classes here
+
+    // create some people
+    $carlton = new Person("Carlton", 25);
+    $ida = new Person("Ida", 32);
+    $estelle = new Person("Estelle", 57);
+    $jana = new Person("Jana", 48);
+
+    // create a house and put some peeps in
+    $house1 = new House();
+    $house1->addDweller($carlton)
+           ->addDweller($ida);
+
+    // create another house and put some other peeps in
+    $house2 = new House();
+    $house2->addDweller($estelle)
+           ->addDweller($jana);
+
+    // get back an array with all Person objects from the houses
+    // the actual output will be a bit messier
+    // but check it has the right number of people
+    var_dump(House::census([$house1, $house2])); // array(4) [$carlton, $ida, $estelle, $jana]
+    var_dump(House::census([$house2])); // array(2) [$estelle, $jana]
+
+    // return the average ages of the houses
+    var_dump(House::averageAge([$house1, $house2])); // float(40.5)
+    var_dump(House::averageAge([$house1])); // float(28.5)
+    ```
 
 
 1) In your `Recipe` class, working out how to display the recipe takes quite a bit of processing. As does checking the dietary requirements. Update the `Recipe` class so that it caches the result of the `display()` and `dietary()` methods. Make sure the cache is cleared when you add a new ingredient or method.

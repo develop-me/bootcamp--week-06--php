@@ -1,24 +1,48 @@
 ``Regular Expressions'' are a way to search a string for a pattern as opposed to a specific string.
 
+\section{Parts}
 
-\section{Quantifiers}
+
+\subsection{Quantifiers}
 
 Quantifiers allow us to specify that a character should appear zero, one, or many times.
 
 
-\section{Ranges}
+\subsection{Ranges}
 
 Ranges allow us to specify a range of characters that we're interested in.
 
 
-\section{Character Classes}
+\subsection{Character Classes}
 
 Character classes are shortcuts for specific ranges.
 
 
-\section{Positions}
+\subsection{Positions}
 
 Sometimes \textit{where} the substring appears is important.
+
+\pagebreak
+
+
+\section{Regex with PHP}
+
+We can use regex for all sorts of string manipulations. The three most common are:
+
+\begin{itemize}
+    \item Searching a string
+    \item Replacing a string
+    \item Splitting a string
+\end{itemize}
+
+\subsection{\texttt{preg\_match} \& \texttt{preg\_matchall}}
+
+\subsection{\texttt{preg\_replace}}
+
+\subsection{\texttt{preg\_split}}
+
+
+\pagebreak
 
 
 \section{The Dangers of Regex}
@@ -36,6 +60,11 @@ As a general rule, if your regular expressions isn't easy to understand in one g
 \section{Additional Resources}
 
 \begin{itemize}[leftmargin=*]
+    \item \href{https://regexr.com}{Regexr}: an online Regex testing tool - make sure you set it to use ``PCRE''
+    \item \href{http://www.php.net/manual/en/function.preg-match.php}{PHP: \texttt{preg\_match}}
+    \item \href{http://www.php.net/manual/en/function.preg-match-all.php}{PHP: \texttt{preg\_matchall}}
+    \item \href{http://www.php.net/manual/en/function.preg-replace.php}{PHP: \texttt{preg\_replace}}
+    \item \href{http://www.php.net/manual/en/function.preg-split.php}{PHP: \texttt{preg\_split}}
     \item \href{https://blog.codinghorror.com/regular-expressions-now-you-have-two-problems/}{Regular Expressions: Now You Have Two Problems}
     \item \href{http://www.regexcrossword.com/}{RegEx Crossword}
 \end{itemize}

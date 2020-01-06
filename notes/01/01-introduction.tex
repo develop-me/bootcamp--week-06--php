@@ -17,13 +17,34 @@ As is tradition, we should write a ``Hello, World!'' program before moving forwa
 
 \inputminted{php}{01/figures/01/01-hello.php}
 
-As you can see, it's not that different from JavaScript. The main difference is that on line 1 we have to tell PHP that it's PHP. If we don't do this then PHP has a bit of an identity crisis and doesn't know what's going on. This is for historical reasons from when PHP was used as a templating language and was mixed in with HTML.
-\\
+As you can see, it's not that different from JavaScript. The main difference is that on line 1 we have to tell PHP that it's PHP. If we don't do this then PHP has a bit of an identity crisis and doesn't know what's going on. \textit{Make sure you never have anything before the opening \texttt{<?php} tag - no spaces, line breaks, or comments - as this will break most modern PHP apps.}
+
+
+\begin{infobox}{Ye Olde PHP}
+    The opening \texttt{<?php} tag can seem a bit strange in modern PHP, as it doesn't seem to serve any purpose - surely it knows it's PHP?
+    \\
+
+    When PHP was used mainly as a templating language PHP files would be made up mostly of HTML with only snippets of PHP:
+
+    \begin{minted}{html}
+        <body>
+            <h1><?php echo $header ?></h1>
+            <div>
+                <?php echo $content ?>
+            </div>
+        </body>
+    \end{minted}
+
+    PHP is still used like this in some PHP frameworks such as WordPress. Nowadays templating languages like Blade and Twig are more commonly used, thus separating the program logic from the templating language.
+\end{infobox}
 
 We ``echo'' the string ``Hello, World!'', this is PHP's equivalent of using \texttt{console.log()} - although it's only useful when used with strings. \texttt{echo} is \textit{not} a function (or method), but instead a \textbf{keyword}. All that really means is that you don't \textit{call} it.
 \\
 
 In JavaScript you could get away without semi-colons at the end of lines. PHP isn't nearly so forgiving: if you forget a semi-colon you will get a syntax error and the code will refuse to run.
+\\
+
+\textbf{From now on code examples won't include the opening tag, but you will need to add it as the first line in all your files.}
 
 
 \section{\texttt{var\_dump}}

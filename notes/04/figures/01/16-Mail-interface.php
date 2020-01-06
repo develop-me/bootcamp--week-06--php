@@ -11,19 +11,19 @@ class Mail implements MailerInterface
   private $characterSet = "utf8";
 
   // again, not inheriting, so need to create
-  public function to($address)
+  public function to(string $address) : MailerInterface
   {
     $this->to = $address;
     return $this;
   }
 
-  public function from($address)
+  public function from(string $address) : MailerInterface
   {
     $this->from = $address;
     return $this;
   }
 
-  public function send($subject, $message)
+  public function send(string $subject, string $message) : MailerInterface
   {
     // send using local mail server
   }
