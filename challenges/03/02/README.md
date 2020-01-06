@@ -47,7 +47,7 @@ For each question:
 - Copy the given code as a method in your `Challenges` class
 - Call the new method from the `start()` method
 
-The `Challenges` class will get quite long and [look something like this](https://github.com/develop-me/week-08--laravel/blob/master/challenges/02/01/answers/app/Challenges.php).
+The `Challenges` class will get quite long and [look something like this](https://github.com/develop-me/bootcamp--week-06--php/blob/master/challenges/03/02/answers/app/Challenges.php).
 
 To check your answers run `php bootstrap.php`.
 
@@ -55,7 +55,7 @@ To check your answers run `php bootstrap.php`.
 
 ### Answers
 
-[Answers on GitHub](https://github.com/develop-me/week-08--laravel/blob/master/challenges/02/01/answers)
+[Answers on GitHub](https://github.com/develop-me/bootcamp--week-06--php/blob/master/challenges/03/02/answers)
 
 ## Challenges
 

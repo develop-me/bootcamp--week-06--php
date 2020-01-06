@@ -1,4 +1,4 @@
-templates := $(shell find ../../templates -type f -name "*.tex" -depth 1)
+templates := $(shell find ../../latex-templates -type f -name "*.tex" -depth 1)
 tex := $(shell find . -type f -name "*.tex")
 source := $(shell find . -type f -name "*.php")
 

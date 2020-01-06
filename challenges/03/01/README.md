@@ -17,13 +17,13 @@
 
 ### Instructions
 
-For each question, create the class(es) in the correct namespace and then copy and paste the given code into `index.php`. Don't get rid of the previous questions, as some of them rely on each other's variables. You'll end up with a fairly long `index.php` file [like this](https://github.com/develop-me/week-08--laravel/blob/master/challenges/01/02/answers/index.php). To check your answers run `php index.php`.
+For each question, create the class(es) in the correct namespace and then copy and paste the given code into `index.php`. Don't get rid of the previous questions, as some of them rely on each other's variables. You'll end up with a fairly long `index.php` file [like this](https://github.com/develop-me/bootcamp--week-06--php/blob/master/challenges/03/01/answers/index.php). To check your answers run `php index.php`.
 
 **Use Git to make a commit every time you get an answer working. Use sensible commit messages.**
 
 ### Answers
 
-[Answers on GitHub](https://github.com/develop-me/week-08--laravel/blob/master/challenges/01/02/answers)
+[Answers on GitHub](https://github.com/develop-me/bootcamp--week-06--php/blob/master/challenges/03/01/answers)
 
 
 ## Challenges

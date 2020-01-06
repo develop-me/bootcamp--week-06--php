@@ -39,7 +39,7 @@
 
 ### Instructions
 
-For each question, create the class(es) in the correct namespace and then copy the given code as a method in your `Challenges` class, then call the new method from the `start()` method. The `Challenges` class will get quite long and [look something like this](https://github.com/develop-me/week-08--laravel/blob/master/challenges/02/01/answers/app/Challenges.php).
+For each question, create the class(es) in the correct namespace and then copy the given code as a method in your `Challenges` class, then call the new method from the `start()` method. The `Challenges` class will get quite long and [look something like this](https://github.com/develop-me/bootcamp--week-06--php/blob/master/challenges/04/02/answers/app/Challenges.php).
 
 To check your answers run `php bootstrap.php`.
 
@@ -47,7 +47,7 @@ To check your answers run `php bootstrap.php`.
 
 ### Answers
 
-[Answers on GitHub](https://github.com/develop-me/week-08--laravel/blob/master/challenges/02/01/answers)
+[Answers on GitHub](https://github.com/develop-me/bootcamp--week-06--php/blob/master/challenges/04/02/answers)
 
 ## Challenges
 
@@ -152,7 +152,7 @@ To check your answers run `php bootstrap.php`.
 
 ### Instructions
 
-As before, for each question, create the class(es) in the correct namespace and then copy and paste the given code as a method in your `App\Tricksy\Challenges` class, then call the new method from the `start()` method. The `Challenges` class will get quite long and [look something like this](https://github.com/develop-me/week-08--laravel/blob/master/challenges/02/01/answers/app/Tricksy/Challenges.php).
+As before, for each question, create the class(es) in the correct namespace and then copy and paste the given code as a method in your `App\Tricksy\Challenges` class, then call the new method from the `start()` method. The `Challenges` class will get quite long and [look something like this](https://github.com/develop-me/bootcamp--week-06--php/blob/master/challenges/04/02/answers/app/Tricksy/Challenges.php).
 
 ### Challenges
 
