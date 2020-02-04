@@ -76,14 +76,14 @@ PHP also has the ternary operator. As with JavaScript, a ternary operator is an 
     }
 \end{minted}
 
-Don't forget to \texttt{break} at the end of each \texttt{case}; and, remember, \texttt{switch} statements are only useful if you want to run different bits of code based on the same expression.
+Don't forget to \texttt{break} at the end of each \texttt{case}; and, remember, \texttt{switch} statements are only useful if you want to run different bits of code based on the \textit{same expression}.
 
 
 \section{Loops}
 
 \subsection{\texttt{for} Loops}
 
-\texttt{for} loops are much the same as in JavaScript (except we don't declare the counter variable and there's dollars everywhere):
+\texttt{for} loops are much the same as in JavaScript (except we don't declare the counter variable and there are dollars everywhere):
 
 \begin{minted}{php}
     $total = 0;
@@ -95,13 +95,15 @@ Don't forget to \texttt{break} at the end of each \texttt{case}; and, remember, 
     var_dump($total); // int(55)
 \end{minted}
 
-Remember three parts:
+Remember the three parts:
 
 \begin{enumerate}
     \item Setup the counter variable (runs once before the loop starts)
-    \item Run the loop as long as this is \texttt{true}
+    \item Loop condition: run the loop as long as this is \texttt{true}
     \item Evaluated after each iteration
 \end{enumerate}
+
+It's generally best to use a \texttt{for} loop if you know how many times the loop needs to run.
 
 \subsection{\texttt{while} Loops}
 
@@ -121,7 +123,7 @@ While loops are useful if you don't know how many times the loop needs to run:
 
 \subsection{\texttt{do-while} Loops}
 
-A \texttt{do-while} loop is the same as a \texttt{while} loop, except that the \texttt{do} block will always run at least once. They can sometimes be a little easier to work out.
+A \texttt{do-while} loop is the same as a \texttt{while} loop, except that the \texttt{do} block will always run \textit{at least once}. They can sometimes be a little easier to work out:
 
 \begin{minted}{php}
     $i = 0;

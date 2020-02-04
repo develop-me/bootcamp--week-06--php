@@ -26,6 +26,9 @@ We can also find out how many items are in an array:
     count($values); // 5
 \end{minted}
 
+Arrays in PHP aren't objects like in JavaScript, so they don't have methods. We have to use built-in functions like \texttt{count}.
+
+
 \begin{infobox}{Old Skool Arrays}
     If you're working with older PHP you may see arrays written using the older notation:
 
@@ -36,12 +39,12 @@ We can also find out how many items are in an array:
     This isn't actually a function, although it does look like one.
     \\
 
-    The newer notation was added in PHP 5.4, which has reached end-of-life, so you should not need to use the older notation.
+    The newer notation was added in PHP 5.4, which has reached end-of-life, so you generally don't need to use the older notation. However, certain coding standards (such as WordPress) discourage the use of the newer style.
 \end{infobox}
 
 \section{Associative Arrays}
 
-Associative arrays are effectively PHP's version of object literals: in PHP ``objects'' are always instances of a \texttt{class}, but the key-value pairing of object literals is still a useful concept.
+Associative arrays are effectively PHP's version of object literals: in PHP ``objects'' are always instances of a \texttt{class}, but the key-value pairing of object literals is still a useful concept:
 
 \begin{minted}{php}
     $assoc = [
@@ -52,6 +55,9 @@ Associative arrays are effectively PHP's version of object literals: in PHP ``ob
 
     var_dump($assoc["lastName"]); // string(5) "Wales"
 \end{minted}
+
+Notice that the syntax is quite different from JS: square brackets to open, keys need quoting, and fat-arrow between the key and value.
+
 
 \begin{infobox}{All Arrays Are Associative}
     Technically speaking, all arrays in PHP are actually associative, they're just automatically given a numerical key if you don't provide one. This does mean you can run into some unusual results if you're not careful:
@@ -105,6 +111,10 @@ As numerical indexes are just associative arrays with numerical keys, you can al
         // $value will be each value in turn
     }
 \end{minted}
+
+\section{Array Iterator Functions}
+
+PHP does have functions for doing \texttt{map}, \texttt{filter}, and \texttt{reduce} but they're inconsistent and not always usable (for example, if you need the current key/index). We'll be looking at Laravel's \texttt{Collection} class later, which lets you iterate over an array in a much nicer way.
 
 
 

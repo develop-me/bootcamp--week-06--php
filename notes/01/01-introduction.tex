@@ -17,7 +17,13 @@ As is tradition, we should write a ``Hello, World!'' program before moving forwa
 
 \inputminted{php}{01/figures/01/01-hello.php}
 
-As you can see, it's not that different from JavaScript. The main difference is that on line 1 we have to tell PHP that it's PHP. If we don't do this then PHP has a bit of an identity crisis and doesn't know what's going on. \textit{Make sure you never have anything before the opening \texttt{<?php} tag - no spaces, line breaks, or comments - as this will break most modern PHP apps.}
+We ``echo'' the string ``Hello, World!'', this is PHP's equivalent of using \texttt{console.log()} - although it's only useful when used with strings. \texttt{echo} is \textit{not} a function (or method), but instead a \textbf{keyword}. All that really means is that you don't \textit{call} it.
+\\
+
+As you can see, it's not that different from JavaScript. The main difference is that on line 1 we have to tell PHP that it's PHP. If we don't do this then PHP has a bit of an identity crisis and doesn't know what's going on.
+\\
+
+\textbf{Make sure you never have anything before the opening \texttt{<?php} tag - no spaces, line breaks, or comments - as this will break most modern PHP apps.}
 
 
 \begin{infobox}{Ye Olde PHP}
@@ -37,9 +43,6 @@ As you can see, it's not that different from JavaScript. The main difference is 
 
     PHP is still used like this in some PHP frameworks such as WordPress. Nowadays templating languages like Blade and Twig are more commonly used, thus separating the program logic from the templating language.
 \end{infobox}
-
-We ``echo'' the string ``Hello, World!'', this is PHP's equivalent of using \texttt{console.log()} - although it's only useful when used with strings. \texttt{echo} is \textit{not} a function (or method), but instead a \textbf{keyword}. All that really means is that you don't \textit{call} it.
-\\
 
 In JavaScript you could get away without semi-colons at the end of lines. PHP isn't nearly so forgiving: if you forget a semi-colon you will get a syntax error and the code will refuse to run.
 \\
@@ -79,14 +82,14 @@ Would give us:
 In PHP we don't \textit{declare} variables, we just start using them. This is possible because variables have to start with a \texttt{\$} (this is because of PHP's Perl influence).
 \\
 
-This is makes it much easier to accidentally change the values of existing variables, as there is no difference between creating a new variable and reassigning an existing one. So be very careful when naming things.
+This makes it much easier to accidentally change the values of existing variables, as there is no difference between creating a new variable and reassigning an existing one. So be very careful when naming things.
 
 \phpinputminted{01/figures/01/02-variables}
 
 Variables must start with a dollar, followed by a letter or underscore, followed by any number of letters, numbers, or underscores. Variables names are case-sensitive.
 \\
 
-As with JavaScript it is a standard convention to use \texttt{camelCase} for variable names in PHP, although you may see \texttt{snake\_case} used in older code.
+As with JavaScript it is a standard convention to use \texttt{\$camelCase} for variable names in PHP, although you may see \texttt{\$snake\_case} used in older code.
 
 
 

@@ -75,7 +75,7 @@ First we turn on strict typing:
     declare(strict_types=1); // always first line after opening tag
 \end{minted}
 
-Next we add type declarations to our function parameters:
+Next we add type declarations to our function:
 
 \begin{minted}{php}
     function add(float $a, float $b) : float {
@@ -83,7 +83,10 @@ Next we add type declarations to our function parameters:
     }
 \end{minted}
 
-The parameter types and return types needn't match:
+Each parameter (\texttt{\$a} and \texttt{\$b}) is given an explicit type. We also add a ``return'' type - the type of value the function returns - after the parameter brackets.
+\\
+
+The parameter types and return types needn't match. Here's a function that takes a string (\texttt{\$str}) and integer (\texttt{\$int}) as parameters and returns a string:
 
 \begin{minted}{php}
     function repeat(string $str, int $times) : string {
@@ -107,6 +110,8 @@ The possible type declarations are:
     \item \texttt{array}
     \item \texttt{callable}: a closure
 \end{itemize}
+
+If you try and call a function and pass in/return the wrong type of value PHP will throw an error.
 
 
 \section{Additional Resources}
