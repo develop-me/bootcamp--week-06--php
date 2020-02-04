@@ -1,24 +1,132 @@
-``Regular Expressions'' are a way to search a string for a pattern as opposed to a specific string.
+``Regular Expressions'' (or ``regex'' for short) are a way to check/search a string for a \textit{pattern} as opposed to a specific string.
+\\
+
+They're a little bit mad looking to start with. In fact they're a little bit mad looking even after you've been using them for years. But they are very useful as long as you don't get too carried away.
+\\
+
+For example, we might want to split a string on a comma followed by \textit{any} number of spaces (not just one). We'd write that using the following regex:
+
+\begin{minted}{text}
+    /,\s*/
+\end{minted}
+
+
+Or if we wanted to match any combination of lowercase letters, numbers, underscore, and hyphens between 3 and 16 characters long we could write this with the following regex:
+
+\begin{minted}{text}
+    /^[a-z0-9_-]{3,16}$/
+\end{minted}
+
+JavaScript also supports regexes (it's actually it's own \textit{type} in JS, like numbers and strings).
+
+\pagebreak
+
 
 \section{Parts}
+
+We're not going to get into every aspect of Regexes, but we'll cover enough for them to be useful.
 
 
 \subsection{Quantifiers}
 
 Quantifiers allow us to specify that a character should appear zero, one, or many times.
+\\
+
+\begin{small}
+    \begin{tabu}{r X}
+        \textbf{Quantifier}   & \textbf{Description} \\
+        \texttt{*}          & 0 or more \\
+        \texttt{+}          & 1 or more \\
+        \texttt{?}          & 0 or 1 \\
+        \texttt{\{3\}}      & exactly 3 \\
+        \texttt{\{3,\}}     & 3 or more \\
+        \texttt{\{3, 5\}}   & 3, 4, or 5
+    \end{tabu}
+\end{small}
+
+\par\bigskip
+
+For example:
+
+\begin{minted}{text}
+    /a+/        - would match 'a', 'aa', 'aaa', 'aaaa', etc.
+    /b*/        - would match '', 'b', 'bb', 'bbb', etc.
+    /c?/        - would match '' and 'c'
+    /d{3}/      - would match 'ddd'
+    /d{3,5}/    - would match 'ddd', 'dddd', and 'ddddd'
+    /abc*/      - would match 'ab', 'abc', 'abcc', 'abccc', etc.
+    /(abc)*/    - would match '', 'abc', 'abcabc', 'abcabcabc', etc.
+    /https?:/    - would match 'http:' and 'https:'
+\end{minted}
 
 
 \subsection{Ranges}
 
 Ranges allow us to specify a range of characters that we're interested in.
+\\
 
+\begin{small}
+    \begin{tabu}{r X}
+        \textbf{Range}          & \textbf{Description} \\
+        \texttt{[a-z]}          & all lowercase letters \\
+        \texttt{[A-Z]}          & all uppercase letters \\
+        \texttt{[0-9]}          & all numbers \\
+        \texttt{[0-9afg]}       & all numbers plus 'a', 'f', and 'g' \\
+        \texttt{[a-zA-Z]}       & all letters, case-insensitive \\
+        \texttt{[a-zA-Z0-9]}    & alphanumeric characters \\
+        \texttt{[0-9A-F]}       & valid hexadecimal digits \\
+        \texttt{[\textasciicircum abc]}         & \textbf{not} 'a', 'b', or 'c'
+    \end{tabu}
+\end{small}
+
+\par\bigskip
+
+For example:
+
+\begin{minted}{text}
+    /[a-z]+/          - any number of lowercase letters
+    /[a-z0-9_-]/      - a single lowercase, digits, underscore, or hyphen
+\end{minted}
+
+\subsection{Special Characters}
+
+These represent special characters like tab and a new line:
+\\
+
+\begin{small}
+    \begin{tabu}{r X}
+        \textbf{Character}          & \textbf{Description} \\
+        \texttt{\textbackslash n}          & a new line \\
+        \texttt{\textbackslash r}          & a carriage return \\
+        \texttt{\textbackslash t}          & a tab \\
+    \end{tabu}
+\end{small}
+
+\par\bigskip
+
+These can generally be used in regular strings too.
 
 \subsection{Character Classes}
 
 Character classes are shortcuts for specific ranges.
+\\
+
+\begin{small}
+    \begin{tabu}{r X}
+        \textbf{Class}      & \textbf{Description} \\
+        \texttt{\textbackslash s}         & whitespace \\
+        \texttt{\textbackslash S}         & \textbf{not} whitespace \\
+        \texttt{\textbackslash w}         & word (\texttt{[A-Za-z0-9\_]}) \\
+        \texttt{\textbackslash W}         & \textbf{not} word \\
+        \texttt{\textbackslash d}         & digit \\
+        \texttt{\textbackslash D}         & \textbf{not} digit
+    \end{tabu}
+\end{small}
+
+\par\bigskip
 
 
-\subsection{Positions}
+\subsection{Anchors}
 
 Sometimes \textit{where} the substring appears is important.
 
@@ -49,7 +157,6 @@ We can use regex for all sorts of string manipulations. The three most common ar
 
 \quoteinline{Some people, when confronted with a problem, think ``I know, I'll use regular expressions.'' Now they have two problems.}{Jamie Zawinski}
 
-
 It's not uncommon for people new to programming to try and solve complex string manipulations using regular expressions. This can lead to hard to read and inefficient code. There are many problems that require a ``parser'': a much more clever sort of algorithm that can elegantly cope with things like matching start/end tags.
 \\
 
@@ -67,4 +174,5 @@ As a general rule, if your regular expressions isn't easy to understand in one g
     \item \href{http://www.php.net/manual/en/function.preg-split.php}{PHP: \texttt{preg\_split}}
     \item \href{https://blog.codinghorror.com/regular-expressions-now-you-have-two-problems/}{Regular Expressions: Now You Have Two Problems}
     \item \href{http://www.regexcrossword.com/}{RegEx Crossword}
+    \item \href{https://stackoverflow.com/a/1732454}{Stack Overflow: RegEx match open tags except XHTML self-contained tags}
 \end{itemize}
