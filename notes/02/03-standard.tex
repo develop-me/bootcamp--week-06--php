@@ -1,0 +1,28 @@
+\section{Dates}
+
+PHP makes working with dates quite pleasant as long as you use the \texttt{DateTime} class (and its relatives).
+
+\phpinputminted{02/figures/03/01-DateTime}
+
+The \texttt{format} method takes a string. You can find out all the possible parts on \href{http://www.php.net/manual/en/function.date.php}{date documentation}.
+\\
+
+You can also do date maths using the \texttt{DateInterval} class:
+
+\phpinputminted{02/figures/03/02-DateInterval}
+
+The ``period'' format is pretty strange for \texttt{DateInterval}. It starts with a \texttt{P} (for ``period''), then using \texttt{Y}, \texttt{M}, and \texttt{D} for year, month, and day. Then there's a \texttt{T} for ``time'' followed by \texttt{H}, \texttt{M}, and \texttt{S} for hour, minute, and second.
+
+\hr
+
+Although PHP's date functionality is better than some, it's still fairly common to use a library like \texttt{Carbon} to deal with dates and times in PHP.
+\\
+
+Whatever you do, avoid the \texttt{date()}, \texttt{mktime()}, and \texttt{strtotime()} functions like the plague!
+
+\section{Additional Resources}
+
+\begin{itemize}[leftmargin=*]
+    \item \href{http://www.php.net/manual/en/class.datetime.php}{PHP: The \texttt{DateTime} Class}
+    \item \href{http://www.php.net/manual/en/class.dateinterval.php}{PHP: The \texttt{DateInterval} Class}
+\end{itemize}
