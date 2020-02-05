@@ -180,6 +180,26 @@ You'll need to look at how the class is being used in the test code to work out 
     var_dump($string3->repeat(2)->append(" ")->repeat(8)->append(" ")->append("Batman!")->get()); // string(48) "NaNa NaNa NaNa NaNa NaNa NaNa NaNa NaNa  Batman!"
     ```
 
+1) Update the function, `daysSince`. It should tell you how many days have passed since the date it is passed:
+
+    **Hint**: Read the [`DateInterval` docs](http://www.php.net/manual/en/class.dateinterval.php) before trying this one
+
+    ```php
+    <?php
+
+    declare(strict_types=1);
+
+    function daysSince(string $date) : int {
+        // … your code here
+    }
+
+    var_dump(
+        daysSince("1984-04-16"), // 13 thousand and something
+        // why not try *your* date of birth?
+    );
+    ```
+
+
 ## Tricksy Challenges
 
 1) Create an class that represents a shopping basket. It should have a property, `items`, that keeps track of the items in the basket. It should have an `add` method to add items to the basket. It should have a `total` method that returns the value of all the items' prices. It should have a `items` method that returns an array of item names.
