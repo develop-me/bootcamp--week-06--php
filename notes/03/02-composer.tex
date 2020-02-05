@@ -106,7 +106,7 @@ See the \href{https://symfony.com/doc/current/components/var_dumper.html}{VarDum
 
 \subsection{\texttt{Illuminate\textbackslash Support\textbackslash Collection}}
 
-This is part of Laravel, which we'll be covering later. It basically lets us handle arrays in a way which isn't utterly horrible\footnote{PHP's built-in array handling functions are utterly inconsistent ``Because that's how PHP rolls: Like a square wheel''.}.
+This is part of Laravel, which we'll be covering later. It basically lets us handle arrays in a way which isn't utterly horrible.
 \\
 
 We install it by running \texttt{composer require illuminate/support}. It's got \href{http://laravel.com/docs/master/collections#available-methods}{tonnes of really useful methods}, but we'll just look at four of them here: our old friends \texttt{map()}, \texttt{filter()}, and \texttt{reduce()}, as well as a very useful one called \texttt{pluck()}.
@@ -144,7 +144,7 @@ We've not come across \texttt{pluck} before, but it's very useful. It assumes yo
 
 \subsection{\texttt{nesbot/carbon}}
 
-The Carbon library makes working with dates in PHP much easier.\footnote{I have yet to come across a programming language that has really good built-in date functionality} We install it by running \texttt{composer require nesbot/carbon}\footnote{If you've already installed \texttt{illuminate/support} this isn't necessary, as it's a dependency for that package}. Once it's installed we have access to the \texttt{Carbon\textbackslash Carbon} class.
+The Carbon library makes working with dates in PHP much easier. We install it by running \texttt{composer require nesbot/carbon}\footnote{If you've already installed \texttt{illuminate/support} this isn't necessary, as it's a dependency for that package}. Once it's installed we have access to the \texttt{Carbon\textbackslash Carbon} class.
 
 \phpinputminted{03/figures/02/05-Carbon}
 

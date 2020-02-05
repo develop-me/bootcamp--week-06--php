@@ -5,7 +5,7 @@ class MailingList
   // ...etc.
 
   // use the MailerInteface type-declaration to
-  // allows all classes that implement MailerInterface
+  // allows any classes that implement MailerInterface
   public function sendWith(MailerInterface $mailer) : MailingList
   {
     // setup the from address
