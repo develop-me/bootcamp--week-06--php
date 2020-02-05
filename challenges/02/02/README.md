@@ -1,10 +1,10 @@
 # Challenges
 
+**Create a new Git repo in a directory called `week-6--classes`. Every time you get a challenge working do a commit with a sensible message.**
+
 Create a new `.php` file for each challenge and call it something sensible. Copy the given boilerplate into the file. Only edit the file where it says "your class(es) here". Make sure you get the expected results. You'll notice we're using `var_dump()` and not `echo`: `echo` is only really useful for strings.
 
 You'll need to look at how the class is being used in the test code to work out how to write the class.
-
-**Use Git to make a commit every time you get an answer working. Use sensible commit messages.**
 
 **Hint**: Remember, it's good practice to declare all of your properties at the top of the class and to make them private.
 

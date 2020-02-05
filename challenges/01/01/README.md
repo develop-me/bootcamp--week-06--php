@@ -4,6 +4,8 @@
 
 ## Challenges
 
+**Create a new Git repo in a directory called `week-6--php-basics--01`. Every time you get a challenge working do a commit with a sensible message.**
+
 Create a new file for each challenge. If a code block is provided, copy the provided code and then add your own code in the `// ... your code here` bit.
 
 1) Add up the numbers:
