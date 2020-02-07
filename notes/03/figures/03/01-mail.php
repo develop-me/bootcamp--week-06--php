@@ -1,7 +1,7 @@
 <?php
 
 // a sendMail function
-function sendMail($to, $from, $message) {
+function sendMail(string $to, string $from, string $message) {
   // ... send email
 }
 

@@ -13,6 +13,7 @@
     composer.json
     index.php
     ```
+- Include `declare(strict_types=1);` at the top of `index.php`
 - Include the Composer auto-loading file at the top of `index.php`
 
 ### Instructions

@@ -1,16 +1,13 @@
 <?php
 
-// this time we use implements
-// extend a class, implement an interface
+// we implement the MailerInterface
 class Mail implements MailerInterface
 {
   // setup properties
-  // not inheriting, so need to create
   private $to;
   private $from;
   private $characterSet = "utf8";
 
-  // again, not inheriting, so need to create
   public function to(string $address) : MailerInterface
   {
     $this->to = $address;
@@ -23,7 +20,7 @@ class Mail implements MailerInterface
     return $this;
   }
 
-  public function send(string $subject, string $message) : MailerInterface
+  public function send(string $sub, string $msg) : MailerInterface
   {
     // send using local mail server
   }

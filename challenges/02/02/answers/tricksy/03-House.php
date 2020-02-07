@@ -2,7 +2,7 @@
 
 class Person
 {
-    public static function averageAge($people)
+    public static function averageAge($people) : float
     {
         // use reduce to add up the ages of all the people
         $total = array_reduce($people, function ($total, $person) {
@@ -15,13 +15,13 @@ class Person
     private $name;
     private $age;
 
-    public function __construct($name, $age)
+    public function __construct(string $name, int $age)
     {
         $this->name = $name;
         $this->age = $age;
     }
 
-    public function age()
+    public function age() : int
     {
         return $this->age;
     }
@@ -29,7 +29,7 @@ class Person
 
 class House
 {
-    public static function census($houses)
+    public static function census(array $houses) : array
     {
         $people = [];
 
@@ -40,7 +40,7 @@ class House
         return $people;
     }
 
-    public static function averageAge($houses)
+    public static function averageAge(array $houses) : float
     {
         $people = static::census($houses);
 
@@ -51,13 +51,13 @@ class House
 
     private $people = [];
 
-    public function addDweller($person)
+    public function addDweller(Person $person) : House
     {
         $this->people[] = $person;
         return $this;
     }
 
-    public function people()
+    public function people() : array
     {
         return $this->people;
     }

@@ -15,6 +15,7 @@ First, go back over all of the previous challenges this week and add appropriate
     composer.json
     bootstrap.php
     ```
+- Include `declare(strict_types=1);` at the top of `bootstrap.php`
 - Include the Composer auto-loading file at the top of `bootstrap.php`
 - Create a new class `Challenges` in the `App` namespace. It should have a `start` method.
 

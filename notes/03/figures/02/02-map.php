@@ -3,7 +3,7 @@
 // we can also use the collect function to create a new collection
 $numbers = collect([1, 2, 3, 4, 5]);
 
-$squared = $numbers->map(function ($n) {
+$squared = $numbers->map(function (int $n) : int {
   return $n * $n;
 });
 

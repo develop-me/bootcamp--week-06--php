@@ -6,19 +6,19 @@ class Mail
   private $from;
   private $characterSet = "utf8";
 
-  public function to($address)
+  public function to(string $address)
   {
     $this->to = $address;
     return $this;
   }
 
-  public function from($address)
+  public function from(string $address)
   {
     $this->from = $address;
     return $this;
   }
 
-  public function send($subject, $message)
+  public function send(string $subject, string $message)
   {
     // ... code to send mail
     // we can use $this to access the values

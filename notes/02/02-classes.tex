@@ -3,7 +3,7 @@ A class is an abstract representation of an object that you want to create. For 
 
 Here's a class that represents a person:
 
-\inputminted{php}{02/figures/01/01-class.php}
+\inputminted{php}{02/figures/02/01-class.php}
 
 As you can see, it's much the same as a JavaScript class: we have the \texttt{class} keyword followed by the name of the class and there are some functions inside the class.
 \\
@@ -11,12 +11,12 @@ As you can see, it's much the same as a JavaScript class: we have the \texttt{cl
 As in JavaScript, we call functions that belong to an object \textbf{methods} and the values \textbf{properties}.
 \\
 
-However, there are some things we've not seen in JavaScript: the words \texttt{private} and \texttt{public}; and we declare our properties outside of the constructor method. We'll look at these in more detail shortly.
+However, there are some things we've not seen in JavaScript: type declarations, the words \texttt{private} and \texttt{public}; and we declare our properties outside of the constructor method. We'll look at these in more detail shortly.
 \\
 
 Here's how we'd use our class:
 
-\phpinputminted{02/figures/01/02-class-usage}
+\phpinputminted{02/figures/02/02-class-usage}
 
 You can see that where we'd write a dot in JavaScript (\texttt{jim.getAge()}), we write an arrow in PHP (\texttt{\$jim->getAge()}), but otherwise it's almost identical in usage.
 
@@ -38,14 +38,16 @@ You can see that where we'd write a dot in JavaScript (\texttt{jim.getAge()}), w
 
 Inside our classes we can use the \texttt{\$this} keyword to access properties and methods that belong to the current object instance. It works in much the same way as JavaScript except that it's much more reliable: \texttt{\$this} in PHP \textit{always} refers to the current object and has no meaning elsewhere.
 
-\phpinputminted{02/figures/01/04-this}
+\phpinputminted{02/figures/02/04-this}
 
 
 \subsection{Returning \texttt{\$this}}
 
 If your method doesn't have anything to return, for example if it just sets a value, then you can return \texttt{\$this}: it will give back the current object instance to the user, meaning that they can \textbf{chain} such methods together:
 
-\phpinputminted{02/figures/01/05-returning-this}
+\phpinputminted{02/figures/02/05-returning-this}
+
+For now we'll leave the return type for these methods blank, but when we look at object-oriented programming later we'll see that we can add useful information here.
 
 
 \begin{infobox}{Using \texttt{new} Objects}
@@ -72,7 +74,20 @@ If your method doesn't have anything to return, for example if it just sets a va
 
 In PHP we declare all of the properties that our class uses at the top of the class. This makes it easy to see which values are available. It also allows us to set default values easily:
 
-\phpinputminted{02/figures/01/03-default-properties}
+\phpinputminted{02/figures/02/03-default-properties}
+
+\begin{infobox}{Typed Properties}
+    As of PHP 7.4 (released in late 2019) you can add types to class properties:
+
+    \begin{minted}{php}
+      private string $engine = "mysql";
+      private string $host = "127.0.0.1";
+      private int $port = 3306;
+    \end{minted}
+
+    We won't be covering typed properties in any detail, as they're still very new, but you can \href{https://stitcher.io/blog/typed-properties-in-php-74}{read more here}.
+\end{infobox}
+
 
 
 \section{Visibility}
@@ -85,7 +100,7 @@ A \textbf{public} method can be called anywhere in the PHP code. A \textbf{publi
 
 A \textbf{private} method can only be called within the class it is declared in using \texttt{\$this}. A \textbf{private} property can only be read and changed within the class it belongs to by using \texttt{\$this}.
 
-\phpinputminted{02/figures/01/06-visibility}
+\phpinputminted{02/figures/02/06-visibility}
 
 A \textbf{protected} property/method can only be used within the class it is declared in and any class that inherits from it (we'll look at inheritance later).
 \\
@@ -103,14 +118,13 @@ For example, if we have a \texttt{Person} class we might want to write a bit of 
 
 Instead, we will write a \texttt{static} method: a method that belongs to the class itself rather than to an object instance.
 
-\phpinputminted{02/figures/01/07-static}
+\phpinputminted{02/figures/02/07-static}
 
 Now it is clear that the \texttt{lastNames()} method has something to do with \texttt{Person} objects.
 \\
 
 Remember, \texttt{private} properties and methods can only be accessed using \texttt{\$this}, which doesn't have a value in \texttt{static} methods. So you'll need to use getters/setters just as you would if the function was written outside of the class.
 
-\pagebreak
 
 \begin{infobox}{Paamayim Nekudotayim}
     The \texttt{::} symbol is also known as the ``Paamayim Nekudotayim'', which is Hebrew for ``double colon''. This can lead to the somewhat mystifying error:
@@ -127,7 +141,7 @@ Remember, \texttt{private} properties and methods can only be accessed using \te
 
 Sometimes it's useful to be able to refer to the class you're currently working in. We can use the \texttt{static} keyword to do this:
 
-\phpinputminted{02/figures/01/08-static-keyword}
+\phpinputminted{02/figures/02/08-static-keyword}
 
 \begin{infobox}{\texttt{static} vs \texttt{self}}
     You will sometimes see \texttt{self} instead of \texttt{static} to reference the current class. Using \texttt{static} in this way was only added in PHP 5.3, so a lot of older code uses \texttt{self}.
@@ -141,7 +155,7 @@ You can also have \texttt{static} properties. Because they belong to the class t
 
 Say we needed to create a \texttt{\$renderer} object that all our object instances can use to render\textellipsis{} something. We could use a \texttt{static} property to store it, so that we only create it one time:
 
-\phpinputminted{02/figures/01/09-static-property}
+\phpinputminted{02/figures/02/09-static-property}
 
 Privately declared \texttt{static} variables are accessible from inside object instances.
 

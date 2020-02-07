@@ -36,7 +36,7 @@ We would use it in \texttt{MailingList} in exactly the same way:
 Interfaces are also a type declaration. So, now we could only pass in classes that implement the \texttt{MailerInterface} interface.
 \\
 
-This might at first not seem like much of an advantage over using an abstract class, but a class can only \texttt{extend} a single class, whereas it can \texttt{implement} as many interfaces as it likes:
+A class can \texttt{implement} as many interfaces as it likes:
 
 \phpinputminted{04/figures/01/18-MailChimp}
 
@@ -53,16 +53,6 @@ The reason interfaces are such a powerful idea is because they focus solely on t
 \\
 
 This is also why we try to only use \texttt{private} properties: if a property is \texttt{public} then we need to know about how the internals of the class work.
-\\
-
-Inheritance can break the idea of encapsulation because in order to use it you often need to know about the \textit{internal} workings of the parent classes: Were these properties declared? Has another class in the hierarchy overriden anything? This makes it much harder to work with and it gets worse as the codebase gets bigger. What if you need to change a parent class: will it break any of the children?
-\\
-
-``But,'' I hear you saying, ``you've got to write the same \texttt{to} and \texttt{from} methods and repeat all the properties in \texttt{Mail} and \texttt{MailChimp}! And repeating code is bad.''
-\\
-
-This is true with these very simple class examples, but you generally find that with more complex classes you don't actually repeat all that much code between them. If you do need to repeat code between classes there are often cleaner ways to do it than using inheritance: a shared class, for example.
-
 
 
 
@@ -120,25 +110,18 @@ Sometimes when we're overriding a method it can be useful to still have access t
 You can call the parent's constructor method with \texttt{parent::\_\_construct()}.
 
 
-\subsection{The Intuitive Appeal of Inheritance}
-
-You can probably see that there's an intuitive sort of appeal to inheritance. Programming books often give examples like creating an \texttt{Animal} class, which then has a child \texttt{Mammal} class, which then has a child \texttt{Primate} class, which has a child \texttt{Person} class, \&c.
-\\
-
-It also looks like we can save ourselves a lot of code by adding as many of the properties and methods as we can into the classes higher up the hierarchy: we only need to write the \texttt{to()} and \texttt{from()} methods \textit{once} in the \texttt{Mailer} class, which save a lot of repetition.
 
 \section{Inheritance Tax}
 
 \quoteinline{The object-oriented version of ``Spaghetti code'' is, of course, ``Lasagna code'': too many layers}{Roberto Waltman}
 
-If you read any books about OOP they'll focus a lot of their time on inheritance. While inheritance can be very useful, all of this attention means that it's often the technique that programmers reach for when they need to add a bit of functionality. And it will almost always lead to much more complicated code.
+If you read any books about OOP they'll focus a lot of their time on inheritance. While inheritance can be very useful, all of this attention means that it's often the technique that programmers reach for when they need to add the same bit of functionality to multiple classes. And it will almost always lead to much more complicated code.
 \\
 
-That's not to say it isn't useful. It's totally fine to inherit code that frameworks/libraries provide, as in these cases you're generally adding one tiny bit of functionality to something that's much more complicated under-the-hood.\footnote{Although some purists would say even in this case there are better alternatives: see the \href{https://www.thoughtfulcode.com/orm-active-record-vs-data-mapper/}{Active Record vs Data Mapper} debate} But if it's code that you've written, it's always worthwhile thinking ``Do I really need to use inheritance?''
+That's not to say it isn't useful. It's totally fine to inherit code that frameworks or libraries provide, as in these cases you're generally adding one tiny bit of functionality to something that's much more complicated under-the-hood.\footnote{Although some purists would say even in this case there are better alternatives: see the \href{https://www.thoughtfulcode.com/orm-active-record-vs-data-mapper/}{Active Record vs Data Mapper} debate} But if it's code that you've written, it's always worthwhile thinking ``Do I really need to use inheritance?''
 \\
 
 Sandi Metz\footnote{She's been doing OOP since it was invented in the 70s, so she probably knows what she's talking about} suggests not using inheritance until you have \textit{at least} three classes that are \textit{definitely} all using exactly the same methods. You should never start out by writing an abstract class: write the actual use-cases first and only write an abstract class if you definitely need one. If you do use inheritance then try not to create layers and layers of it: maybe have a rule that you'll only ever inherit through one layer.
-
 
 
 
@@ -146,10 +129,7 @@ Sandi Metz\footnote{She's been doing OOP since it was invented in the 70s, so sh
 
 \quoteinline{Prefer composition over inheritance}{The Gang of Four, \textit{Design Patterns}}
 
-Think back to the \texttt{Animal}, \texttt{Mammal}, \texttt{Primate} \&c. example earlier. It intuitively has some appeal, but if you think about it for a while it starts to fall down. For example, if your mammal class had any functionality to do with giving birth to live young, then the \texttt{Monotreme} class is going to have issues. It turns out that despite all having the same common ancestor at some point in history, the only thing that \textit{all} mammals have in common is something to do with jaw articulation.\footnote{``Synapsids that possess a dentary–squamosal jaw articulation and occlusion between upper and lower molars with a transverse component to the movement'', Kemp, T. S. (2005) \textit{The Origin and Evolution of Mammals}}
-\\
-
-The idea of \textit{composition over inheritance} is that rather than sharing behaviour with inheritance, we share it using interfaces and shared classes. Rather than having a \texttt{giveBirthToLiveYoung()} method that all \texttt{Mammal} objects have to inherit, instead have a \texttt{GiveBirthToLiveYoung} interface, which is implemented only by those mammals that need to. If a lot of those classes share the same implementation of that method then consider moving it into a separate class that they can all share. It might require a bit more code to get working, but it is much easier to make changes to.
+The idea of \textit{composition over inheritance} is that rather than sharing behaviour with inheritance, we share it using interfaces and shared classes. If a lot of classes share the same implementation of a method, rather than using inheritance consider moving it into a separate class that they can all share. It might require a bit more code to get working, but it is much easier to make changes to.
 
 
 \pagebreak

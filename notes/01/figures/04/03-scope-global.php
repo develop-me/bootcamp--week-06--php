@@ -7,4 +7,4 @@ function sayHello($name) {
     return "{$message} {$name}";
 }
 
-var_dump(sayHello("Jim")); // int(46)
+var_dump(sayHello("Jim")); // "Hello Jim"

@@ -1,59 +1,272 @@
-``Regular Expressions'' are a way to search a string for a pattern as opposed to a specific string.
+Regular Expressions (or ``regex'' for short) are a way to check/search a string for a \textit{pattern} as opposed to a specific string.
+\\
+
+They're a little bit mad looking to start with. In fact they're a little bit mad looking even after you've been using them for years. But they are very useful as long as you don't get too carried away.
+\\
+
+For example, we might want to split a string on a comma followed by \textit{any} number of spaces (not just one). We'd write that using the following regex:
+
+\begin{minted}{text}
+    /,\s*/
+\end{minted}
+
+
+Or if we wanted to match any combination of lowercase letters, numbers, underscores, and hyphens between 3 and 16 characters long we could write this with the following regex:
+
+\begin{minted}{text}
+    /^[a-z0-9_-]{3,16}$/
+\end{minted}
+
+JavaScript also supports regexes (it's actually it's own \textit{type} in JS, like numbers and strings).
+
+\pagebreak
+
 
 \section{Parts}
 
+We're not going to get into every aspect of Regexes, but we'll cover enough for them to be useful.
 
 \subsection{Quantifiers}
 
 Quantifiers allow us to specify that a character should appear zero, one, or many times.
+
+\begin{center}
+    \begin{small}
+        \begin{tabu}{r l}
+            \textbf{Quantifier}   & \textbf{Description} \\
+            \texttt{*}          & 0 or more \\
+            \texttt{+}          & 1 or more \\
+            \texttt{?}          & 0 or 1 \\
+            \texttt{\{3\}}      & exactly 3 \\
+            \texttt{\{3,\}}     & 3 or more \\
+            \texttt{\{3,5\}}   & 3, 4, or 5
+        \end{tabu}
+    \end{small}
+\end{center}
+
+For example:
+
+\begin{minted}{text}
+    /a+/        - would match 'a', 'aa', 'aaa', 'aaaa', etc.
+    /b*/        - would match '', 'b', 'bb', 'bbb', etc.
+    /c?/        - would match '' and 'c'
+    /d{3}/      - would match 'ddd'
+    /d{3,5}/    - would match 'ddd', 'dddd', and 'ddddd'
+    /abc*/      - would match 'ab', 'abc', 'abcc', 'abccc', etc.
+    /(abc)*/    - would match '', 'abc', 'abcabc', 'abcabcabc', etc.
+    /https?:/   - would match 'http:' and 'https:'
+\end{minted}
 
 
 \subsection{Ranges}
 
 Ranges allow us to specify a range of characters that we're interested in.
 
+\begin{center}
+    \begin{small}
+        \begin{tabu}{r l}
+            \textbf{Range}          & \textbf{Description} \\
+            \texttt{[a-z]}          & all lowercase letters \\
+            \texttt{[A-Z]}          & all uppercase letters \\
+            \texttt{[0-9]}          & all numbers \\
+            \texttt{[abc]}          & 'a', 'b', or 'c' \\
+            \texttt{[0-9afg]}       & all numbers plus 'a', 'f', and 'g' \\
+            \texttt{[a-zA-Z]}       & all letters, case-insensitive \\
+            \texttt{[a-zA-Z0-9]}    & alphanumeric characters \\
+            \texttt{[0-9A-F]}       & valid hexadecimal digits \\
+            \texttt{[\textasciicircum abc]}         & \textbf{not} 'a', 'b', or 'c'
+        \end{tabu}
+    \end{small}
+\end{center}
+
+For example:
+
+\begin{minted}{text}
+    /[a-z]+/          - any number of lowercase letters
+    /[a-z0-9_-]/      - a single lowercase letter, digit, underscore, or hyphen
+\end{minted}
+
+\subsection{Special Characters}
+
+These represent special characters like tab and a new line:
+
+\begin{center}
+    \begin{small}
+        \begin{tabu}{r l}
+            \textbf{Character}          & \textbf{Description} \\
+            \texttt{\textbackslash n}          & a new line \\
+            \texttt{\textbackslash r}          & a carriage return \\
+            \texttt{\textbackslash t}          & a tab \\
+        \end{tabu}
+    \end{small}
+\end{center}
+
+These can generally be used in regular strings too.
 
 \subsection{Character Classes}
 
 Character classes are shortcuts for specific ranges.
 
+\begin{center}
+    \begin{small}
+        \begin{tabu}{r l}
+            \textbf{Class}                    & \textbf{Description} \\
+            \texttt{\textbackslash s}         & whitespace \\
+            \texttt{\textbackslash S}         & \textbf{not} whitespace \\
+            \texttt{\textbackslash w}         & word (\texttt{[A-Za-z0-9\_]}) \\
+            \texttt{\textbackslash W}         & \textbf{not} word \\
+            \texttt{\textbackslash d}         & digit \\
+            \texttt{\textbackslash D}         & \textbf{not} digit
+        \end{tabu}
+    \end{small}
+\end{center}
 
-\subsection{Positions}
+For example:
+
+\begin{minted}{text}
+    /,\s*/          - a comma followed by 0 or more spaces
+    /\w\s+\w/       - two words separated by 1 or more spaces
+\end{minted}
+
+
+\subsection{Dot}
+
+In a regex the \texttt{.} character has a special meaning: \textit{any} character except for \texttt{\textbackslash n}. You need to be careful using it, particularly with the \texttt{*} and \texttt{+} quantifiers.
+\\
+
+\begin{minted}{text}
+    /.+@.+/         - an '@' symbol with some number of other characters either side
+\end{minted}
+
+If you want to match an actual full stop you need to ``escape'' it with a backslash:
+
+\begin{minted}{text}
+    /\.+@\.+/       - an '@' symbol with some number of '.' either side
+\end{minted}
+
+
+
+\subsection{Anchors}
 
 Sometimes \textit{where} the substring appears is important.
 
-\pagebreak
+\begin{center}
+    \begin{small}
+        \begin{tabu}{r l}
+            \textbf{Anchor}             & \textbf{Description} \\
+            \texttt{\textasciicircum}   & beginning of the string \\
+            \texttt{\$}                 & end of the string \\
+        \end{tabu}
+    \end{small}
+\end{center}
+
+For example:
+
+\begin{minted}{text}
+    /^abc/          - would match 'abc' but not '0abc'
+    /abc$/          - would match 'abc' but not 'abc0'
+\end{minted}
 
 
 \section{Regex with PHP}
 
-We can use regex for all sorts of string manipulations. The three most common are:
+We can use regexes for all sorts of string manipulations. The three most common are:
 
 \begin{itemize}
     \item Searching a string
-    \item Replacing a string
     \item Splitting a string
+    \item Replacing a string
 \end{itemize}
 
-\subsection{\texttt{preg\_match} \& \texttt{preg\_matchall}}
 
-\subsection{\texttt{preg\_replace}}
+\subsection{\texttt{preg\_match}}
+
+The \texttt{preg\_match} function can be used to check if a string matches a regular expression:
+
+\phpinputminted{02/figures/01/01-preg-match}
+
+It returns \texttt{1} if a match is found and \texttt{0} if it is not. Make sure you always use \texttt{===} when checking the result, as it returns \texttt{false} if an error occurs - which might get confused for \texttt{0} if you use \texttt{==}:
+
+\begin{minted}{php}
+    if (preg_match("/l+/", "Hello") === 1) {
+        // matches one or more 'l' characters
+    }
+\end{minted}
+
 
 \subsection{\texttt{preg\_split}}
 
+\texttt{preg\_split} can be used to split a string on a certain regex:
 
-\pagebreak
+\begin{minted}{php}
+    $csv = "first, second,   third,fourth";
+
+    // split on a comma followed by 0 or more spaces
+    $result = preg_split("/,\s*/", $csv);
+
+    // [
+    //    [0] => "first",
+    //    [1] => "second",
+    //    [2] => "third",
+    //    [3] => "fourth"
+    // ]
+\end{minted}
+
+We pass it a regex and a string and it gives us back an array of strings where the original string has been split on the regex.
+
+\subsection{\texttt{preg\_replace}}
+
+The \texttt{preg\_replace} function can be used to replace part of a string that matches a regex with something else:
+
+\begin{minted}{php}
+    $str = 'blah      blah   blah';
+
+    // replace one or more space with a single space
+    $tidied = preg_replace("/\s+/", " ", $str);
+
+    // "blah blah blah"
+\end{minted}
+
+
+There is a lot more to \texttt{preg\_replace} than this basic example,\footnote{``Back references'' are particularly useful} but we'll keep it simple for now.
+
+
+\section{Alternatives to Regex}
+
+For basic validation you are often better using PHP's \texttt{filter\_var} function:
+
+\begin{minted}{php}
+    $email = "penny@hello.horse";
+    $valid = filter_var($email, FILTER_VALIDATE_EMAIL);
+
+    if ($valid) {
+        // valid email address
+    }
+\end{minted}
+
+The \texttt{filter\_var} function takes a string and a filter type. It then returns the filtered string if it is valid or \texttt{false} otherwise.
+\\
+
+Here are some particularly useful filters:\footnote{These big shouty looking things are constant variables defined by PHP - in C-based languages constants are often written in uppercase with underscores}
+
+\begin{itemize}
+    \item \texttt{FILTER\_VALIDATE\_EMAIL}
+    \item \texttt{FILTER\_VALIDATE\_DOMAIN}
+    \item \texttt{FILTER\_VALIDATE\_URL}
+\end{itemize}
+
+There's a full list \href{https://www.php.net/manual/en/filter.filters.validate.php}{on the PHP docs}.
+
 
 
 \section{The Dangers of Regex}
 
 \quoteinline{Some people, when confronted with a problem, think ``I know, I'll use regular expressions.'' Now they have two problems.}{Jamie Zawinski}
 
-
-It's not uncommon for people new to programming to try and solve complex string manipulations using regular expressions. This can lead to hard to read and inefficient code. There are many problems that require a ``parser'': a much more clever sort of algorithm that can elegantly cope with things like matching start/end tags.
+It's not uncommon for people new to programming to try and solve complex string manipulations using regular expressions. This can lead to hard to read and inefficient code. There are many problems that require a \textbf{parser}: a much more clever sort of algorithm that can elegantly cope with things like matching start/end tags.
 \\
 
-As a general rule, if your regular expressions isn't easy to understand in one glance, then you probably shouldn't be using them.
+As a general rule, if your regular expression isn't easy to understand in one glance, then you probably shouldn't be using them.
 
 
 
@@ -67,4 +280,5 @@ As a general rule, if your regular expressions isn't easy to understand in one g
     \item \href{http://www.php.net/manual/en/function.preg-split.php}{PHP: \texttt{preg\_split}}
     \item \href{https://blog.codinghorror.com/regular-expressions-now-you-have-two-problems/}{Regular Expressions: Now You Have Two Problems}
     \item \href{http://www.regexcrossword.com/}{RegEx Crossword}
+    \item \href{https://stackoverflow.com/a/1732454}{Stack Overflow: RegEx match open tags except XHTML self-contained tags}
 \end{itemize}

@@ -6,14 +6,14 @@ class Address
   private $postcode;
 
   // a setter function
-  public function setStreet($street)
+  public function setStreet(string $street)
   {
     // $this represents whichever object we're working on
     $this->street = $street;
     return $this;
   }
 
-  public function setPostcode($postcode)
+  public function setPostcode(string $postcode)
   {
     // $this represents whichever object we're working on
     $this->postcode = $postcode;

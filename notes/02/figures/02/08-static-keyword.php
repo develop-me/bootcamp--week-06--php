@@ -2,7 +2,7 @@
 
 class Person
 {
-  public static function lastNames($people)
+  public static function lastNames(array $people) : array
   {
     // call the getLastNames method of this class
     $lastNames = static::getLastNames($people);
@@ -13,7 +13,7 @@ class Person
   }
 
   // a private static method
-  private static function getLastNames($people)
+  private static function getLastNames(array $people) : array
   {
     return array_map(function ($person) {
       return $person->lastName();

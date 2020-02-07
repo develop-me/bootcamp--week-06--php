@@ -1,10 +1,10 @@
 # Challenges
 
+**Create a new Git repo in a directory called `week-6--classes`. Every time you get a challenge working do a commit with a sensible message.**
+
 Create a new `.php` file for each challenge and call it something sensible. Copy the given boilerplate into the file. Only edit the file where it says "your class(es) here". Make sure you get the expected results. You'll notice we're using `var_dump()` and not `echo`: `echo` is only really useful for strings.
 
 You'll need to look at how the class is being used in the test code to work out how to write the class.
-
-**Use Git to make a commit every time you get an answer working. Use sensible commit messages.**
 
 **Hint**: Remember, it's good practice to declare all of your properties at the top of the class and to make them private.
 
@@ -12,6 +12,8 @@ You'll need to look at how the class is being used in the test code to work out 
 
     ```php
     <?php
+
+    declare(strict_types=1);
 
     // ... your class here
 
@@ -31,6 +33,8 @@ You'll need to look at how the class is being used in the test code to work out 
 
     ```php
     <?php
+
+    declare(strict_types=1);
 
     // ... your class here
 
@@ -54,6 +58,8 @@ You'll need to look at how the class is being used in the test code to work out 
 
     ```php
     <?php
+
+    declare(strict_types=1);
 
     // ... your class here
 
@@ -81,6 +87,8 @@ You'll need to look at how the class is being used in the test code to work out 
     ```php
     <?php
 
+    declare(strict_types=1);
+
     // ... your classes here
 
     $address = new Address("1 Made Up Street", "BS4 8TR", "Bristol");
@@ -103,6 +111,8 @@ You'll need to look at how the class is being used in the test code to work out 
     ```php
     <?php
 
+    declare(strict_types=1);
+
     // ... your classes here
 
     $string = new Stringy("Na");
@@ -124,6 +134,8 @@ You'll need to look at how the class is being used in the test code to work out 
 
     ```php
     <?php
+
+    declare(strict_types=1);
 
     // ... your class here
 
@@ -168,6 +180,8 @@ You'll need to look at how the class is being used in the test code to work out 
     ```php
     <?php
 
+    declare(strict_types=1);
+
     // ... your class here
 
     $string1 = new StringyRedux("Oop");
@@ -180,6 +194,26 @@ You'll need to look at how the class is being used in the test code to work out 
     var_dump($string3->repeat(2)->append(" ")->repeat(8)->append(" ")->append("Batman!")->get()); // string(48) "NaNa NaNa NaNa NaNa NaNa NaNa NaNa NaNa  Batman!"
     ```
 
+1) Update the function, `daysSince`. It should tell you how many days have passed since the date it is passed:
+
+    **Hint**: Read the [`DateInterval` docs](http://www.php.net/manual/en/class.dateinterval.php) before trying this one
+
+    ```php
+    <?php
+
+    declare(strict_types=1);
+
+    function daysSince(string $date) : int {
+        // … your code here
+    }
+
+    var_dump(
+        daysSince("1984-04-16"), // 13 thousand and something
+        // why not try *your* date of birth?
+    );
+    ```
+
+
 ## Tricksy Challenges
 
 1) Create an class that represents a shopping basket. It should have a property, `items`, that keeps track of the items in the basket. It should have an `add` method to add items to the basket. It should have a `total` method that returns the value of all the items' prices. It should have a `items` method that returns an array of item names.
@@ -190,6 +224,8 @@ You'll need to look at how the class is being used in the test code to work out 
 
     ```php
     <?php
+
+    declare(strict_types=1);
 
     // ... your classes here
 
@@ -213,6 +249,8 @@ You'll need to look at how the class is being used in the test code to work out 
 
     ```php
     <?php
+
+    declare(strict_types=1);
 
     // ... your classes here
 
@@ -267,6 +305,8 @@ You'll need to look at how the class is being used in the test code to work out 
 
     ```php
     <?php
+
+    declare(strict_types=1);
 
     // ... your classes here
 
