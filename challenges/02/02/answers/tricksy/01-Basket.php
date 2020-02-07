@@ -6,13 +6,13 @@ class Basket
 {
     private $items = [];
 
-    public function add($item)
+    public function add($item) : void
     {
         // add the given item to the array of items
         $this->items[] = $item;
     }
 
-    public function total()
+    public function total() : string
     {
         $total = 0;
 
@@ -23,7 +23,7 @@ class Basket
         return "£" . number_format($total, 2);
     }
 
-    public function items()
+    public function items() : array
     {
         $names = [];
 
@@ -41,18 +41,18 @@ class BasketItem
     private $price;
 
     // takes the name and price values on creation
-    public function __construct($name, $price) {
+    public function __construct(string $name, float $price) {
         $this->name = $name;
         $this->price = $price;
     }
 
     // returns the name
-    public function getName() {
+    public function getName() : string {
         return $this->name;
     }
 
     // return the price
-    public function getPrice() {
+    public function getPrice() : string {
         return $this->price;
     }
 }

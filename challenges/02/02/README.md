@@ -13,6 +13,8 @@ You'll need to look at how the class is being used in the test code to work out 
     ```php
     <?php
 
+    declare(strict_types=1);
+
     // ... your class here
 
     // create three phones
@@ -31,6 +33,8 @@ You'll need to look at how the class is being used in the test code to work out 
 
     ```php
     <?php
+
+    declare(strict_types=1);
 
     // ... your class here
 
@@ -54,6 +58,8 @@ You'll need to look at how the class is being used in the test code to work out 
 
     ```php
     <?php
+
+    declare(strict_types=1);
 
     // ... your class here
 
@@ -81,6 +87,8 @@ You'll need to look at how the class is being used in the test code to work out 
     ```php
     <?php
 
+    declare(strict_types=1);
+
     // ... your classes here
 
     $address = new Address("1 Made Up Street", "BS4 8TR", "Bristol");
@@ -103,6 +111,8 @@ You'll need to look at how the class is being used in the test code to work out 
     ```php
     <?php
 
+    declare(strict_types=1);
+
     // ... your classes here
 
     $string = new Stringy("Na");
@@ -124,6 +134,8 @@ You'll need to look at how the class is being used in the test code to work out 
 
     ```php
     <?php
+
+    declare(strict_types=1);
 
     // ... your class here
 
@@ -168,6 +180,8 @@ You'll need to look at how the class is being used in the test code to work out 
     ```php
     <?php
 
+    declare(strict_types=1);
+
     // ... your class here
 
     $string1 = new StringyRedux("Oop");
@@ -211,6 +225,8 @@ You'll need to look at how the class is being used in the test code to work out 
     ```php
     <?php
 
+    declare(strict_types=1);
+
     // ... your classes here
 
     $basket = new Basket();
@@ -233,6 +249,8 @@ You'll need to look at how the class is being used in the test code to work out 
 
     ```php
     <?php
+
+    declare(strict_types=1);
 
     // ... your classes here
 
@@ -287,6 +305,8 @@ You'll need to look at how the class is being used in the test code to work out 
 
     ```php
     <?php
+
+    declare(strict_types=1);
 
     // ... your classes here
 

@@ -7,20 +7,20 @@ class Ingredient
     private $dietary;
 
     // takes the name and dietary requirements values
-    public function __construct($name, $dietary)
+    public function __construct(string $name, array $dietary)
     {
         $this->name = $name;
         $this->dietary = $dietary;
     }
 
     // returns the name
-    public function getName()
+    public function getName() : string
     {
         return $this->name;
     }
 
     // returns the dietary requirements
-    public function getDietary()
+    public function getDietary() : array
     {
         return $this->dietary;
     }
@@ -33,13 +33,13 @@ class Recipe
     private $ingredients = [];
 
     // The recipe doesn't take any values initially
-    public function __construct($name)
+    public function __construct(string $name)
     {
         $this->name = $name;
     }
 
     // need to accept an ingredient object and and amount
-    public function addIngredient($ingredient, $amount)
+    public function addIngredient(Ingredient $ingredient, string $amount)
     {
         // we need some way to associate the ingredient and the amount
         // so we use an associative array to link them together
@@ -52,13 +52,13 @@ class Recipe
     }
 
     // sets the method property
-    public function addMethod($method)
+    public function addMethod(string $method) : Recipe
     {
         $this->method = $method;
         return $this;
     }
 
-    public function display()
+    public function display() : string
     {
         // first build up a list of ingredients
         $ingredients = [];
@@ -78,20 +78,20 @@ class Recipe
         ];
 
         // sepearate each output by two line breaks
-        return implode($elements, "\n\n");
+        return implode("\n\n", $elements);
     }
 
-    public function dietary()
+    public function dietary() : string
     {
         return implode(", ", $this->getDietary());
     }
 
-    public function vegan()
+    public function vegan() : bool
     {
         return array_search("animal produce", $this->getDietary()) === false;
     }
 
-    private function getDietary()
+    private function getDietary() : array
     {
         $dietary = [];
 
