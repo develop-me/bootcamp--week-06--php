@@ -11,7 +11,7 @@ As you can see, it's much the same as a JavaScript class: we have the \texttt{cl
 As in JavaScript, we call functions that belong to an object \textbf{methods} and the values \textbf{properties}.
 \\
 
-However, there are some things we've not seen in JavaScript: the words \texttt{private} and \texttt{public}; and we declare our properties outside of the constructor method. We'll look at these in more detail shortly.
+However, there are some things we've not seen in JavaScript: type declarations, the words \texttt{private} and \texttt{public}; and we declare our properties outside of the constructor method. We'll look at these in more detail shortly.
 \\
 
 Here's how we'd use our class:
@@ -47,6 +47,8 @@ If your method doesn't have anything to return, for example if it just sets a va
 
 \phpinputminted{02/figures/02/05-returning-this}
 
+For now we'll leave the return type for these methods blank, but when we look at object-oriented programming later we'll see that we can add useful information here.
+
 
 \begin{infobox}{Using \texttt{new} Objects}
     Unlike in JavaScript you can't immediately use a created object:
@@ -73,6 +75,19 @@ If your method doesn't have anything to return, for example if it just sets a va
 In PHP we declare all of the properties that our class uses at the top of the class. This makes it easy to see which values are available. It also allows us to set default values easily:
 
 \phpinputminted{02/figures/02/03-default-properties}
+
+\begin{infobox}{Typed Properties}
+    As of PHP 7.4 (released in late 2019) you can add types to class properties:
+
+    \begin{minted}{php}
+      private string $engine = "mysql";
+      private string $host = "127.0.0.1";
+      private int $port = 3306;
+    \end{minted}
+
+    We won't be covering typed properties in any detail, as they're still very new, but you can \href{https://stitcher.io/blog/typed-properties-in-php-74}{read more here}.
+\end{infobox}
+
 
 
 \section{Visibility}
@@ -110,7 +125,6 @@ Now it is clear that the \texttt{lastNames()} method has something to do with \t
 
 Remember, \texttt{private} properties and methods can only be accessed using \texttt{\$this}, which doesn't have a value in \texttt{static} methods. So you'll need to use getters/setters just as you would if the function was written outside of the class.
 
-\pagebreak
 
 \begin{infobox}{Paamayim Nekudotayim}
     The \texttt{::} symbol is also known as the ``Paamayim Nekudotayim'', which is Hebrew for ``double colon''. This can lead to the somewhat mystifying error:

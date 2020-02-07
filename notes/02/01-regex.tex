@@ -1,4 +1,4 @@
-``Regular Expressions'' (or ``regex'' for short) are a way to check/search a string for a \textit{pattern} as opposed to a specific string.
+Regular Expressions (or ``regex'' for short) are a way to check/search a string for a \textit{pattern} as opposed to a specific string.
 \\
 
 They're a little bit mad looking to start with. In fact they're a little bit mad looking even after you've been using them for years. But they are very useful as long as you don't get too carried away.
@@ -11,7 +11,7 @@ For example, we might want to split a string on a comma followed by \textit{any}
 \end{minted}
 
 
-Or if we wanted to match any combination of lowercase letters, numbers, underscore, and hyphens between 3 and 16 characters long we could write this with the following regex:
+Or if we wanted to match any combination of lowercase letters, numbers, underscores, and hyphens between 3 and 16 characters long we could write this with the following regex:
 
 \begin{minted}{text}
     /^[a-z0-9_-]{3,16}$/
@@ -26,7 +26,6 @@ JavaScript also supports regexes (it's actually it's own \textit{type} in JS, li
 
 We're not going to get into every aspect of Regexes, but we'll cover enough for them to be useful.
 
-
 \subsection{Quantifiers}
 
 Quantifiers allow us to specify that a character should appear zero, one, or many times.
@@ -40,7 +39,7 @@ Quantifiers allow us to specify that a character should appear zero, one, or man
             \texttt{?}          & 0 or 1 \\
             \texttt{\{3\}}      & exactly 3 \\
             \texttt{\{3,\}}     & 3 or more \\
-            \texttt{\{3, 5\}}   & 3, 4, or 5
+            \texttt{\{3,5\}}   & 3, 4, or 5
         \end{tabu}
     \end{small}
 \end{center}
@@ -55,7 +54,7 @@ For example:
     /d{3,5}/    - would match 'ddd', 'dddd', and 'ddddd'
     /abc*/      - would match 'ab', 'abc', 'abcc', 'abccc', etc.
     /(abc)*/    - would match '', 'abc', 'abcabc', 'abcabcabc', etc.
-    /https?:/    - would match 'http:' and 'https:'
+    /https?:/   - would match 'http:' and 'https:'
 \end{minted}
 
 
@@ -84,7 +83,7 @@ For example:
 
 \begin{minted}{text}
     /[a-z]+/          - any number of lowercase letters
-    /[a-z0-9_-]/      - a single lowercase, digits, underscore, or hyphen
+    /[a-z0-9_-]/      - a single lowercase letter, digit, underscore, or hyphen
 \end{minted}
 
 \subsection{Special Characters}
@@ -129,7 +128,23 @@ For example:
     /\w\s+\w/       - two words separated by 1 or more spaces
 \end{minted}
 
-\pagebreak
+
+\subsection{Dot}
+
+In a regex the \texttt{.} character has a special meaning: \textit{any} character except for \texttt{\textbackslash n}. You need to be careful using it, particularly with the \texttt{*} and \texttt{+} quantifiers.
+\\
+
+\begin{minted}{text}
+    /.+@.+/         - an '@' symbol with some number of other characters either side
+\end{minted}
+
+If you want to match an actual full stop you need to ``escape'' it with a backslash:
+
+\begin{minted}{text}
+    /\.+@\.+/       - an '@' symbol with some number of '.' either side
+\end{minted}
+
+
 
 \subsection{Anchors}
 
@@ -170,7 +185,7 @@ The \texttt{preg\_match} function can be used to check if a string matches a reg
 
 \phpinputminted{02/figures/01/01-preg-match}
 
-It returns \texttt{1} if a match is found and \texttt{0} if it is not.  Make sure you always use \texttt{===} when checking the result as it returns \texttt{false} if an error occurs - which might get confused for \texttt{0} if you use \texttt{==}.
+It returns \texttt{1} if a match is found and \texttt{0} if it is not. Make sure you always use \texttt{===} when checking the result, as it returns \texttt{false} if an error occurs - which might get confused for \texttt{0} if you use \texttt{==}:
 
 \begin{minted}{php}
     if (preg_match("/l+/", "Hello") === 1) {
@@ -248,10 +263,10 @@ There's a full list \href{https://www.php.net/manual/en/filter.filters.validate.
 
 \quoteinline{Some people, when confronted with a problem, think ``I know, I'll use regular expressions.'' Now they have two problems.}{Jamie Zawinski}
 
-It's not uncommon for people new to programming to try and solve complex string manipulations using regular expressions. This can lead to hard to read and inefficient code. There are many problems that require a ``parser'': a much more clever sort of algorithm that can elegantly cope with things like matching start/end tags.
+It's not uncommon for people new to programming to try and solve complex string manipulations using regular expressions. This can lead to hard to read and inefficient code. There are many problems that require a \textbf{parser}: a much more clever sort of algorithm that can elegantly cope with things like matching start/end tags.
 \\
 
-As a general rule, if your regular expressions isn't easy to understand in one glance, then you probably shouldn't be using them.
+As a general rule, if your regular expression isn't easy to understand in one glance, then you probably shouldn't be using them.
 
 
 

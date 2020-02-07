@@ -11,14 +11,14 @@ class DatabaseConnection
   private $db;
 
   // set the database
-  public function setDB($db)
+  public function setDB(string $db)
   {
     $this->db = $db;
     return $this;
   }
 
   // returns the DB connection
-  public function connection($username, $password)
+  public function connection(string $username, string $password)
   {
     return new PDO(
       $this->pdoSettings(),
@@ -28,7 +28,7 @@ class DatabaseConnection
   }
 
   // this method is private - it's only useful inside the class
-  private function pdoSettings()
+  private function pdoSettings() : string
   {
     $parts = implode(";", [
       "host={$this->host}",

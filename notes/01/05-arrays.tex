@@ -1,4 +1,4 @@
-Arrays comes in two forms in PHP: numerically indexed and associative.
+Arrays come in two forms in PHP: numerically indexed and associative.
 \\
 
 
@@ -101,7 +101,7 @@ You can also get the key:
     }
 \end{minted}
 
-As numerical indexes are just associative arrays with numerical keys, you can also use this syntax to get the index of a numerical array:
+As numerically indexed arrays are just associative arrays with numerical keys, you can also use this syntax to get the index of a numerical array:
 
 \begin{minted}{php}
     $values = [1, 2, 3, 4, 5];
@@ -111,6 +111,9 @@ As numerical indexes are just associative arrays with numerical keys, you can al
         // $value will be each value in turn
     }
 \end{minted}
+
+We called it \texttt{\$key} in the first case and \texttt{\$index} in the second, but we can call it whatever we like, as long as it appears before the fat arrow.
+
 
 \section{Array Iterator Functions}
 

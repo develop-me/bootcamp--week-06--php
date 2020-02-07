@@ -8,7 +8,7 @@ class Person
   private $dob;
 
   // the constructor method
-  public function __construct($firstName, $lastName, $dob)
+  public function __construct(string $firstName, string $lastName, string $dob)
   {
     // we can use $this to reference object properties
     $this->firstName = $firstName;
@@ -16,13 +16,13 @@ class Person
     $this->dob = $dob;
   }
 
-  public function getName()
+  public function getName() : string
   {
     // use $this to read properties
     return "{$this->firstName} {$this->lastName}";
   }
 
-  public function getAge()
+  public function getAge() : int
   {
     // do some date stuff
     $date = new DateTime($this->dob);

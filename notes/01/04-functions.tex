@@ -24,7 +24,7 @@ This can actually be seen as a positive, as it makes it harder to write impure f
 
 \section{Anonymous Functions}
 
-Standard functions in PHP are not values like they are in JavaScript, so we can't just pass them round and assign them to variables in quite the same way. However, passing functions around is such a useful thing to be able to do that recent versions of PHP added ``Closures'' as a way to do this:
+Standard functions in PHP are not values like they are in JavaScript, so we can't just pass them round and assign them to variables in quite the same way. However, passing functions around is such a useful thing to be able to do that recent versions of PHP added \textbf{closures} as a way to do this:
 
 \begin{minted}{php}
     $add = function ($a, $b) {
@@ -86,7 +86,7 @@ Next we add type declarations to our function:
 Each parameter (\texttt{\$a} and \texttt{\$b}) is given an explicit type. We also add a ``return'' type - the type of value the function returns - after the parameter brackets.
 \\
 
-The parameter types and return types needn't match. Here's a function that takes a string (\texttt{\$str}) and integer (\texttt{\$int}) as parameters and returns a string:
+The parameter types and return types needn't match. Here's a function that takes a string (\texttt{\$str}) and integer (\texttt{\$times}) as parameters and returns a string:
 
 \begin{minted}{php}
     function repeat(string $str, int $times) : string {
@@ -112,6 +112,21 @@ The possible type declarations are:
 \end{itemize}
 
 If you try and call a function and pass in/return the wrong type of value PHP will throw an error.
+
+
+\subsection{\texttt{void}}
+
+If a function doesn't return anything, we can use the special \texttt{void} return type:
+
+\begin{minted}{php}
+    // function doesn't return anything
+    // so use void return type
+    function echoNewLine(string $str) : void {
+        echo "{$str}\n";
+    }
+\end{minted}
+
+Generally it's best to write functions that do return useful values, but there are some cases where this is not practical.
 
 
 \section{Additional Resources}

@@ -5,7 +5,7 @@ class Post
   // lets us store the value for the life of the app
   private static $renderer;
 
-  public static function setup()
+  public static function setup() : void
   {
     // only set value if it's not been set yet
     if (!static::$renderer) {
@@ -19,9 +19,9 @@ class Post
     static::setup();
   }
 
-  public function render()
+  public function render() : string
   {
     // can use
-    static::$renderer->render();
+    return static::$renderer->render();
   }
 }

@@ -7,7 +7,7 @@ class Address
   private $country;
 
   // a setter function
-  public function setStreet($street)
+  public function setStreet(string $street)
   {
     // $this represents whichever object we're working on
     $this->street = $street;
@@ -17,13 +17,13 @@ class Address
   // ...setTown and setCountry as above
 
   // a getter function
-  public function getAddress()
+  public function getAddress() : string
   {
     // you can call methods too
     return implode(", ", $this->assigned());
   }
 
-  private function assigned()
+  private function assigned() : array
   {
     return array_filter([
       $this->street,
