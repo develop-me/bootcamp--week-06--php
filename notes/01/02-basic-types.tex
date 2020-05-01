@@ -70,6 +70,19 @@ PHP uses \texttt{.} for concatenation, this avoids the issues that JavaScript ha
     var_dump("1" + "2"); // 3 - coerces to numbers
 \end{minted}
 
+\subsection{String Functions}
+
+Unlike in JS, strings are not objects in PHP. That means they don't have properties or methods. So we have to use functions to work with them:
+
+\begin{minted}{php}
+    strtolower("Blah"); // "blah"
+    strtoupper("Blah"); // "BLAH"
+    trim("   Blah  "); // "Blah"
+    substr("Fishsticks", 4); // "sticks"
+\end{minted}
+
+There are many other string function in the \href{http://www.php.net/manual/en/ref.strings.php}{PHP documentation}.
+
 
 \section{Booleans}
 
@@ -86,11 +99,18 @@ For consistency it's best to stick with the lowercase version.
 
 \subsection{Boolean Logic}
 
-PHP has \texttt{\&\&} and \texttt{||} which work in the same way as in JavaScript. It also has the written versions \texttt{and} and \texttt{or}:
+PHP has \texttt{\&\&}, \texttt{||}, and \texttt{!} which work in the same way as in JavaScript:
 
 \begin{minted}{php}
     true && false; // false
     true || false; // true
+    !true; // false
+    !false; // true
+\end{minted}
+
+PHP also has the written versions \texttt{and} and \texttt{or}:
+
+\begin{minted}{php}
     true and false; // false
     true or false; // true
 \end{minted}

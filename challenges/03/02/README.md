@@ -101,14 +101,17 @@ To check your answers run `php bootstrap.php`.
     }
     ```
 
+
+## Tricksy
+
 1) Create the following three classes in the `App\Bike` namespace:
 
-    - `Wheel`: should get passed a size (a number) and a "type". The "type" should be one of the following:
+    - `Wheel`: should get passed a "size" (a number) and a "type" (a string). The "bikeType" should be one of the following:
 
-        - hybrid
-        - road
-        - town
-        - mountain
+        - "hybrid"
+        - "road"
+        - "town"
+        - "mountain"
 
         If you try and pass in a different type it should ignore it.
 

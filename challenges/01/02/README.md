@@ -10,19 +10,19 @@ Create a new file for each challenge. If a code block is provided, copy the prov
 
 Make sure you add parameter and return types to all your functions
 
-1) Create a function, `concat`, that takes two strings as arguments. The function should return the two strings joined together with a space in between.
+1) Create a function, `joinWords`, that takes two strings as arguments. The function should return the two strings joined together with a space in between.
 
     ```php
     <?php
 
     declare(strict_types=1);
 
-    function concat (string $firstWord, string $secondWord) : string {
+    function joinWords(string $firstWord, string $secondWord) : string {
         // … your code here
     };
 
-    var_dump(concat("fish", "sticks")); // string(11) "fish sticks"
-    var_dump(concat("hello", "world")); // string(11) "hello world"
+    var_dump(joinWords("fish", "sticks")); // string(11) "fish sticks"
+    var_dump(joinWords("hello", "world")); // string(11) "hello world"
     ```
 
 1) Update `hello` so that it returns the string "hello *name*". Also add parameter and return types.

@@ -108,6 +108,8 @@ You'll need to look at how the class is being used in the test code to work out 
 
 1) Create a class that lets you do things with a string.
 
+    **Hint**: you might want to look at the [PHP string functions](http://www.php.net/manual/en/ref.strings.php)
+
     ```php
     <?php
 
