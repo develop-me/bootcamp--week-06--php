@@ -6,10 +6,13 @@
 
 Create a new file for each challenge. If a code block is provided, copy the provided code and then add your own code in the `// ... your code here` bit.
 
-**Use [RegExr.com](https://regexr.com) to test your patterns before writing the PHP** (Make sure you switch it to "PCRE" mode)
+**Use [RegExr.com](https://regexr.com) to test your patterns before writing the PHP**
+
+- Make sure you switch it to "PCRE" mode
+- Turn on the "multiline" flag
 
 
-1) Create a function `hasNumber`, that returns `true` if the given string contains a digit:
+1) Create a function `hasNumber`, that returns `true` if the given string contains a digit.
 
     ```php
     <?php
@@ -25,7 +28,8 @@ Create a new file for each challenge. If a code block is provided, copy the prov
     var_dump(hasNumber("bl3h5")); // bool(true)
     ```
 
-1) Create a function, `mi5`, that returns `true` if the given string is `00` followed by a digit:
+1) Create a function, `mi5`, that returns `true` if the given string is `00` followed by a digit. **Make sure it returns a boolean value**:
+
 
     ```php
     <?php
@@ -82,10 +86,10 @@ Create a new file for each challenge. If a code block is provided, copy the prov
     // … your function here
 
     var_dump(words("This is a sentence")); // ["This", "is", "a", "sentence"]
-    var_dump(words("Hello, my name is Jessica")); // ["Hello", "my", "name", "is", "Jessica"]
+    var_dump(words("Hello, my name is Dolemite")); // ["Hello", "my", "name", "is", "Dolemite"]
     ```
 
-1) Create a function, `threeOs`, that returns `true` if a string contains three of more `o` or `O` characters in a row. **Make sure it returns a boolean value**.
+1) Create a function, `threeOs`, that returns `true` if a string contains three or more `o` or `O` characters in a row.
 
     ```php
     <?php
@@ -115,6 +119,7 @@ Create a new file for each challenge. If a code block is provided, copy the prov
 
     var_dump(validEmail(" blahf   ")); // bool(false)
     var_dump(validEmail(" blah@f")); // bool(false)
+    var_dump(validEmail("blah@ fish.horse")); // bool(false)
     var_dump(validEmail(" blah@fish.horse")); // bool(true)
     var_dump(validEmail("blah@fish.horse ")); // bool(true)
     var_dump(validEmail(" blah@fish.horse ")); // bool(true)

@@ -168,6 +168,8 @@ Having already solved this in JavaScript, you shouldn't have to rethink any of t
 
     e.g. 3 + 6 + 7 + 9 + 12 + 14 + 15 + 18 + 21 + 24 ...
 
+    The answer should be `int(16107)`.
+
 
 1) Write some code that outputs the first 15 times-tables.
 
