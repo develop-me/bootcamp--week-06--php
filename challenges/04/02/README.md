@@ -2,45 +2,11 @@
 
 ### Setup
 
-- Create a new project directory
-- Get Composer setup to use auto-loading with `App` as the root namespace pointing at the `app` directory
-- Add the `symfony/var-dumper` package
-- Create a single `bootstrap.php` file in the **root** directory:
-
-    ```
-    app/
-    vendor/
-    composer.json
-    index.php
-    ```
-- Include `declare(strict_types=1);` at the top of `bootstrap.php`
-- Include the Composer auto-loading file at the top of `bootstrap.php`
-- Create a new class `Challenges` in the `App` namespace. It should have a `start` method.
-
-    ```php
-    public function start()
-    {
-        echo "\nChallenges\n";
-
-        // call challenges here...
-    }
-    ```
-
-- Add the following to `bootstrap.php`:
-
-    ```php
-    // bootstrap code
-    use App\Challenges;
-
-    $challenges = new Challenges();
-    $challenges->start();
-    ```
-
-    You shouldn't need to add any other code to `bootstrap.php`
+- Follow the instructions for [this repo](https://github.com/develop-me/bootcamp--week-06--inheritance-base)
 
 ### Instructions
 
-For each question, create the class(es) in the correct namespace and then copy the given code as a method in your `Challenges` class, then call the new method from the `start()` method. The `Challenges` class will get quite long and [look something like this](https://github.com/develop-me/bootcamp--week-06--php/blob/master/challenges/04/02/answers/app/Challenges.php).
+For each question, create the class(es) in the correct namespace and then uncomment the call to the relevant method in your `Challenges` `start()` method.
 
 To check your answers run `php bootstrap.php`.
 
