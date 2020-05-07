@@ -26,6 +26,10 @@ JavaScript also supports regexes (it's actually it's own \textit{type} in JS, li
 
 We're not going to get into every aspect of Regexes, but we'll cover enough for them to be useful.
 
+\subsection{Literal Strings}
+
+The first thing to be aware of is that a RegEx of just non-special characters represents that string. So \texttt{wombat} is just the string ``wombat''.
+
 \subsection{Quantifiers}
 
 Quantifiers allow us to specify that a character should appear zero, one, or many times.
@@ -233,6 +237,20 @@ The \texttt{preg\_replace} function can be used to replace part of a string that
 
 There is a lot more to \texttt{preg\_replace} than this basic example,\footnote{``Back references'' are particularly useful} but we'll keep it simple for now.
 
+\begin{infobox}{Flags}
+    In PHP we can add various \textbf{flags} to the end of the regex. These go after the last forward-slash, e.g. \texttt{"/[a-z]*/i"}.
+    \\
+
+    There are three particularly useful ones in PHP:
+
+    \begin{tabu}{r l X}
+        \textbf{Flag}    & \textbf{Name}    & \textbf{Description} \\
+        \texttt{i}       & case insensitive & pattern will match upper and lower case \\
+        \texttt{m}       & multi-line       & separate lines count as separate strings for anchors\\
+        \texttt{s}       & dot all          & the \texttt{.} character should include new lines\\
+    \end{tabu}
+\end{infobox}
+
 
 \section{Alternatives to Regex}
 
@@ -281,6 +299,7 @@ As a general rule, if your regular expression isn't easy to understand in one gl
     \item \href{http://www.php.net/manual/en/function.preg-match-all.php}{PHP: \texttt{preg\_matchall}}
     \item \href{http://www.php.net/manual/en/function.preg-replace.php}{PHP: \texttt{preg\_replace}}
     \item \href{http://www.php.net/manual/en/function.preg-split.php}{PHP: \texttt{preg\_split}}
+    \item \href{https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/regular-expressions/using-the-test-method}{freeCodeCamp: RegEx Exercises with JavaScript}
     \item \href{https://blog.codinghorror.com/regular-expressions-now-you-have-two-problems/}{Regular Expressions: Now You Have Two Problems}
     \item \href{http://www.regexcrossword.com/}{RegEx Crossword}
     \item \href{https://stackoverflow.com/a/1732454}{Stack Overflow: RegEx match open tags except XHTML self-contained tags}
