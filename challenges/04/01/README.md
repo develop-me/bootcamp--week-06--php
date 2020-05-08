@@ -109,29 +109,6 @@ To check your answers run `php bootstrap.php`.
 
 ## Tricksy
 
-If you got to the tricksy challenges from earlier you don't need to do this setup again. Otherwise:
-
-- Create a new class `Challenges` in the `App\Tricksy` namespace. It should have a `start` method.
-- Add a `use` statement to your `App\Challenges` class:
-
-    ```php
-    use App\Tricksy\Challenges as Tricksy;
-    ```
-
-- Add the following to the `start()` method of your `App\Challenges` class:
-
-    ```php
-    // load Tricksy challenges
-    $tricksy = new Tricksy();
-    $tricksy->start();
-    ```
-
-### Instructions
-
-As before, for each question, create the class(es) in the correct namespace and then copy and paste the given code as a method in your `App\Tricksy\Challenges` class, then call the new method from the `start()` method. The `Challenges` class will get quite long and [look something like this](https://github.com/develop-me/bootcamp--week-06--php/blob/master/challenges/04/01/answers/app/Tricksy/Challenges.php).
-
-### Challenges
-
 1) PHP has various built-in interfaces. One of these is called [`Iterator`](http://php.net/manual/en/class.iterator.php). If a class implements the `Iterator` interface you can use `foreach` with it. You'll need to read the `Iterator` documentation and look at the examples of each method.
 
     Create a class `Alphabet` in the `App\Tricksy` namespace, that implements the `Iterator` interface and then check that it works using `foreach`.

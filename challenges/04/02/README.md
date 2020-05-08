@@ -92,38 +92,8 @@ To check your answers run `php bootstrap.php`.
 
 ## Tricksy
 
-- Create a new class `Challenges` in the `App\Tricksy` namespace. It should have a `start` method.
 
-    ```php
-    public function start()
-    {
-        echo "\nTricksy Challenges\n";
-
-        // call tricksy challenges here...
-    }
-    ```
-
-- Add a `use` statement to your `App\Challenges` class:
-
-    ```php
-    use App\Tricksy\Challenges as Tricksy;
-    ```
-
-- Add the following to the `start()` method of your `App\Challenges` class:
-
-    ```php
-    // load Tricksy challenges
-    $tricksy = new Tricksy();
-    $tricksy->start();
-    ```
-
-### Instructions
-
-As before, for each question, create the class(es) in the correct namespace and then copy and paste the given code as a method in your `App\Tricksy\Challenges` class, then call the new method from the `start()` method. The `Challenges` class will get quite long and [look something like this](https://github.com/develop-me/bootcamp--week-06--php/blob/master/challenges/04/02/answers/app/Tricksy/Challenges.php).
-
-### Challenges
-
-1) Copy your `Person` class across from the last set of challenges and add it to the `App\Tricksy` namespace.
+1) Copy your `Person` class across from the namespace challenges and add it to the `App\Tricksy` namespace.
 
     Then create an abstract class `Vehicle` and three children classes `Car`, `Plane`, and `Boat` all in the `App\Tricksy\Vehicles` namespace.
 
