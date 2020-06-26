@@ -5,7 +5,10 @@ PHP has the same basic types as JavaScript: numbers, strings, and booleans. They
 
 Unlike JavaScript PHP does have a sense of whether a number is an integer (whole number) or a ``floating point number'' (one with a decimal place). This means that some of the issues we had with JavaScript and decimal numbers don't cause issues in PHP:
 
-\phpinputminted{01/figures/02/01-numbers}
+\begin{minted}{php}
+    var_dump(12 + 12); // int(24)
+    var_dump(0.1 + 0.2); // float(0.3) - hurrah!
+\end{minted}
 
 
 The operators should be familiar:
@@ -27,7 +30,24 @@ The operators should be familiar:
 
 We don't have a \texttt{Math} object in PHP, instead there are just lots of functions - but the naming should be familiar:
 
-\phpinputminted{01/figures/02/02-number-functions}
+\begin{minted}{php}
+    // rounding
+    floor(12.3030); // 12
+    ceil(12.3030); // 13
+    round(12.3030); // 12
+
+    // powers/roots
+    pow(2, 3); // 8
+    sqrt(16); // 4
+
+    // random
+    mt_rand(5, 10); // random integer between 5 and 10 (inclusive)
+
+    // trigonometry
+    cos(1.2); // 0.362... takes an angle *in radians*
+    asin(0.3); // 0.304...returns value *in radians*
+    tanh(3); // 0.995... hyperbolic tangent
+\end{minted}
 
 
 But we can still run into weird issues with numbers in PHP. As a general rule \textit{never trust floating point numbers}

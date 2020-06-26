@@ -24,14 +24,7 @@ Next we need to tell Composer to load our classes for us. We're going to use the
 
 First, create a directory called \texttt{app}. Then edit the \texttt{composer.json} so that it looks like this:
 
-\begin{minted}{json}
-{
-    "autoload": {
-       "psr-4": {"App\\": "app/"}
-    },
-    "require": {}
-}
-\end{minted}
+\code{composer.json}{json}{03/figures/02/01-composer.json}
 
 Here we've told Composer that any namespace starting with the root \texttt{App} should look for files in the \texttt{app} directory. We could use anything as the root namespace or directory name.
 \\
@@ -118,19 +111,19 @@ Generally collection methods return a new collection object. You can turn a \tex
 
 Filter is almost identical to JavaScript: we pass it an anonymous function that takes each item in the array and returns a boolean value. It returns a new \texttt{Collection} containing all the items for which the function returned \texttt{true}:
 
-\phpinputminted{03/figures/02/01-filter}
+\php{...}{03/figures/02/02-filter}
 
 \subsubsection{\texttt{map}}
 
 Map is also very similar to JavaScript: we pass it an anonymous function that takes each item in the array and transforms the value somehow. It returns a new \texttt{Collection} where each item has been transformed:
 
-\phpinputminted{03/figures/02/02-map}
+\php{...}{03/figures/02/03-map}
 
 \subsubsection{\texttt{reduce}}
 
 Again, reduce is very similar to JavaScript: we pass it an anonymous function that takes the accumulated value and each item in the array. The return value is passed in as the accumulator value for the next iteration. It returns the final accumulated value:
 
-\phpinputminted{03/figures/02/03-reduce}
+\php{...}{03/figures/02/04-reduce}
 
 Make sure you pass in an initial value for the accumulator, otherwise it will be \texttt{null}, which might cause problems.
 
@@ -138,7 +131,7 @@ Make sure you pass in an initial value for the accumulator, otherwise it will be
 
 We've not come across \texttt{pluck} before, but it's very useful. It assumes your collection contains either associative arrays or objects all with the same structure. You pass it a key value and it extracts a new \texttt{Collection} contain just that key/property from each item in the collection:
 
-\phpinputminted{03/figures/02/04-pluck}
+\php{...}{03/figures/02/05-pluck}
 
 
 
@@ -146,7 +139,7 @@ We've not come across \texttt{pluck} before, but it's very useful. It assumes yo
 
 The Carbon library makes working with dates in PHP much easier. We install it by running \texttt{composer require nesbot/carbon}\footnote{If you've already installed \texttt{illuminate/support} this isn't necessary, as it's a dependency for that package}. Once it's installed we have access to the \texttt{Carbon\textbackslash Carbon} class.
 
-\phpinputminted{03/figures/02/05-Carbon}
+\php{...}{03/figures/02/06-Carbon}
 
 There are many more features listed in the \href{https://carbon.nesbot.com/docs/}{Carbon documentation}.
 
@@ -155,7 +148,7 @@ There are many more features listed in the \href{https://carbon.nesbot.com/docs/
 
 \href{https://github.com/fzaninotto/Faker}{Faker} is a library that generates fake data for you. This can be useful for ``seeding'' databases: generating test data to make sure that everything's working. We install it with \texttt{composer require fzaninotto/faker}.
 
-\phpinputminted{03/figures/02/06-Faker}
+\php{...}{03/figures/02/07-Faker}
 
 Faker supports \href{https://github.com/fzaninotto/Faker#formatters}{hundreds of different types of data}: IP addresses, credit card numbers, dates, colours, images, \&c.
 
