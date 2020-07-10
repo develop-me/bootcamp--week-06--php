@@ -23,22 +23,22 @@ One way we can take advantage of polymorphism is to use ``interfaces''. An \text
 
 For example, rather than creating a \texttt{Mailer} abstract class, we could instead create an interface:
 
-\phpinputminted{04/figures/01/15-MailerInterface}
+\php{MailerInterface.php}{04/figures/01/15-MailerInterface}
 
 You can see that we list out all of the methods that a class that implements this interface \textit{must} implement. We would use it as follows:
 
-\phpinputminted{04/figures/01/16-Mail-interface}
+\php{Mail.php}{04/figures/01/16-Mail-interface}
 
 We would use it in \texttt{MailingList} in exactly the same way:
 
-\phpinputminted{04/figures/01/17-MailingList-interface}
+\php{MailingList.php}{04/figures/01/17-MailingList-interface}
 
 Interfaces are also a type declaration. So, now we could only pass in classes that implement the \texttt{MailerInterface} interface.
 \\
 
 A class can \texttt{implement} as many interfaces as it likes:
 
-\phpinputminted{04/figures/01/18-MailChimp}
+\php{MailChimp.php}{04/figures/01/18-MailChimp}
 
 
 \subsection{Message Passing}
@@ -63,22 +63,22 @@ Inheritance lets us create a hierarchy of object types, where the \textbf{childr
 
 For example, say that we want to create a \texttt{Mail} and a \texttt{MailChimp} class. Both of these will be responsible for sending an email, so they will have some things in common, but their inner workings will be different. We could create a parent \texttt{Mailer} class:
 
-\phpinputminted{04/figures/01/07-Mailer}
+\php{Mailer.php}{04/figures/01/07-Mailer}
 
 We move all of the shared code into the \texttt{Mailer} class. We don't put the \texttt{send()} method into the \texttt{Mailer} class, as it will be different for each implementation. We can then \textbf{extend} the \texttt{Mailer} class to copy its behaviour into \texttt{Mail} and \texttt{MailChimp}:
 
-\phpinputminted{04/figures/01/08-Mailer-children}
+\php{Mail.php}{04/figures/01/08-Mailer-children}
 
 Now, in the \texttt{MailingList} class we can use \texttt{Mailer} as the type declaration. That means that depending on our mood,\footnote{Or possibly something more concrete} we can send messages with either the local mail server or with MailChimp:
 
-\phpinputminted{04/figures/01/09-MailingListRedux}
+\php{MailingList.php}{04/figures/01/09-MailingListRedux}
 
 
 \subsection{Abstract Classes}
 
 But you can perhaps see a few issues with this. Firstly, you could create an instance of \texttt{Mailer} and pass that into \texttt{sendWith()}. This would cause an issue because the \texttt{Mailer} class doesn't have a \texttt{send()} method, so you'd get an error. Secondly, there's no guarantee that a child of \texttt{Mailer} has a \texttt{send()} method: we could easily create a child of \texttt{Mailer} but forget to add it. This would lead to the same issue:
 
-\phpinputminted{04/figures/01/10-Mailer-oops}
+\php{}{04/figures/01/10-Mailer-oops}
 
 This is where \textbf{abstract classes} come in. These are classes that are not meant to be used to create object instances directly, but instead are designed to be the parent of other classes. We can setup properties and methods in them, but they can't actually be constructed, only extended.
 \\
@@ -88,24 +88,24 @@ We can also create \texttt{abstract} method signatures. These allow us to say th
 
 This gets round both issues: we won't be able to instance \texttt{Mailer} and we can make sure any of its children have a \texttt{send()} method:
 
-\phpinputminted{04/figures/01/11-Mailer-redux}
+\php{Mailer.php}{04/figures/01/11-Mailer-redux}
 
 
 \subsection{Overriding}
 
 Children classes can \textbf{override} methods and properties from parent classes. That means if we wanted to make it so that the \texttt{to()} method in the \texttt{MailChimp} class did something slightly different, then we could write a different \texttt{to()} method. As long as it has \textit{the same method signature}\footnote{The \texttt{\_\_construct()} method is an exception to this rule. As it is unique to the specific class it can have a different set of parameters.} (i.e. excepts the same parameters), this will work:
 
-\phpinputminted{04/figures/01/12-override}
+\php{MailChimp.php}{04/figures/01/12-override}
 
 If necessary it's possible to stop a child class from overriding a method by adding the \texttt{final} keyword in front of it:
 
-\phpinputminted{04/figures/01/13-Mailer-final}
+\php{Mailer.php}{04/figures/01/13-Mailer-final}
 
 \subsection{\texttt{parent}}
 
 Sometimes when we're overriding a method it can be useful to still have access to the parent object's version. For example, we might want to override the \texttt{to()} method of \texttt{Mailer}, but only to add a bit of functionality. We can do this by calling the method name on \texttt{parent}. Make sure you pass along the arguments when you do this:
 
-\phpinputminted{04/figures/01/14-parent}
+\php{MailChimp.php}{04/figures/01/14-parent}
 
 You can call the parent's constructor method with \texttt{parent::\_\_construct()}.
 

@@ -36,7 +36,7 @@ Quantifiers allow us to specify that a character should appear zero, one, or man
 
 \begin{center}
     \begin{small}
-        \begin{tabu}{r l}
+        \begin{tabularx}{\textwidth}{r l}
             \textbf{Quantifier}   & \textbf{Description} \\
             \texttt{*}          & 0 or more \\
             \texttt{+}          & 1 or more \\
@@ -44,7 +44,7 @@ Quantifiers allow us to specify that a character should appear zero, one, or man
             \texttt{\{3\}}      & exactly 3 \\
             \texttt{\{3,\}}     & 3 or more \\
             \texttt{\{3,5\}}   & 3, 4, or 5
-        \end{tabu}
+        \end{tabularx}
     \end{small}
 \end{center}
 
@@ -68,7 +68,7 @@ Groups and ranges allow us to specify a range of characters that we're intereste
 
 \begin{center}
     \begin{small}
-        \begin{tabu}{r l}
+        \begin{tabularx}{\textwidth}{r l}
             \textbf{Range}          & \textbf{Description} \\
             \texttt{[a-z]}          & all lowercase letters \\
             \texttt{[A-Z]}          & all uppercase letters \\
@@ -79,7 +79,7 @@ Groups and ranges allow us to specify a range of characters that we're intereste
             \texttt{[a-zA-Z0-9]}    & alphanumeric characters \\
             \texttt{[0-9A-F]}       & valid hexadecimal digits \\
             \texttt{[\textasciicircum abc]}         & \textbf{not} 'a', 'b', or 'c'
-        \end{tabu}
+        \end{tabularx}
     \end{small}
 \end{center}
 
@@ -99,12 +99,12 @@ These represent special characters like tab and a new line:
 
 \begin{center}
     \begin{small}
-        \begin{tabu}{r l}
+        \begin{tabularx}{\textwidth}{r l}
             \textbf{Character}          & \textbf{Description} \\
             \texttt{\textbackslash n}          & a new line \\
             \texttt{\textbackslash r}          & a carriage return \\
             \texttt{\textbackslash t}          & a tab \\
-        \end{tabu}
+        \end{tabularx}
     \end{small}
 \end{center}
 
@@ -116,7 +116,7 @@ Character classes are shortcuts for specific ranges.
 
 \begin{center}
     \begin{small}
-        \begin{tabu}{r l}
+        \begin{tabularx}{\textwidth}{r l}
             \textbf{Class}                    & \textbf{Description} \\
             \texttt{\textbackslash s}         & whitespace \\
             \texttt{\textbackslash S}         & \textbf{not} whitespace \\
@@ -124,7 +124,7 @@ Character classes are shortcuts for specific ranges.
             \texttt{\textbackslash W}         & \textbf{not} word \\
             \texttt{\textbackslash d}         & digit \\
             \texttt{\textbackslash D}         & \textbf{not} digit
-        \end{tabu}
+        \end{tabularx}
     \end{small}
 \end{center}
 
@@ -159,11 +159,11 @@ Sometimes \textit{where} the substring appears is important.
 
 \begin{center}
     \begin{small}
-        \begin{tabu}{r l}
+        \begin{tabularx}{\textwidth}{r l}
             \textbf{Anchor}             & \textbf{Description} \\
             \texttt{\textasciicircum}   & beginning of the string \\
             \texttt{\$}                 & end of the string \\
-        \end{tabu}
+        \end{tabularx}
     \end{small}
 \end{center}
 
@@ -190,7 +190,20 @@ We can use regexes for all sorts of string manipulations. The three most common 
 
 The \texttt{preg\_match} function can be used to check if a string matches a regular expression:
 
-\phpinputminted{02/figures/01/01-preg-match}
+\begin{minted}{php}
+    // does the string contain one or more 'l' characters
+    preg_match("/l+/", "Hello"); // 1
+
+    // does the string *start* with one or more 'l' characters
+    preg_match("/^l+/", "Hello"); // 0
+
+    // does the string contain two words, separated by a space
+    preg_match("/\w\s+\w/", "Hello There World"); // 1
+
+    // does the string consist of *just* two words, separated by a space
+    preg_match("/^\w\s+\w$/", "Hello There World"); // 0
+    preg_match("/^\w\s+\w$/", "Hello Mum"); // 1
+\end{minted}
 
 It returns \texttt{1} if a match is found and \texttt{0} if it is not. Make sure you always use \texttt{===} when checking the result, as it returns \texttt{false} if an error occurs - which might get confused for \texttt{0} if you use \texttt{==}:
 
@@ -243,12 +256,12 @@ There is a lot more to \texttt{preg\_replace} than this basic example,\footnote{
 
     There are three particularly useful ones in PHP:
 
-    \begin{tabu}{r l X}
+    \begin{tabularx}{\textwidth}{r l X}
         \textbf{Flag}    & \textbf{Name}    & \textbf{Description} \\
         \texttt{i}       & case insensitive & pattern will match upper and lower case \\
         \texttt{m}       & multi-line       & separate lines count as separate strings for anchors\\
         \texttt{s}       & dot all          & the \texttt{.} character should include new lines\\
-    \end{tabu}
+    \end{tabularx}
 \end{infobox}
 
 

@@ -15,7 +15,11 @@ For now we're just going to run PHP in the command-line like we did in Week 3 wi
 
 As is tradition, we should write a ``Hello, World!'' program before moving forward:
 
-\inputminted{php}{01/figures/01/01-hello.php}
+\begin{minted}{php}
+    <?php
+
+    echo "Hello, World!";
+\end{minted}
 
 We ``echo'' the string ``Hello, World!'', this is PHP's equivalent of using \texttt{console.log()} - although it's only useful when used with strings. \texttt{echo} is \textit{not} a function (or method), but instead a \textbf{keyword}. All that really means is that you don't \textit{call} it.
 \\
@@ -84,7 +88,17 @@ In PHP we don't \textit{declare} variables, we just start using them. This is po
 
 This makes it much easier to accidentally change the values of existing variables, as there is no difference between creating a new variable and reassigning an existing one. So be very careful when naming things.
 
-\phpinputminted{01/figures/01/02-variables}
+\begin{minted}{php}
+    $name = "Archie";
+
+    $age = 4;
+    $houseNumber = 21;
+
+    $name = "Ben"; // changes the value of $name - deliberate?
+
+    // using variables
+    $notUseful = $age + $houseNumber; // 25
+\end{minted}
 
 Variables must start with a dollar, followed by a letter or underscore, followed by any number of letters, numbers, or underscores. Variable names are case-sensitive.
 \\

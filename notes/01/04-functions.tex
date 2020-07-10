@@ -3,7 +3,14 @@ Functions in PHP serve the same purpose as functions in JavaScript: they allow u
 
 They are written in the same way as functions were historically written in most C-style language (including JavaScript):
 
-\phpinputminted{01/figures/04/01-function}
+\begin{minted}{php}
+    function add($a, $b) {
+        return $a + $b;
+    }
+
+    $result = add(12, 34);
+    var_dump($result); // int(46)
+\end{minted}
 
 
 \section{Scope}
@@ -13,11 +20,28 @@ Because we don't declare variables in PHP it takes a very explicit approach to s
 
 The following will cause an error as \texttt{\$message} is assumed to be in local scope:
 
-\phpinputminted{01/figures/04/02-scope-no-global}
+\begin{minted}{php}
+    $message = "Hello";
+
+    function sayHello($name) {
+        return "{$message} {$name}";
+    }
+
+    var_dump(sayHello("Jim")); // " Jim"
+\end{minted}
 
 This means if we want to access a non-local variable we need to use the \texttt{global} keyword:
 
-\phpinputminted{01/figures/04/03-scope-global}
+\begin{minted}{php}
+    $message = "Hello";
+
+    function sayHello($name) {
+        global $message;
+        return "{$message} {$name}";
+    }
+
+    var_dump(sayHello("Jim")); // "Hello Jim"
+\end{minted}
 
 This can actually be seen as a positive, as it makes it harder to write impure functions by accident.
 

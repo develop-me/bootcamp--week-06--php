@@ -4,10 +4,11 @@ So far we've had to put all of our classes into a single file, when ideally we'd
 
 We can import one PHP file into another using the \texttt{require\_once} keyword:
 
-\phpinputminted{03/figures/01/01-require-once}
+\php{}{03/figures/01/01-require-once}
 
 We give \texttt{require\_once} a relative file path and it will be as if the contents of that file are included in place.
-\\
+
+\pagebreak
 
 \begin{infobox}{\texttt{require} and \texttt{include}}
     There is also the \texttt{require} command: this does the same as \texttt{require\_once}, except you could accidentally load the same file in more than once - which you almost never want to do.
