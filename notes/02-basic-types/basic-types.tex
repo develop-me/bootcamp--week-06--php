@@ -1,0 +1,183 @@
+PHP has the same basic types as JavaScript: numbers, strings, and booleans (also known as the ``Scalar'' types\footnote{Meaning they represent a single value}). They work in much the same way.
+
+
+\section{Numbers}
+
+Unlike JavaScript PHP does have a sense of whether a number is an integer (whole number) or a ``floating point number'' (one with a decimal place). This means that some of the issues we had with JavaScript and decimal numbers don't cause issues in PHP:
+
+\begin{minted}{php}
+    dump(12 + 12); // 24
+    dump(0.1 + 0.2); // 0.3 - hurrah!
+\end{minted}
+
+
+The operators should be familiar:
+\\
+
+\begin{small}
+    \begin{tabularx}{\textwidth}{c l X}
+        \textbf{Operator} & \textbf{Name} & \textbf{Description} \\
+        \texttt{+}  & addition        & adds two numbers together \\
+        \texttt{-}  & subtraction     & subtracts the second number from the first number \\
+        \texttt{*}  & multiplication  & multiplies two numbers \\
+        \texttt{/}  & division        & divides the first number by the second \\
+        \texttt{\%} & modulus         & remainder after dividing the first number by the second
+    \end{tabularx}
+\end{small}
+
+\par\bigskip
+
+
+We don't have a \texttt{Math} object in PHP, instead there are just lots of functions - but the naming should be familiar:
+
+\begin{minted}{php}
+    // rounding
+    floor(12.3030); // 12
+    ceil(12.3030); // 13
+    round(12.3030); // 12
+
+    // powers/roots
+    pow(2, 3); // 8
+    sqrt(16); // 4
+
+    // random
+    mt_rand(5, 10); // random integer between 5 and 10 (inclusive)
+
+    // trigonometry
+    cos(1.2); // 0.362... takes an angle *in radians*
+    asin(0.3); // 0.304...returns value *in radians*
+    tanh(3); // 0.995... hyperbolic tangent
+\end{minted}
+
+
+But we can still run into weird issues with numbers in PHP. As a general rule \textit{never trust floating point numbers}
+
+\begin{minted}{php}
+    floor((0.1 + 0.7) * 10); // 7 - oop!
+\end{minted}
+
+
+\section{Strings}
+
+Strings are also very similar to JavaScript.
+\\
+
+You can use single- or double-quotes:
+
+\begin{minted}{php}
+    $firstName = "Casper";
+    $lastName = 'Spoooky';
+\end{minted}
+
+Double-quotes allow you to interpolate values:
+
+\begin{minted}{php}
+    $fullName = "{$firstName} {$lastName}";
+\end{minted}
+
+We use curly-braces to enter interpolation mode and then use the variable name inside. The \texttt{\$} here is part of the variable, whereas in JavaScript interpolation it's part of the syntax for interpolation (so the dollar is \textit{outside} the curly-braces).
+\\
+
+Because interpolation is such a common thing to do, generally we'll use double-quotes for strings.
+
+\subsection{Concatenation}
+
+PHP uses \texttt{.} for concatenation, this avoids the issues that JavaScript had with the overloaded \texttt{+} operator. It can, however, lead to many a brain-fart as you try and use \texttt{+} when you mean \texttt{.}:
+
+\begin{minted}{php}
+    dump($firstName . $lastName); // "CasperSpooky"
+    dump($firstName + $lastName); // PHP Warning - A non-numeric value encountered
+    dump("1" + "2"); // 3 - coerces to numbers
+\end{minted}
+
+\subsection{String Functions}
+
+Unlike in JS, strings are not objects in PHP. That means they don't have properties or methods. So we have to use functions to work with them:
+
+\begin{minted}{php}
+    strtolower("Blah"); // "blah"
+    strtoupper("Blah"); // "BLAH"
+    trim("   Blah  "); // "Blah"
+    substr("Fishsticks", 4); // "sticks"
+\end{minted}
+
+There are many other string function in the \href{http://www.php.net/manual/en/ref.strings.php}{PHP documentation}.
+
+
+\section{Booleans}
+
+As with JavaScript, PHP has the boolean values \texttt{true} and \texttt{false}. The only difference in PHP is that they're not case sensitive:
+
+\begin{minted}{php}
+    $bool = true;
+    $bool = True; // also valid
+    $bool = TRUE; // still valid
+    $bool = TrUe; // totes valid
+\end{minted}
+
+For consistency it's best to stick with the lowercase version.
+
+\subsection{Boolean Logic}
+
+PHP has \texttt{\&\&}, \texttt{||}, and \texttt{!} which work in the same way as in JavaScript:
+
+\begin{minted}{php}
+    true && false; // false
+    true || false; // true
+    !true; // false
+    !false; // true
+\end{minted}
+
+PHP also has the written versions \texttt{and} and \texttt{or}:
+
+\begin{minted}{php}
+    true and false; // false
+    true or false; // true
+\end{minted}
+
+If you're coming from JavaScript, you should use the \texttt{\&\&} and \texttt{||} versions. The other versions have different ``precedence'' and will not always work as you expect.
+
+\subsection{Comparison Operators}
+
+All your favourite comparison operators are back:
+\\
+
+\begin{small}
+    \begin{tabularx}{\textwidth}{c l X}
+        \textbf{Operator} & \textbf{Name} & \textbf{Description} \\
+        \texttt{===} & strict equality & \texttt{true} if the values are the same \\
+        \texttt{!==} & non-equality & \texttt{false} if the values are the same\\
+        \texttt{<} & less than & \texttt{true} if the first value is less than the second value  \\
+        \texttt{>} & greater than & \texttt{true} if the first value is greater than the second value\\
+        \texttt{<=} & less than or equal to & \texttt{true} if the first value is less than or equal to the second value  \\
+        \texttt{>=} & greater than or equal to & \texttt{true} if the first value is greater than or equal to the second value
+    \end{tabularx}
+\end{small}
+
+\par\bigskip
+
+As with JavaScript there are also the type-coercing \texttt{==} and \texttt{!=} operators, but these are best avoided.
+
+
+\subsection{Falsy Values}
+
+PHP has all the falsy values that JavaScript has. Empty arrays are also falsy in PHP (which they are \textit{not} in JavaScript):
+
+\begin{itemize}
+    \item \texttt{false} itself
+    \item The number zero: \texttt{0}, \texttt{0.0}, \texttt{-0}, \texttt{-0.0}
+    \item The empty string: \texttt{""}
+    \item An empty array: \texttt{[]}
+    \item \texttt{NULL}
+\end{itemize}
+
+
+
+\section{Additional Resources}
+
+\begin{itemize}[leftmargin=*]
+    \item \href{https://www.php.net/manual/en/language.operators.arithmetic.php}{PHP: Arithmetic Operators}
+    \item \href{https://www.php.net/manual/en/ref.math.php}{PHP: Maths Functions}
+    \item \href{http://php.net/manual/en/language.operators.logical.php}{PHP: Logical Operators}
+    \item \href{http://php.net/manual/en/language.operators.comparison.php}{PHP: Comparison Operators}
+\end{itemize}

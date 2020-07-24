@@ -1,0 +1,178 @@
+Arrays come in two forms in PHP: numerically indexed and associative.
+\\
+
+
+\section{Numerically Indexed Arrays}
+
+Numerically indexed arrays are exactly the same as in JavaScript.
+
+\begin{minted}{php}
+    $values = [1, 2, 3, 4, 5];
+    $first = $values[0]; // first item in array
+    $last = $values[4]; // last item in this array
+    dump($first); // 1
+    dump($last); // 5
+\end{minted}
+
+We can add a value to the end of an array:
+
+\begin{minted}{php}
+    $values[] = 6;
+\end{minted}
+
+We can also find out how many items are in an array:
+
+\begin{minted}{php}
+    count($values); // 5
+\end{minted}
+
+Arrays in PHP aren't objects like in JavaScript, so they don't have methods. We have to use built-in functions like \texttt{count}.
+
+
+\begin{infobox}{Old Skool Arrays}
+    If you're working with older PHP you may see arrays written using the older notation:
+
+    \begin{minted}{php}
+        $values = array(1, 2, 3, 4, 5);
+    \end{minted}
+
+    This isn't actually a function, although it does look like one.
+    \\
+
+    The newer notation was added in PHP 5.4, which has reached end-of-life, so you generally don't need to use the older notation. However, certain coding standards (such as WordPress) discourage the use of the newer style.
+\end{infobox}
+
+\section{Associative Arrays}
+
+Associative arrays are effectively PHP's version of object literals: in PHP ``objects'' are always instances of a \texttt{class}, but the key-value pairing of object literals is still a useful concept:
+
+\begin{minted}{php}
+    $assoc = [
+        "firstName" => "Ben",
+        "lastName" => "Wales",
+        "dob" => "2018-08-24",
+    ];
+
+    dump($assoc["lastName"]); // string(5) "Wales"
+\end{minted}
+
+Notice that the syntax is quite different from JS: square brackets to open, keys need quoting, and fat-arrow between the key and value.
+
+\pagebreak
+
+\begin{infobox}{All Arrays Are Associative}
+    Technically speaking, all arrays in PHP are actually associative, they're just automatically given a numerical key if you don't provide one. This does mean you can run into some unusual results if you're not careful:
+
+    \begin{minted}{php}
+        $arr = [];
+        $arr["key"] = 1; // key provided
+        $arr[] = 2; // no key, so starts at 0
+
+        dump($arr); // ["key" => 1, 0 => 2]
+    \end{minted}
+
+    You should not deliberately mix numerically indexed and associative arrays as things can get weird.
+\end{infobox}
+
+
+\section{Iterating Over Arrays}
+
+We can use a \texttt{foreach} loop to iterate over every item in an array.
+
+\begin{minted}{php}
+    $values = [1, 2, 3, 4, 5];
+
+    foreach ($values as $value) {
+        // $value will be each value in turn
+    }
+\end{minted}
+
+You can also get the key:
+
+\begin{minted}{php}
+    $assoc = [
+        "firstName" => "Ben",
+        "lastName" => "Wales",
+        "dob" => "2018-08-24",
+    ];
+
+    foreach ($assoc as $key => $value) {
+        // $key will be each key in turn
+        // $value will be each value in turn
+    }
+\end{minted}
+
+As numerically indexed arrays are just associative arrays with numerical keys, you can also use this syntax to get the index of a numerical array:
+
+\begin{minted}{php}
+    $values = [1, 2, 3, 4, 5];
+
+    foreach ($values as $index => $value) {
+        // $index will be each index in turn
+        // $value will be each value in turn
+    }
+\end{minted}
+
+We called it \texttt{\$key} in the first case and \texttt{\$index} in the second, but we can call it whatever we like, as long as it appears before the fat arrow.
+
+
+\section{Array Iterator Functions}
+
+PHP does have functions for doing \texttt{map}, \texttt{filter}, and \texttt{reduce} but they're inconsistent and not always usable (for example, if you need the current key/index).
+\\
+
+However, we can install Laravel's support package to gain access to ``Collections'', which makes working with arrays much nicer. It's got \href{http://laravel.com/docs/master/collections#available-methods}{tonnes of really useful methods}, but we'll just look at four of them here: our old friends \texttt{map()}, \texttt{filter()}, and \texttt{reduce()}, as well as a very useful one called \texttt{pluck()}.
+\\
+
+First we need to install the package:
+
+\begin{minted}{bash}
+    composer require illuminate/support
+\end{minted}
+
+Generally collection methods return a collection. You can turn a collection back into a standard array by calling its \texttt{all()} method.
+
+\pagebreak
+
+\subsubsection{\texttt{filter}}
+
+Filter is almost identical to JavaScript: we pass it an anonymous function that takes each item in the array and returns a boolean value. It returns a new collection containing all the items for which the function returned \texttt{true}:
+
+\php{}{05-arrays/figures/01-filter}
+
+\subsubsection{\texttt{map}}
+
+Map is also very similar to JavaScript: we pass it an anonymous function that takes each item in the array and transforms the value somehow. It returns a new collection where each item has been transformed:
+
+\php{}{05-arrays/figures/02-map}
+
+\pagebreak
+
+\subsubsection{\texttt{reduce}}
+
+Again, reduce is very similar to JavaScript: we pass it an anonymous function that takes the accumulated value and each item in the array. The return value is passed in as the accumulator value for the next iteration. It returns the final accumulated value:
+
+\php{}{05-arrays/figures/03-reduce}
+
+Make sure you pass in an initial value for the accumulator, otherwise it will be \texttt{null}, which might cause problems.
+
+\subsubsection{\texttt{pluck}}
+
+We've not come across \texttt{pluck} before, but it's very useful. It assumes your collection contains either associative arrays or objects all with the same structure. You pass it a key value and it extracts a new collection contain just that key/property from each item in the collection:
+
+\php{}{05-arrays/figures/04-pluck}
+
+
+\begin{infobox}{Under the Hood}
+    The \texttt{collect} function is actually creating an instance of the \texttt{Collection} class, which wraps the array, and you're calling various methods on it. When you call the \texttt{all()} method it gives you back the array it's been working on.
+\end{infobox}
+
+
+\section{Additional Resources}
+
+\begin{itemize}[leftmargin=*]
+    \item \href{http://www.php.net/manual/en/language.types.array.php}{PHP: Arrays}
+    \item \href{https://www.php.net/manual/en/ref.array.php}{PHP: Array Functions}
+    \item \href{http://www.php.net/manual/en/control-structures.foreach.php}{PHP: \texttt{foreach}}
+    \item \href{http://laravel.com/docs/master/collections}{Collections}
+\end{itemize}

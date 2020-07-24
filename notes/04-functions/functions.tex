@@ -1,0 +1,81 @@
+Functions in PHP serve the same purpose as functions in JavaScript: they allow us to reuse bits of code.
+\\
+
+They are written in the same way as functions were historically written in most C-style language (including JavaScript):
+
+\begin{minted}{php}
+    function add($a, $b) {
+        return $a + $b;
+    }
+
+    $result = add(12, 34);
+    dump($result); // int(46)
+\end{minted}
+
+
+\section{Scope}
+
+Because we don't declare variables in PHP it takes a very explicit approach to scope: by default variables used inside functions are assumed to be \textit{locally} scoped\footnote{The \texttt{global} keyword allows us to get around this, but it's unlikely you'll ever need to}.
+
+\section{Anonymous Functions}
+
+Standard functions in PHP are not values like they are in JavaScript, so we can't just pass them round and assign them to variables in quite the same way. However, passing functions around is such a useful thing to be able to do that recent versions of PHP added \textbf{closures} as a way to do this:
+
+\begin{minted}{php}
+    $add = function ($a, $b) {
+        return $a + $b;
+    };
+
+    $result = $add(1, 2);
+    dump($result); // int(3)
+\end{minted}
+
+As you can see, because it's stored in a variable we need to use the \texttt{\$} when calling the function.
+\\
+
+Some functions in PHP require a \texttt{callable} argument, which just means a function:
+
+\begin{minted}{php}
+    $result = array_map(function ($value) {
+        return $value * $value;
+    }, [1, 2, 3, 4, 5]);
+
+    dump($result); // [1, 4, 9, 16, 25]
+\end{minted}
+
+Closures don't have access to variables declared outside of themselves. In order to use these you use the \texttt{use} keyword:
+
+\begin{minted}{php}
+    $multiplyBy = 10;
+
+    $result = array_map(function ($value) use ($multiplyBy) {
+        return $value * $multiplyBy;
+    }, [1, 2, 3]);
+
+    dump($result); // [10, 20, 30]
+\end{minted}
+
+In PHP 7.4+ this could be written as:
+
+\begin{minted}{php}
+    $multiplyBy = 10;
+
+    $result = array_map(fn($value) => $value * $multiplyBy, [1, 2, 3]);
+
+    dump($result); // [10, 20, 30]
+\end{minted}
+
+This is PHP's new Arrow Function syntax. It avoids the need for \texttt{use} as it uses the parent scope. It also automatically returns a value, like with JS's fat arrow functions. However, it can \textbf{only be used if the function body is a single expression}: there's no way to have multiple lines.
+\\
+
+It's worth noting that in both cases you only get read access to \texttt{\$multiplyBy}: you cannot change its value inside the closure.
+
+
+
+\section{Additional Resources}
+
+\begin{itemize}[leftmargin=*]
+    \item \href{http://www.php.net/manual/en/functions.user-defined.php}{PHP: Functions}
+    \item \href{http://www.php.net/manual/en/language.types.callable.php}{PHP: Callable}
+    \item \href{https://www.php.net/manual/en/functions.arrow.php}{PHP: Arrow Functions}
+\end{itemize}
