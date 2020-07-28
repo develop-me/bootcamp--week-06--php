@@ -1,0 +1,123 @@
+So far, all of the code you've written has been ``procedural'': start at the top of a file, run through it, maybe call a few functions as you go, and then finish at the end. This is fine for simple programs or when we're just working inside an existing system (e.g. WordPress), but it doesn't really scale to larger applications.
+\\
+
+The problem comes because we need to manage \textbf{state}: keeping track of all the values in our code. For a large app you could easily have thousands of values that need storing. Naming and keeping track of all these variables would become a nightmare if they were all in the same global scope.
+\\
+
+\textbf{Object-Oriented Programming}\footnote{``Oriented'' not ``Orientated''.} (OOP) is one way to make this easier. We keep functions and variables that are related to each other in an object. We then get different objects to talk to one another, so that rather than having lots of global variables and functions, all of our data lives inside relevant objects. This is a very different way of thinking about code, but can be very elegant if you can wrap your head around some of the intricacies we'll be covering over the next few days.
+
+\pagebreak
+
+\begin{infobox}{The Unusual History of PHP}
+    PHP has a long and complicated history. The first version of PHP wasn't even a programming language, it was just simple templating language that allowed you to re-use the same HTML code in multiple files.
+    \\
+
+    Over the years PHP morphed into a simple programming language and then into a modern object-oriented programming language. However, it wasn't really until 2009, with the release of PHP 5.3, that PHP could truly be considered a fully object-oriented language.
+    \\
+
+    Because of this gradual change, older PHP frameworks and systems (such as WordPress) were originally written using non-OO code, which is why they still contain a large amount of procedural code.
+    \\
+
+    PHP gets a lot of flack for not being a very good programming language and a few years ago that was perhaps a valid criticism. But in recent years, particularly with the release of PHP 7, it's just not true anymore. It certainly still has some issues, but nothing that a few libraries can't get around.
+
+    \quoteinline{There are only two kinds of languages: the ones people complain about and the ones nobody uses}{Bjarne Stroustrup, Creator of C++}
+\end{infobox}
+
+
+\section{Objectification}
+
+Say that our app includes some code to send an email. If we were using procedural code we would probably have a function called \texttt{sendMail} that we can pass various values to:
+
+\php{}{09-oop/figures/01-mail}
+
+But we might want to be able to customise more than just the to, from, and message parts of the email. Which means we'd either need to have a lot of optional arguments (which becomes unwieldy quickly) or rely on global variables:
+
+\php{}{09-oop/figures/02-aaargh}
+
+But this is horrible: we have no way of preventing other parts of our code from changing these values and we would start having to use long variable names to avoid ambiguity in bigger apps.
+\\
+
+So, we want to store the variables and the functionality together in one place and in such a way that values can't be accidentally changed. This is where objects come in:
+
+\php{}{09-oop/figures/03-Mail}
+
+Now if we need to add additional fields, we can just add a property and setter method:
+
+\php{}{09-oop/figures/04-extra}
+
+Now we can add an array of \texttt{bcc} addresses. And because we've set it to an empty array by default it wouldn't matter if we didn't set any – the code should still work as before.
+\\
+
+This is a much nicer way of working with code.
+
+
+\section{Chaining}
+
+You'll notice that all the methods above return \texttt{\$this}. As a general rule of thumb, if a method doesn't have anything sensible to return, for example if it just sets a value, then you can return \texttt{\$this}. \texttt{\$this} represents the current object instance, which allows you to \textbf{chain} methods together:
+
+\begin{minted}{php}
+    $mail->to("bob@bob.com")->from("hello@wombat.io")
+         ->bcc([
+           "ada@lovelace.dev",
+           "donald@knuth.horse",
+         ])->send(
+           "A Wombat Welcome",
+           "Welcome to the best app for finding wombats near you"
+         );
+\end{minted}
+
+If we don't return anything from a method we get \texttt{null} back, which isn't very useful. By returning \texttt{\$this} we get back the object instance each time, meaning we can call another method straight away.
+\\
+
+If the methods hadn't returned \texttt{\$this} we'd have had to write it using the \texttt{\$mail} variable each time:
+
+\begin{minted}{php}
+    $mail->to("bob@bob.com");
+    $mail->from("hello@wombat.io")
+    $mail->bcc([
+        "ada@lovelace.dev",
+        "donald@knuth.horse",
+    ]);
+    $mail->send(
+        "A Wombat Welcome",
+        "Welcome to the best app for finding wombats near you"
+    );
+\end{minted}
+
+
+
+\section{Object-to-Object}
+
+In OOP objects use other objects to get things done. Rather than use variables and functions, pretty much everything is an object instance and we use properties and methods. The key skill of OOP is getting the right objects to talk to one another.
+\\
+
+For example, say that you wanted to send some emails to a mailing list. Rather than having the mailing list object do all of the work, we could instead have one object that deals with keeping track of who is in the mailing list and another that deals with sending the email.
+\\
+
+For example, we could create a \texttt{Mail} class that just deals with creating and sending an email:
+
+\php{}{09-oop/figures/05-Mail}
+
+It has various methods for adding the necessary email fields and another for actually sending the mail (well, pretending to).
+\\
+
+The mailing list class can be relatively simple too – it just keeps track of all the subscribers and has a method for sending an email to each of them:
+
+\php{}{09-oop/figures/06-MailingList}
+
+But notice that the actual sending of the mail is done by calling methods on a \texttt{Mail} object that has been passed in.
+\\
+
+We could write something like the following to get it working together:
+
+\php{}{09-oop/figures/07-app}
+
+
+By passing the \texttt{Mail} code \textit{into} the mailing list class we can compose their behaviour to create a more complex behaviour\footnote{We could probably split up the \texttt{Mail} class up even further so that the sending code was separate}.
+
+
+\section{Additional Resources}
+
+\begin{itemize}[leftmargin=*]
+    \item \href{ https://phpenthusiast.com/object-oriented-php-tutorials/chaining-methods-and-properties}{PHP Enthusiast: Chaining Methods and Properties}
+\end{itemize}

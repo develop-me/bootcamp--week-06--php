@@ -1,0 +1,106 @@
+In PHP (and all object-oriented languages), an \textbf{object} is a way of storing some values (\textbf{properties}) and functionality (\textbf{methods}) that are related in some way.
+\\
+
+It's very common to need many objects that have the same methods and property names, but where the \textit{values} of the properties are specific to each object.
+\\
+
+For example we might have two objects, that both represent people: both have a \texttt{firstName} property, a \texttt{lastName} property, and a \texttt{birthdate} property as well as a \texttt{getAge()} method, which returns their age based on the date of birth and the current date. The property names and methods will be identical for both objects, however the \textit{values} for the properties will be different: a ``Mark'' object would have \texttt{"Mark"}, \texttt{"Wales"}, and \texttt{"1984-04-16"} for the respective values, whereas a ``Ben'' object would have \texttt{"Ben"}, \texttt{"Wales"}, and \texttt{"2018-08-24"}.
+\\
+
+\img{25em}{07-classes/img/objects}{1.2em}{Two different objects with the same properties, but different values}
+
+\pagebreak
+
+A \textbf{class} is an abstract representation of an object that you want to create. For example, you might have a class \texttt{Person} that allows you to create lots of object \textbf{instances} representing different people.
+\\
+
+Here's a class that represents a person:
+
+\php{}{07-classes/figures/01-Person}
+
+Here's how we'd use our class:
+
+\php{}{07-classes/figures/02-usage}
+
+You can see that where we'd write a dot in JavaScript (\texttt{ben.getAge()}), we write an arrow in PHP (\texttt{\$ben->getAge()}), but otherwise it's almost identical in usage.
+
+\begin{infobox}{PSR-2: Coding Style Guide}
+    You've possibly noticed that in all the examples above the opening curly brace (\texttt{\{}) for classes and methods is on its own line. This is part of the \href{https://www.php-fig.org/psr/psr-2/}{PSR-2: Coding Style Guide} spec.
+    \\
+
+    If you do an \texttt{if} statement (or other control structure) then the opening curly brace, obviously, goes on \textit{the same} line.
+    \\
+
+    You're probably thinking that this doesn't make the slightest bit of sense. And you'd be right. PSR-2 was created by sending round a questionnaire about coding style to 30 or so of the most prolific PHP programmers and they just went with whatever the majority said for each point.
+    \\
+
+    But it's the style that everyone uses now. You'll get used to it.
+\end{infobox}
+
+\section{Properties}
+
+In most OOP languages we can declare the properties that our object has\footnote{JavaScript is still relatively immature as a ``classical'' OOP language, but support for this is coming}. We normally declare all of our properties at the top of the class: this makes it easy to see in one glance what properties the object instance will have.
+
+\php{}{07-classes/figures/03-properties}
+
+We declare properties by using the \texttt{private}\footnote{More on this later} keyword followed by the name of the property – with a dollar at the front, just like with variables. However, properties are \texttt{not} variables, as they belong to a specific object instance: each object instance with its own set of values.
+
+\subsection{Default Values}
+
+We can assign properties default values when we declare them. For example, we could add an \texttt{\$arms} property to the \texttt{Person} class and set it to \texttt{2} by default:
+
+\php{}{07-classes/figures/04-property-values}
+
+You can always use a method to change the value later.
+\\
+
+If you declare a property but don't assign it a value it will have the value \texttt{null}.
+
+
+\section{\texttt{\$this}}
+
+Inside our classes we can use the \texttt{\$this} keyword to access properties and methods that belong to the current object instance. It works in much the same way as JavaScript except that it's much more reliable: \texttt{\$this} in PHP \textit{always} refers to the current object and has no meaning elsewhere.
+
+\php{}{07-classes/figures/05-Address}
+
+Notice that it's the \texttt{\$this} bit that has the dollar in front of it, the property name does not, even though they \textit{do} have a dollar in front of them when we declare them at the top of the class\footnote{For weird historical reasons}.
+
+\section{Constructor}
+
+When we create a new object instance with \texttt{new} any values that we pass as arguments will be given to the \texttt{\_\_construct()} method, just as if we'd called it ourselves. So the number of arguments that we pass with \texttt{new} should always match the number of parameters that the \texttt{\_\_construct()} method accepts:
+
+\php{}{07-classes/figures/06-construct}
+
+We need to make sure we store the values passed in as properties on the newly created instance, otherwise they'll cease to exist once the \texttt{\_\_construct()} method has completed\footnote{Remember, parameters only exist inside the function they belong to}. It's fairly standard to name the parameters the same thing as the properties that they'll be assigned to as in the above example.
+\\
+
+If we've given a property a default value we don't need to set it up in \texttt{\_\_construct()} as well, it will automatically be given the default value when the object instance is created. If \textit{all} of your properties have default values then a \texttt{\_\_construct()} method might not even be necessary\footnote{It's not uncommon in full OOP code to accept no parameters in the constructor and to use setters for everything.}.
+
+
+\begin{infobox}{Using \texttt{new} Objects}
+    Unlike in JavaScript you can't immediately use a created object:
+
+    \begin{minted}{php}
+        // won't work
+        new Person("Jim", "Henson", "1936-09-24")->getAge();
+    \end{minted}
+
+    If you really want to, you can get around this with a pair of brackets around the \texttt{new} statement:
+
+    \begin{minted}[frame=topline]{php}
+        // will work
+        // but you don't have a reference to the object anymore
+        (new Person("Jim", "Henson", "1936-09-24"))->getAge();
+    \end{minted}
+
+    However, this isn't normally necessary.
+\end{infobox}
+
+
+\section{Additional Resources}
+
+\begin{itemize}[leftmargin=*]
+    \item \href{https://phpapprentice.com/classes.html}{PHP Apprentice: Classes}
+    \item \href{https://laracasts.com/series/php-for-beginners/episodes/12}{Laracasts: Classes 101}
+    \item \href{https://laracasts.com/series/object-oriented-bootcamp-in-php/episodes/1}{Laracasts: Classes}
+\end{itemize}
