@@ -1,0 +1,61 @@
+Classes are primarily used for creating object instances. But sometimes it's useful to write some functionality about the object type instead of object instances.
+\\
+
+For example, if we have a \texttt{Person} class we might want to write a bit of functionality that gives us an alphabetic array of last names. We could write a \texttt{lastNames()} function, but then it's not associated with the \texttt{Person} class.
+\\
+
+Instead, we will write a \texttt{static} method: a method that belongs to the class itself rather than to an object instance.
+
+\php{}{08-static/figures/01-static}
+
+Now it is clear that the \texttt{lastNames()} method has something to do with \texttt{Person} objects.
+\\
+
+Remember, \texttt{private} properties and methods can only be accessed using \texttt{\$this}, which doesn't have a value in \texttt{static} methods. So you'll need to use getters/setters just as you would if the function was written outside of the class.
+
+
+\begin{infobox}{Paamayim Nekudotayim}
+    The \texttt{::} symbol is also known as the ``Paamayim Nekudotayim'', which is Hebrew for ``double colon''. This can lead to the somewhat mystifying error:
+
+    \begin{minted}{diff}
+        PHP expects T_PAAMAYIM_NEKUDOTAYIM
+    \end{minted}
+
+    All it's saying is you need a \texttt{::} somewhere.
+    \\
+
+    The \href{https://en.wikipedia.org/wiki/Zend_Engine}{Zend Engine}, which was behind PHP 3.0 and all subsequent releases, was originally developed at the Israel Institute of Technology.
+\end{infobox}
+
+\section{The \texttt{static} Keyword}
+
+Sometimes it's useful to be able to refer to the class you're currently working in. We can use the \texttt{static} keyword to do this.
+\\
+
+For example, we might want a separate \texttt{static} method that returns the last names alphabetically – but it would be repetitive to rewrite the method we've already got:
+
+\php{}{08-static/figures/02-keyword}
+
+\begin{infobox}{\texttt{static} vs \texttt{self}}
+    You will sometimes see \texttt{self} instead of \texttt{static} to reference the current class. Using \texttt{static} in this way was only added in PHP 5.3, so a lot of older code uses \texttt{self}.
+    \\
+
+    If you're not using inheritance, then it doesn't make any difference which one you use. If you do then \texttt{self} refers to class that it is written in and \texttt{static} refers to the class it is called in (which might be different from where it was written if you're using inheritance).
+\end{infobox}
+
+
+\section{Static Properties}
+
+You can also have \texttt{static} properties. Because they belong to the class they exist for as long as your code is running, so you can use them for storing values that you want to keep around – like global variables, but with a dedicated home. This is very useful for caching values.
+\\
+
+Say we needed to create a \texttt{\$renderer} object that all our object instances can use to render\textellipsis{} something. We could use a \texttt{static} property to store it, so that we only create it one time:
+
+\php{}{08-static/figures/03-properties}
+
+
+\section{Additional Resources}
+
+\begin{itemize}[leftmargin=*]
+    \item \href{https://phpapprentice.com/static.html}{PHP Apprentice: Static}
+\end{itemize}
