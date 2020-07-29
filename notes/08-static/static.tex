@@ -1,7 +1,7 @@
 Classes are primarily used for creating object instances. But sometimes it's useful to write some functionality about the object type instead of object instances.
 \\
 
-For example, if we have a \texttt{Person} class we might want to write a bit of functionality that gives us an alphabetic array of last names. We could write a \texttt{lastNames()} function, but then it's not associated with the \texttt{Person} class.
+For example, if we have a \texttt{Person} class we might want to write a bit of functionality that given an array of \texttt{Person} objects gives us back an array of just last names. We could write a \texttt{lastNames()} function in global scope, but then it's not associated with the \texttt{Person} class.
 \\
 
 Instead, we will write a \texttt{static} method: a method that belongs to the class itself rather than to an object instance.
@@ -9,9 +9,6 @@ Instead, we will write a \texttt{static} method: a method that belongs to the cl
 \php{}{08-static/figures/01-static}
 
 Now it is clear that the \texttt{lastNames()} method has something to do with \texttt{Person} objects.
-\\
-
-Remember, \texttt{private} properties and methods can only be accessed using \texttt{\$this}, which doesn't have a value in \texttt{static} methods. So you'll need to use getters/setters just as you would if the function was written outside of the class.
 
 
 \begin{infobox}{Paamayim Nekudotayim}

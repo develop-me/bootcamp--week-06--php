@@ -53,7 +53,7 @@ This is a much nicer way of working with code.
 
 \section{Chaining}
 
-You'll notice that all the methods above return \texttt{\$this}. As a general rule of thumb, if a method doesn't have anything sensible to return, for example if it just sets a value, then you can return \texttt{\$this}. \texttt{\$this} represents the current object instance, which allows you to \textbf{chain} methods together:
+You'll notice that all the methods that \textit{set} a value return \texttt{\$this}. As a general rule of thumb, if a method doesn't have anything sensible to return, for example if it just sets a value, then you can return \texttt{\$this}. \texttt{\$this} represents the current object instance, which allows you to \textbf{chain} methods together:
 
 \begin{minted}{php}
     $mail->to("bob@bob.com")->from("hello@wombat.io")
@@ -66,14 +66,21 @@ You'll notice that all the methods above return \texttt{\$this}. As a general ru
          );
 \end{minted}
 
-If we don't return anything from a method we get \texttt{null} back, which isn't very useful. By returning \texttt{\$this} we get back the object instance each time, meaning we can call another method straight away.
+If we don't return anything from a method we get \texttt{null} back, which isn't very useful:
+
+\begin{minted}{php}
+    $result = null;
+    $result->doThing(); // PHP Fatal error: Call to a member function doThing() on null
+\end{minted}
+
+By returning \texttt{\$this} we get back the object instance (in the above case, the thing stored in \texttt{\$mail}) each time, meaning we can call another method straight away.
 \\
 
 If the methods hadn't returned \texttt{\$this} we'd have had to write it using the \texttt{\$mail} variable each time:
 
 \begin{minted}{php}
     $mail->to("bob@bob.com");
-    $mail->from("hello@wombat.io")
+    $mail->from("hello@wombat.io");
     $mail->bcc([
         "ada@lovelace.dev",
         "donald@knuth.horse",
@@ -113,7 +120,7 @@ We could write something like the following to get it working together:
 \php{}{09-oop/figures/07-app}
 
 
-By passing the \texttt{Mail} code \textit{into} the mailing list class we can compose their behaviour to create a more complex behaviour\footnote{We could probably split up the \texttt{Mail} class up even further so that the sending code was separate}.
+By passing the \texttt{Mail} code \textit{into} the mailing list class we can \textbf{compose} their behaviour to create a more complex behaviour\footnote{We could probably split up the \texttt{Mail} class up even further so that the sending code was separate}.
 
 
 \section{Additional Resources}
