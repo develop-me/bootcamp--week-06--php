@@ -253,25 +253,10 @@ Now we've guaranteed that the thing being passed in is of the type \texttt{Mail}
 Encapsulation has been restored.
 
 
-\section{The Law of Demeter}
-
-The ``Law of Demeter'' is a guideline for OOP about how objects should use other objects. Expressed succinctly:
-
-\begin{center}
-    \textit{Each object should only talk to its friends; don't talk to strangers}
-\end{center}
-
-In practice, this means that an object should only call methods on either itself or objects that it has been given. You should avoid calling a method which returns an object and then calling a method on that object: it requires too much knowledge about other objects.
-
-\php{}{11-encapsulation/figures/02-demeter}
-
-You should be careful using chaining (returning \texttt{\$this} from a method). If the method returns a \textit{different} type of object then it's easy to break the Law of Demeter without realising it.
-
 
 \section{Additional Resources}
 
 \begin{itemize}[leftmargin=*]
     \item \href{http://www.php.net/manual/en/functions.arguments.php#functions.arguments.type-declaration.strict}{PHP: Strict Typing}
     \item \href{https://en.wikipedia.org/wiki/Information_hiding}{Wikipedia: Information Hiding}
-    \item \href{https://en.wikipedia.org/wiki/Law_of_Demeter}{Wikipedia: The Law of Demeter}
 \end{itemize}

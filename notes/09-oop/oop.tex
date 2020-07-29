@@ -119,12 +119,31 @@ We could write something like the following to get it working together:
 
 \php{}{09-oop/figures/07-app}
 
-
 By passing the \texttt{Mail} code \textit{into} the mailing list class we can \textbf{compose} their behaviour to create a more complex behaviour\footnote{We could probably split up the \texttt{Mail} class up even further so that the sending code was separate}.
+
+
+\section{The Law of Demeter}
+
+The ``Law of Demeter'' is a guideline for OOP about how objects should use other objects. Expressed succinctly:
+\\
+
+\begin{center}
+    \textit{Each object should only talk to its friends; don't talk to strangers}
+\end{center}
+\par\bigskip
+
+
+In practice, this means that an object should only call methods on either itself or objects that it has been given. You should avoid calling a method which returns an object and then calling a method on that object: it requires too much knowledge about other objects.
+
+\php{}{09-oop/figures/08-demeter}
+
+You should be careful using chaining (returning \texttt{\$this} from a method). If the method returns a \textit{different} type of object then it's easy to break the Law of Demeter without realising it.
+
 
 
 \section{Additional Resources}
 
 \begin{itemize}[leftmargin=*]
     \item \href{ https://phpenthusiast.com/object-oriented-php-tutorials/chaining-methods-and-properties}{PHP Enthusiast: Chaining Methods and Properties}
+    \item \href{https://en.wikipedia.org/wiki/Law_of_Demeter}{Wikipedia: The Law of Demeter}
 \end{itemize}
