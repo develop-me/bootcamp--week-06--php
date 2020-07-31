@@ -1,0 +1,181 @@
+Many object oriented languages \textit{only} use objects. For example in Java everything lives inside a class and you specify which class your app should create first when you run it.
+\\
+
+Because of PHP's history we always need a little bit of procedural code to get our objects up and running. This is often called the \textbf{bootstrap} file:
+
+\php{bootstrap.php}{10-architecture/figures/01-bootstrap}
+
+Once we've created our first object the idea of object-oriented programming is that we \textbf{use objects from that point onwards}. Each object might use a few objects itself, which in turn might use a few more objects, creating a complex cascade of behaviours:
+
+\begin{minted}{text}
+    Application->start()
+        Router->parseURL()
+            URLParser->splitURL()
+                String->separateWith()
+        Request->generate()
+            Request->getHeaders()
+            Request->getBody()
+            Request->parseBody()
+                JSON->toObject()
+        Application->callController()
+            Controller->index()
+                Post->all()
+                    Model->query()
+                        DB->select()
+                        DB->toArray()
+                View->render()
+                    Blade->loadTemplate()
+                    Blade->parseTemplate()
+                    Blade->interpolate()
+                Response->generate()
+                    Response->body()
+                        JSON->fromObject()
+\end{minted}
+
+However, currently we only know how to use PHP when everything is in one \texttt{.php} file. As we start to build more complex code with multiple classes it would be good to keep things separate. Ideally we'd have one \texttt{class} per file in an easy to find location.
+
+
+\section{Autoloading}
+
+Currently, if you put one of your classes in a separate PHP file and then try and use it from another PHP file you'll get an error:
+
+\begin{minted}{php}
+    <?php
+
+    $app = new App(); // PHP Fatal error: Class 'App' not found
+\end{minted}
+
+Thankfully, modern PHP supports \textbf{autoloading}: we can programmatically tell PHP how to find a class that it doesn't know about yet. Technically we could do this in whatever way we like:
+
+\php{bootstrap.php}{10-architecture/figures/02-autoload}
+
+But it's generally better if everyone does things in the same way, which is where the \href{https://www.php-fig.org/psr/psr-4/}{PSR-4 Autoloader standard} comes in.
+\\
+
+But before we can understand that, we need to know about \textbf{namespaces}.
+
+
+\section{Namespaces}
+
+Namespaces solve the problem of needing to work with two or more classes that happen to have the same name. For example, in a large app you might have a \texttt{Post} class that represents a blog post, but you might also have included a Slack package that includes a \texttt{Post} class that posts messages to Slack. It would be cumbersome to make sure that every single class used in a large app had a unique class name.
+\\
+
+The most everyday use of namespaces is the file system on your computer: you can have two files called exactly the same thing \textit{as long as they're in separate directories}.
+\\
+
+Namespacing in PHP is much the same idea. We assign each class to a namespace and then we can have two classes with the same name, \textit{as long as they're in separate namespaces}. This means that when we use the class we need to tell PHP which namespace we are talking about.
+\\
+
+We assign a namespace by adding a \texttt{namespace} declaration as the very first line of PHP:
+
+\begin{minted}{php}
+    <?php
+
+    namespace Blog\Data;
+
+    class Post { ... }
+\end{minted}
+
+Now, when we want to use this class we'll need to use the namespace:
+
+\begin{minted}{php}
+    new Blog\Data\Post();
+\end{minted}
+
+\pagebreak
+
+If we use a class many times inside another file, we can put a \texttt{use} statement at the top to tell it to always use a specific namespaced class:
+
+\begin{minted}{php}
+    use Blog\Data\Post;
+
+    // further down the file
+    new Post(); // actually new Blog\Data\Post()
+
+    // we can use the other namespaced Post class
+    // we just need to use the full namespace
+    new Services\Slack\Post();
+\end{minted}
+
+Generally we'll use the same class multiple times inside a file, so this saves a lot of typing.
+\\
+
+If the class you want to use is in the \textit{same} namespace as the current class you don't even need a \texttt{use} statement.
+\\
+
+You can \textbf{alias} a class to give it a different name in the file you're working in. This can be particularly useful if you have two classes which share the same class name but are in different namespaces:
+
+\begin{minted}{php}
+    use Blog\Data\Post;
+    use Services\Slack\Post as SlackPost;
+
+    new Post(); // actually new Blog\Data\Post()
+    new SlackPost(); // actually new Services\Slack\Post()
+\end{minted}
+
+
+\pagebreak
+
+\begin{infobox}{The static \texttt{class} property}
+    Sometimes it's useful to get the fully namespaced name of a class as a string (e.g. in a configuration file). All classes have a static \texttt{class} property:
+
+    \begin{minted}{php}
+        $class = Services\Slack\Post::class;
+        dump($class); // "Services\Slack\Post"
+    \end{minted}
+
+    This is particularly useful as backslashes need escaping in strings, meaning if you were to write the string out by hand you'd have to write:
+
+    \begin{minted}{php}
+        $class = "Services\\Slack\\Post"; // need to escape every backslash
+    \end{minted}
+
+    It also means you'll get an error if you try and use a class that doesn't exist.
+\end{infobox}
+
+
+
+
+\section{PSR-4 Autoloading}
+
+The PSR-4 autoloading spec basically ties namespaces to a directory structure within a specified directory. Composer can do all the work of autoloading for us, but we do need to set it up.
+\\
+
+First, create a directory called \texttt{app}. Then edit the \texttt{composer.json} so that it looks like this:
+
+\code{composer.json}{json}{10-architecture/figures/03-composer.json}
+
+Here we've told Composer that any namespace starting with the root \texttt{App} should look for files in the \texttt{app} directory. We could use anything as the root namespace or directory name, but this is the convention.
+\\
+
+Next, run \texttt{composer dump}: this regenerates the Composer autoload file for us\footnote{Technically, it gets rid of the existing autoload file and then creates a new one – hence the name}.
+\\
+
+Now, as long as we stick to the following rules, we won't need to require any other files manually:
+
+\begin{enumerate}
+    \item One class per file, where the file name is the same as the class name (case sensitive)
+    \item Put all of our classes in the \texttt{App} root namespace
+    \item If we add directories inside the \texttt{app} directory (for extra organisation), they add an extra level to the namespace
+\end{enumerate}
+
+Because namespaces and classes in PHP are usually capitalised and, with PSR-4, the directory and filenames match the namespace/class naming, all the files and directories inside \texttt{app} will also be capitalised.
+\\
+
+For example, if we had a class called \texttt{Post} that just sat inside the \texttt{app} directory, it should be in a file called \texttt{Post.php} and have the namespace \texttt{App\textbackslash Post}. If we had a class \texttt{Post} that did something with Slack we could create a directory \texttt{app/Slack} and then put the file \texttt{Post.php} in it with the namespace \texttt{App\textbackslash Slack\textbackslash Post}.
+\\
+
+\hr
+
+Our final \texttt{bootstrap.php} file will look something like:
+
+\php{bootstrap.php}{10-architecture/figures/04-bootstrap}
+
+Everything else is going to be in separate classes in separate files.
+
+
+\section{Additional Resources}
+
+\begin{itemize}[leftmargin=*]
+    \item \href{https://github.com/laravel/laravel/blob/master/bootstrap/app.php}{The Laravel Bootstrap File}
+\end{itemize}

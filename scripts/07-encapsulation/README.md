@@ -1,0 +1,56 @@
+# Day 3: Afternoon
+
+## Encapsulation
+
+- Don't want to remember how every object works
+- Function composition: Create complexity by joining together simple things
+- Encapsulation: using visibility to limit how an object can be used
+- Visibility: `public`, `private`, and `protected`
+- Public: surface area
+- Private: inner-workings, insides
+- Show as little surface as possible: less to remember
+- If insides are outside, shit goes everywhere
+- So make everything private unless it has to be public (e.g. getters and setters)
+
+
+## Safe Code
+
+- If we have `public` properties can change them to anything, lost safety
+
+    ```php
+    $mail = new Mail();
+    $mail->to = 12;
+    ```
+
+    Would break when `mail()` used, breaks encapsulation
+- Can make it impossible to break
+
+    ```php
+      public function to($address)
+      {
+        if (filter_var($address, FILTER_VALIDATE_EMAIL) === $address) {
+          $this->to === $address;
+          return $this;
+        }
+
+        throw new InvalidArgumentException("Invalid email address");
+      }
+      ```
+
+### Types
+
+- `declare(strict_types=1);` in bootstrap
+- Can add parameter types
+- Can add return types
+- class name, `int`, `float`, `string`, `bool`, `array`, `callable`
+- `void`: better to return `$this`
+
+
+### Type Systems
+
+- Can create our own types
+- Guarantees about our code
+- Pass `Person` into `MailingList::send()`
+- Add `Mail` to `MailingList`
+- Tells us where the actual error is
+- Encapsulation is preserved
