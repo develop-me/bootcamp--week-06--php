@@ -1,0 +1,6 @@
+{
+    "require": {
+        "symfony/var-dumper": "^5.1",
+        "illuminate/support": "^7.22"
+    }
+}
