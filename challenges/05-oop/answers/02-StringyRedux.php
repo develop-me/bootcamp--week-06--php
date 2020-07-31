@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . "/vendor/autoload.php";
+
 class StringyRedux
 {
     private $string;
@@ -46,10 +48,10 @@ class StringyRedux
 }
 
 $string1 = new StringyRedux("Oop");
-var_dump($string1->lower()->repeat(2)->get()); // string(6) "oopoop"
+dump($string1->lower()->repeat(2)->get()); // "oopoop"
 
 $string2 = new StringyRedux("Spoon");
-var_dump($string2->repeat(2)->upper()->append("!")->get()); // string(11) "SPOONSPOON!"
+dump($string2->repeat(2)->upper()->append("!")->get()); // "SPOONSPOON!"
 
 $string3 = new StringyRedux("Na");
-var_dump($string3->repeat(2)->append(" ")->repeat(8)->append(" ")->append("Batman!")->get()); // string(48) "NaNa NaNa NaNa NaNa NaNa NaNa NaNa NaNa  Batman!"
+dump($string3->repeat(2)->append(" ")->repeat(8)->append(" ")->append("Batman!")->get()); // "NaNa NaNa NaNa NaNa NaNa NaNa NaNa NaNa  Batman!"

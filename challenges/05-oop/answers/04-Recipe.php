@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . "/vendor/autoload.php";
+
 // An ingredient class
 class Ingredient
 {
@@ -7,20 +9,20 @@ class Ingredient
     private $dietary;
 
     // takes the name and dietary requirements values
-    public function __construct(string $name, array $dietary)
+    public function __construct($name, $dietary)
     {
         $this->name = $name;
         $this->dietary = $dietary;
     }
 
     // returns the name
-    public function getName() : string
+    public function getName()
     {
         return $this->name;
     }
 
     // returns the dietary requirements
-    public function getDietary() : array
+    public function getDietary()
     {
         return $this->dietary;
     }
@@ -28,23 +30,18 @@ class Ingredient
 
 class Recipe
 {
-    // caching variables
-    private $dietaryCache = null;
-    private $displayCache = null;
-
-    // variables
     private $name;
     private $method = "";
     private $ingredients = [];
 
     // The recipe doesn't take any values initially
-    public function __construct(string $name)
+    public function __construct($name)
     {
         $this->name = $name;
     }
 
     // need to accept an ingredient object and and amount
-    public function addIngredient(Ingredient $ingredient, float $amount)
+    public function addIngredient($ingredient, $amount)
     {
         // we need some way to associate the ingredient and the amount
         // so we use an associative array to link them together
@@ -53,76 +50,59 @@ class Recipe
             "amount" => $amount,
         ];
 
-        // reset both caches
-        $this->dietaryCache = null;
-        $this->displayCache = null;
-
         return $this;
     }
 
     // sets the method property
-    public function addMethod(string $method) : Recipe
+    public function addMethod($method)
     {
         $this->method = $method;
-
-        // reset the display cache
-        $this->displayCache = null;
-
         return $this;
     }
 
-    public function display() : string
+    public function display()
     {
-        if (!$this->displayCache) {
-            echo "uncached";
-            // first build up a list of ingredients
-            $ingredients = [];
+        // first build up a list of ingredients
+        $ingredients = [];
 
-            foreach ($this->ingredients as $item) {
-                $ingredient = $item["ingredient"];
-                $ingredients[] = "- {$item["amount"]} {$ingredient->getName()}";
-            }
-
-            // create an array of outputs
-            $elements = [
-                $this->name,
-                "Ingredients",
-                implode("\n", $ingredients),
-                "Method",
-                $this->method,
-            ];
-
-            // sepearate each output by two line breaks
-            $this->displayCache =  implode("\n\n", $elements);
+        foreach ($this->ingredients as $item) {
+            $ingredient = $item["ingredient"];
+            $ingredients[] = "- {$item["amount"]} {$ingredient->getName()}";
         }
 
-        return $this->displayCache;
+        // create an array of outputs
+        $elements = [
+            $this->name,
+            "Ingredients",
+            implode("\n", $ingredients),
+            "Method",
+            $this->method,
+        ];
+
+        // sepearate each output by two line breaks
+        return implode("\n\n", $elements);
     }
 
-    public function dietary() : string
+    public function dietary()
     {
         return implode(", ", $this->getDietary());
     }
 
-    public function vegan() : bool
+    public function vegan()
     {
         return array_search("animal produce", $this->getDietary()) === false;
     }
 
-    private function getDietary() : array
+    private function getDietary()
     {
-        if (!$this->dietaryCache) {
-            $dietary = [];
+        $dietary = [];
 
-            foreach ($this->ingredients as $item) {
-                $diet = $item["ingredient"]->getDietary();
-                $dietary = array_merge($dietary, $diet);
-            }
-
-            $this->dietaryCache =  array_unique($dietary);
+        foreach ($this->ingredients as $item) {
+            $diet = $item["ingredient"]->getDietary();
+            $dietary = array_merge($dietary, $diet);
         }
 
-        return $this->dietaryCache;
+        return array_unique($dietary);
     }
 }
 
@@ -145,9 +125,9 @@ $cake->addIngredient($eggs, 2);
 $cake->addMethod("Put them in a bowl, mix them together, cook for a bit. Job's a good'un");
 
 // we can see the recipe
-var_dump($cake->display());
+echo $cake->display();
 /*
-    string(146) "Cake
+    "Cake
 
     Ingredients
 
@@ -162,7 +142,7 @@ var_dump($cake->display());
  */
 
 // we can list dietary information
-var_dump($cake->dietary()); // string(29) "gluten, animal produce, dairy"
+dump($cake->dietary()); // "gluten, animal produce, dairy"
 
 // is the recipe vegan? (i.e. contains animal produce)
-var_dump($cake->vegan()); // bool(false)
+dump($cake->vegan()); // false

@@ -45,13 +45,13 @@ class Car
 $car = new Car("Ford", "XY11 4TY");
 
 // you can get various bits of information about it
-var_dump($car->getNumberplate()); // string(8) "XY11 4TY"
-var_dump($car->getMake()); // string(4) "Ford"
-var_dump($car->getMileage()); // int(0)
+dump($car->getNumberplate()); // "XY11 4TY"
+dump($car->getMake()); // "Ford"
+dump($car->getMileage()); // 0
 
 // you can add journey
 $car->addJourney(100);
-var_dump($car->getMileage()); // int(100)
+dump($car->getMileage()); // 100
 
 $car->addJourney(200);
-var_dump($car->getMileage()); // int(300)
+dump($car->getMileage()); // 300

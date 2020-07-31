@@ -5,18 +5,18 @@ class Phone
     private $make;
     private $model;
 
-    public function __construct(string $make, string $model)
+    public function __construct($make, $model)
     {
         $this->make = $make;
         $this->model = $model;
     }
 
-    public function make() : string
+    public function make()
     {
         return $this->make;
     }
 
-    public function model() : string
+    public function model()
     {
         return $this->model;
     }
@@ -28,7 +28,7 @@ $galaxy = new Phone("Samsung", "Galaxy");
 $retro = new Phone("Nokia", "3210");
 
 // use methods to find out model/make
-var_dump($iPhone->model()); // string(9) "iPhone XS"
-var_dump($retro->make()); // string(5) "Nokia"
-var_dump($galaxy->make()); // string(7) "Samsung"
-var_dump($iPhone->make()); // string(5) "Apple"
+dump($iPhone->model()); // "iPhone XS"
+dump($retro->make()); // "Nokia"
+dump($galaxy->make()); // "Samsung"
+dump($iPhone->make()); // "Apple"

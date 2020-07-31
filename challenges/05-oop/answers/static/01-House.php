@@ -1,8 +1,10 @@
 <?php
 
+require __DIR__ . "/../vendor/autoload.php";
+
 class Person
 {
-    public static function averageAge($people) : float
+    public static function averageAge($people)
     {
         // use reduce to add up the ages of all the people
         $total = array_reduce($people, function ($total, $person) {
@@ -15,13 +17,13 @@ class Person
     private $name;
     private $age;
 
-    public function __construct(string $name, int $age)
+    public function __construct($name, $age)
     {
         $this->name = $name;
         $this->age = $age;
     }
 
-    public function age() : int
+    public function age()
     {
         return $this->age;
     }
@@ -29,7 +31,7 @@ class Person
 
 class House
 {
-    public static function census(array $houses) : array
+    public static function census($houses)
     {
         $people = [];
 
@@ -40,7 +42,7 @@ class House
         return $people;
     }
 
-    public static function averageAge(array $houses) : float
+    public static function averageAge($houses)
     {
         $people = static::census($houses);
 
@@ -57,7 +59,7 @@ class House
         return $this;
     }
 
-    public function people() : array
+    public function people()
     {
         return $this->people;
     }
@@ -76,8 +78,8 @@ $house2 = new House();
 $house2->addDweller($estelle)
        ->addDweller($jana);
 
-var_dump(House::census([$house1, $house2])); // [$carlton, $ida, $estelle, $jana]
-var_dump(House::census([$house2])); // array(2) [$estelle, $jana]
+dump(House::census([$house1, $house2])); // [$carlton, $ida, $estelle, $jana]
+dump(House::census([$house2])); // [$estelle, $jana]
 
-var_dump(House::averageAge([$house1, $house2])); // float(40.5)
-var_dump(House::averageAge([$house1])); // float(28.5)
+dump(House::averageAge([$house1, $house2])); // 40.5
+dump(House::averageAge([$house1])); // 28.5

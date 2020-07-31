@@ -39,13 +39,13 @@ class Stringy
 $string = new Stringy("Na");
 
 // it can lowercase a string
-var_dump($string->lower()); // string(2) "na"
+dump($string->lower()); // "na"
 
 // it can uppercase a string
-var_dump($string->upper()); // string(2) "NA"
+dump($string->upper()); // "NA"
 
 // it can concatenate
-var_dump($string->append("blah")); // string(6) "Nablah"
+dump($string->append("blah")); // "Nablah"
 
 // it can repeat a string
-var_dump($string->repeat(5)); // string(10) "NaNaNaNaNa"
+dump($string->repeat(5)); // "NaNaNaNaNa"
