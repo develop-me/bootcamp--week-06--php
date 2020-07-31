@@ -2,29 +2,28 @@
 
 ### Setup
 
+**Keep using Git! Every time you get a challenge working do a commit with a sensible message.**
+
 - Create a new project directory
 - Get Composer setup to use auto-loading with `App` as the root namespace pointing at the `app` directory
 - Add the `symfony/var-dumper` package
-- Create a single `index.php` file in the **root** directory:
+- Create a single `bootstrap.php` file in the **root** directory:
 
     ```
     app/
     vendor/
     composer.json
-    index.php
+    bootstrap.php
     ```
-- Include `declare(strict_types=1);` at the top of `index.php`
-- Include the Composer auto-loading file at the top of `index.php`
+- Include the Composer auto-loading file at the top of `bootstrap.php`
 
 ### Instructions
 
-For each question, create the class(es) in the correct namespace and then copy and paste the given code into `index.php`. Don't get rid of the previous questions, as some of them rely on each other's variables. You'll end up with a fairly long `index.php` file [like this](https://github.com/develop-me/bootcamp--week-06--php/blob/master/challenges/03/01/answers/index.php). To check your answers run `php index.php`.
-
-**Use Git to make a commit every time you get an answer working. Use sensible commit messages.**
+For each question, create the class(es) in the correct namespace and then copy and paste the given code into `bootstrap.php`. Don't get rid of the previous questions, as some of them rely on each other's variables. You'll end up with a fairly long `bootstrap.php` file [like this](https://github.com/develop-me/bootcamp--week-06--php/blob/master/challenges/06-architecture/bootstrap.php). To check your answers run `php bootstrap.php`.
 
 ### Answers
 
-[Answers on GitHub](https://github.com/develop-me/bootcamp--week-06--php/blob/master/challenges/03/01/answers)
+[Answers on GitHub](https://github.com/develop-me/bootcamp--week-06--php/blob/master/challenges/06-architecture/answers)
 
 
 ## Challenges
@@ -44,7 +43,7 @@ For each question, create the class(es) in the correct namespace and then copy a
 
 1) Create a class `Person` in the `App` namespace. It should accept a first and last name on creation. It should have a `sayHelloTo()` method that takes another `Person` and says hello to them. Make sure your properties are all private: so you'll need to a create `fullName()` method too.
 
-    Use the class as follows in your `index.php`:
+    Use the class as follows in your `bootstrap.php`:
 
     ```php
     echo "\nQuestion 2\n";
@@ -54,8 +53,8 @@ For each question, create the class(es) in the correct namespace and then copy a
     $person1 = new Person("Lynne",  "Ramsay");
     $person2 = new Person("Wes", "Anderson");
 
-    dump($person1->sayHelloTo($person2)); // string(9) "Hello Wes Anderson"
-    dump($person2->sayHelloTo($person1)); // string(11) "Hello Lynne Ramsay"
+    dump($person1->sayHelloTo($person2)); // "Hello Wes Anderson"
+    dump($person2->sayHelloTo($person1)); // "Hello Lynne Ramsay"
     ```
 
 1) Create a class `Potato` in the `App\Stuff\Things` namespace. It should have a `water()` and `hasGrown()` method. `hasGrown()` should return false until the `Potato` has been watered five or more times.
@@ -111,7 +110,7 @@ For each question, create the class(es) in the correct namespace and then copy a
     $shelf->addBook(new Book("The Catcher in the Rye", 277));
     $shelf->addBook(new Book("Stamped from the Beginning", 582));
 
-    dump($shelf->titles()); // array:3 [ 0 => "Zero: The Biography of a Dangerous Idea" 1 => "The Catcher in the Rye" 2 => "Stamped from the Beginning" ]
+    dump($shelf->titles()); // ["Zero: The Biography of a Dangerous Idea", "The Catcher in the Rye", "Stamped from the Beginning"]
     ```
 
 1) Create a class `Library`. It should have an `addShelf()` method, which takes a `Shelf` object. It should have a `titles()` method that lists all the titles of all the books on all the shelves in the library.
@@ -130,15 +129,17 @@ For each question, create the class(es) in the correct namespace and then copy a
 
     $badLibrary->addShelf($otherShelf);
 
-    dump($badLibrary->titles()); // array:5 [ 0 => "Zero: The Biography of a Dangerous Idea" 1 => "The Catcher in the Rye" 2 => "Stamped from the Beginning" 3 => "The Power Broker" 4 => "Delusions of Gender" ]
+    dump($badLibrary->titles()); // ["Zero: The Biography of a Dangerous Idea", "The Catcher in the Rye", "Stamped from the Beginning", "The Power Broker", "Delusions of Gender"]
     ```
 
 
 ## Tricksy
 
+If you haven't already, read the Read-Only Chapter 8 on Static Properties and Methods.
+
 1) Create a class `Person` in the `App\People` namespace. It should accept a name and birthdate (string). It should have a static method called `getAges()` which takes an array of `Person` objects and returns an array of ages. Use the `map()` method of the `Illuminate\Support\Collection` class.
 
-    Use the class as follows in your `index.php`:
+    Use the class as follows in your `bootstrap.php`:
 
     ```php
     echo "\nTricksy Question 1\n";
@@ -178,7 +179,7 @@ For each question, create the class(es) in the correct namespace and then copy a
     </html>
     ```
 
-    The usage code to add to `index.php`:
+    The usage code to add to `bootstrap.php`:
 
     ```php
     echo "\nTricksy Question 3\n";
