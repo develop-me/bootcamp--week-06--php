@@ -84,8 +84,8 @@ As mentioned above \texttt{echo} is actually pretty useless for anything other t
 PHP does have the \texttt{var\_dump()} function, which will log out different data types, but it's still fairly horrible.
 
 \begin{minted}{php}
-    dump(12); // int(12)
-    dump([1, 2, 3]); // array(3) { [0]=> int(1) [1]=> int(2) [2]=> int(3) }
+    var_dump(12); // int(12)
+    var_dump([1, 2]); // array(3) { [0]=> int(1) [1]=> int(2) }
 \end{minted}
 
 We're going to use the \texttt{symfony/var-dumper} package\footnote{Part of the \href{https://symfony.com/}{Symfony framework}, but written so that it can be used with any PHP code} to allow us to get behaviour much more similar to \texttt{console.log()} in JS. We'll need to install this on a \textbf{per-project} basis. To do this, first choose the directory that you want to work from, and then run:
@@ -109,6 +109,8 @@ This will create \texttt{composer.json} and \texttt{composer.lock} files and a \
 
 \end{infobox}
 
+\pagebreak
+
 To use the package (and any other packages that we install) we need to let PHP know to use the Composer files. We do this by adding the following line to the top of any PHP files that need to use it:
 
 \begin{minted}{php}
@@ -117,7 +119,7 @@ To use the package (and any other packages that we install) we need to let PHP k
     require __DIR__ . "/vendor/autoload.php";
 \end{minted}
 
-We now have access to the glamorously named \texttt{dump()} function. \texttt{dump()} is our \texttt{console.log()} equivalent: it outputs things nicely and automatically adds syntax highlighting to the output. Having installed the package, we could rewrite our ``Hello, World!'' example as follows:
+We now have access to the glamorously named \texttt{dump()} function\footnote{And the even more glamorously named ``dump and die'' function \texttt{dd()}}. \texttt{dump()} is our \texttt{console.log()} equivalent: it outputs things nicely and automatically adds syntax highlighting to the output. Having installed the package, we could rewrite our ``Hello, World!'' example as follows:
 
 \begin{minted}{php}
     <?php
@@ -129,6 +131,7 @@ We now have access to the glamorously named \texttt{dump()} function. \texttt{du
 
 We'll be using \texttt{dump()} from now on.
 
+\pagebreak
 
 \section{Variables}
 
@@ -162,7 +165,7 @@ Be careful using the official PHP documentation: \textit{anyone} can submit ``Us
 
 As a general rule, don't look at the ``User Contributed Notes'' section: use Stack Overflow if the documentation hasn't cleared it up for you.
 
-
+\pagebreak
 
 \section{Additional Resources}
 

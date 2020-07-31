@@ -22,6 +22,10 @@ With an \texttt{else}:
     }
 \end{minted}
 
+
+\pagebreak
+
+
 An \texttt{else if}:
 
 \begin{minted}{php}
@@ -59,6 +63,10 @@ PHP also has the ternary operator. As with JavaScript, a ternary operator is an 
     $index = $index < 0 ? 5 : $index - 1;
 \end{minted}
 
+
+\pagebreak
+
+
 \subsection{\texttt{switch} Statements}
 
 \texttt{switch} statements are also available:
@@ -92,7 +100,7 @@ Don't forget to \texttt{break} at the end of each \texttt{case}; and, remember, 
         $total += $i;
     }
 
-    dump($total); // int(55)
+    dump($total); // 55
 \end{minted}
 
 Remember the three parts:
@@ -118,7 +126,7 @@ While loops are useful if you don't know how many times the loop needs to run:
         $total += $i;
     }
 
-    dump($total); // int(105)
+    dump($total); // 105
 \end{minted}
 
 \subsection{\texttt{do-while} Loops}
@@ -134,12 +142,15 @@ A \texttt{do-while} loop is the same as a \texttt{while} loop, except that the \
         $total += $i;
     } while ($total < 100);
 
-    dump($total); // int(105)
+    dump($total); // 105
 \end{minted}
 
 \hr
 
 As with all loops, be careful not to create an infinite loop!
+
+
+\pagebreak
 
 
 \section{Additional Resources}

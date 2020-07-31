@@ -9,13 +9,30 @@ They are written in the same way as functions were historically written in most 
     }
 
     $result = add(12, 34);
-    dump($result); // int(46)
+    dump($result); // 46
 \end{minted}
+
+
+\pagebreak
 
 
 \section{Scope}
 
-Because we don't declare variables in PHP it takes a very explicit approach to scope: by default variables used inside functions are assumed to be \textit{locally} scoped\footnote{The \texttt{global} keyword allows us to get around this, but it's unlikely you'll ever need to}.
+Because we don't declare variables in PHP it takes a very explicit approach to scope: by default variables used inside functions are assumed to be \textit{locally} scoped:\footnote{The \texttt{global} keyword allows us to get around this, but it's unlikely you'll ever need to}
+
+\begin{minted}{php}
+    $x = 10;
+
+    function wtf($z) {
+        $x = 20; // different $x, locally scoped
+        return $x + $z;
+    }
+
+    $result = wtf(12);
+    dump($result); // 32
+    dump($x); // 10
+\end{minted}
+
 
 \section{Anonymous Functions}
 
@@ -27,11 +44,14 @@ Standard functions in PHP are not values like they are in JavaScript, so we can'
     };
 
     $result = $add(1, 2);
-    dump($result); // int(3)
+    dump($result); // 3
 \end{minted}
 
 As you can see, because it's stored in a variable we need to use the \texttt{\$} when calling the function.
-\\
+
+
+\pagebreak
+
 
 Some functions in PHP require a \texttt{callable} argument, which just means a function:
 
@@ -70,6 +90,8 @@ This is PHP's new Arrow Function syntax. It avoids the need for \texttt{use} as 
 
 It's worth noting that in both cases you only get read access to \texttt{\$multiplyBy}: you cannot change its value inside the closure.
 
+
+\pagebreak
 
 
 \section{Additional Resources}

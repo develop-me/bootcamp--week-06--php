@@ -44,7 +44,7 @@ Arrays in PHP aren't objects like in JavaScript, so they don't have methods. We 
 
 \section{Associative Arrays}
 
-Associative arrays are effectively PHP's version of object literals: in PHP ``objects'' are always instances of a \texttt{class}, but the key-value pairing of object literals is still a useful concept:
+Associative arrays are effectively PHP's version of object literals: in PHP ``objects'' are (almost) always instances of a \texttt{class}, but the key-value pairing of object literals is still a useful concept:
 
 \begin{minted}{php}
     $assoc = [
@@ -53,7 +53,7 @@ Associative arrays are effectively PHP's version of object literals: in PHP ``ob
         "dob" => "2018-08-24",
     ];
 
-    dump($assoc["lastName"]); // string(5) "Wales"
+    dump($assoc["lastName"]); // "Wales"
 \end{minted}
 
 Notice that the syntax is quite different from JS: square brackets to open, keys need quoting, and fat-arrow between the key and value.
@@ -158,7 +158,7 @@ Make sure you pass in an initial value for the accumulator, otherwise it will be
 
 \subsubsection{\texttt{pluck}}
 
-We've not come across \texttt{pluck} before, but it's very useful. It assumes your collection contains either associative arrays or objects all with the same structure. You pass it a key value and it extracts a new collection contain just that key/property from each item in the collection:
+We've not come across \texttt{pluck} before, but it's very useful. It assumes your collection contains either associative arrays or objects all with the same structure. You pass it a key value and it extracts a new collection containing just that key/property from each item in the collection:
 
 \php{}{05-arrays/figures/04-pluck}
 

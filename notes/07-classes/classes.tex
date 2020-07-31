@@ -44,6 +44,10 @@ In most OOP languages we can declare the properties that our object has\footnote
 \php{}{07-classes/figures/03-properties}
 
 We declare properties by using the \texttt{private}\footnote{More on this later} keyword followed by the name of the property – with a dollar at the front, just like with variables. However, properties are \texttt{not} variables, as they belong to a specific object instance: each object instance with its own set of values.
+\\
+
+You should always get and set properties using methods (``getters'' and ``setters''). We'll go into why this is later in the week.
+
 
 \subsection{Default Values}
 
@@ -94,7 +98,7 @@ If we've given a property a default value we don't need to set it up in \texttt{
         (new Person("Jim", "Henson", "1936-09-24"))->getAge();
     \end{minted}
 
-    However, this isn't normally necessary.
+    However, this isn't something you're likely to need to do all that often.
 \end{infobox}
 
 

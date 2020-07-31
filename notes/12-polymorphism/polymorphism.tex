@@ -15,7 +15,8 @@ There are two ways to enforce this in most OO languages:
 \section{Interfaces}
 
 One way we can take advantage of polymorphism is to use ``interfaces''. An \textbf{interface} is a list of \textbf{method signatures} that a class can say it conforms to. It is a contract: if a class implements an interface then we are guaranteed that it has a certain set of methods taking a specified set of arguments.
-\\
+
+\pagebreak
 
 Let's have a look at how \texttt{MailingList} uses the object that's passed in:
 
@@ -31,13 +32,17 @@ We could create an interface for this:
 \php{MailInterface.php}{12-polymorphism/figures/01-MailInterface}
 
 The interface consists of \textbf{method signatures}: definitions of the methods that anything implementing the interface must stick to. We should add as much typing information to these as possible: if we didn't include the return type on \texttt{to()} then we couldn't guarantee that it returns something with a \texttt{mail()} method.
+\\
 
 We can then say that \texttt{Mail} \textbf{implements} this interface:
 
-\php{MailInterface.php}{12-polymorphism/figures/01-MailInterface}
+\php{Mail.php}{12-polymorphism/figures/02-Mail}
 
 Our class already has matching methods, so this should work without needing to change anything. If we created a class that doesn't fully implement an interface then your code won't even run: you'll get an error straight away.
-\\
+
+
+\pagebreak
+
 
 Finally, we need to update \texttt{MailingList}:
 
@@ -59,7 +64,7 @@ And use it instead:
 
 \php{}{12-polymorphism/figures/04-app}
 
-The \texttt{Mail} and \texttt{MailChimp} classes are polymorphic in respect to how they can be used inside \texttt{MailingList}. Either class in guaranteed to work because they both implement \texttt{MailerInterface}, which guarantees that the code in \texttt{MailingList} that uses the passed-in object will work.
+The \texttt{Mail} and \texttt{MailChimp} classes are \textbf{polymorphic} in respect to how they can be used inside \texttt{MailingList}. Either class in guaranteed to work because they both implement \texttt{MailerInterface}, which guarantees that the code in \texttt{MailingList} that uses the passed-in object will work.
 \\
 
 It's worth noting that we \textit{only} declare method signatures that are used inside \texttt{MailingList}: we could add method signatures for the \texttt{from()}, \texttt{subject()}, and \texttt{message()} methods too, but that would just unnecessarily limit the sorts of things that we can pass in. After all, we only use the \texttt{to()} and \texttt{mail()} methods, so those are the only ones we need to guarantee encapsulation.
@@ -84,6 +89,11 @@ Interfaces are a core idea in OOP. But one that is often not talked about with b
 \\
 
 The reason interfaces are such a powerful idea is because they focus solely on the messages and don't tell you anything about the implementation. This is important because of encapsulation. If we have to worry about how a specific object does something, then we can't treat it as a black box.
+\\
+
+This is why we only declare \texttt{public} \textit{methods} in an interface: \texttt{private} methods and properties are about how the class is implemented, whereas interfaces are all about how the classes talk to one another.
+\\
+
 
 \quoteinline{I'm sorry that I long ago coined the term ``objects'' for this topic because it gets many people to focus on the lesser idea. The big idea is ``messaging'' \textellipsis{} The key in making great and growable systems is much more to design how its modules communicate rather than what their internal properties and behaviours should be}{Alan Kay, Father of OOP}
 
@@ -106,7 +116,9 @@ Notice that the properties are all \texttt{protected}: if they were \texttt{priv
 
 We don't put the \texttt{mail()} method into the \texttt{Mailer} class, as it will be different for each implementation. We can then \textbf{extend} the \texttt{Mailer} class to copy its behaviour into \texttt{Mail} and \texttt{MailChimp}:
 
-\php{Mailer.php}{12-polymorphism/figures/06-Mail}
+\php{Mail.php}{12-polymorphism/figures/06-Mail}
+
+\pagebreak
 
 Now, in the \texttt{MailingList} class we can use \texttt{Mailer} as the type declaration. That means that depending on our mood,\footnote{Or possibly something more concrete} we can send messages with either the local mail server or with MailChimp:
 
@@ -132,9 +144,9 @@ But you can perhaps see a few issues with this. Firstly, you could create an ins
 
     // oops, won't work
     // Mailer doesn't have a send method
-    // so we'll get an error when sendWith()
+    // so we'll get an error when send()
     // tries to call it
-    $mailinglist->sendWith(new Mailer());
+    $mailinglist->send(new Mailer());
 \end{minted}
 
 
@@ -153,7 +165,9 @@ This gets round both issues: we won't be able to instance \texttt{Mailer} and we
 
 Children classes can \textbf{override} methods and properties from parent classes. That means if we wanted to make it so that the \texttt{to()} method in the \texttt{MailChimp} class did something slightly different, then we could write a different \texttt{to()} method. As long as it has \textit{the same method signature}\footnote{The \texttt{\_\_construct()} method is an exception to this rule. As it is unique to the specific class it can have a different set of parameters.} (i.e. excepts the same parameters), this will work:
 
-\php{Mailer.php}{12-polymorphism/figures/08-override}
+\pagebreak
+
+\php{MailChimp.php}{12-polymorphism/figures/08-override}
 
 If necessary it's possible to stop a child class from overriding a method by adding the \texttt{final} keyword in front of it:
 
@@ -164,7 +178,7 @@ If necessary it's possible to stop a child class from overriding a method by add
 
 Sometimes when we're overriding a method it can be useful to still have access to the parent object's version. For example, we might want to override the \texttt{to()} method of \texttt{Mailer}, but only to add a bit of functionality. We can do this by calling the method name on \texttt{parent}. Make sure you pass along the arguments when you do this:
 
-\php{Mailer.php}{12-polymorphism/figures/10-parent}
+\php{MailChimp.php}{12-polymorphism/figures/10-parent}
 
 You can call the parent's constructor method with \texttt{parent::\_\_construct()}.
 
@@ -196,8 +210,6 @@ Any class can implement an interface, including parent classes. So our \texttt{M
     }
 \end{minted}
 
-\pagebreak
-
 Then the \texttt{MailingList} class could still use \texttt{MailInterface} as the type declaration:
 
 \begin{minted}{php}
@@ -207,7 +219,7 @@ Then the \texttt{MailingList} class could still use \texttt{MailInterface} as th
     }
 \end{minted}
 
-In general, interfaces are more flexible than parent classes, so they should be preferred for type declarations.
+In general, interfaces are more flexible than inheritance, so they should be preferred for type declarations.
 
 
 \section{Composition}
@@ -217,7 +229,7 @@ In general, interfaces are more flexible than parent classes, so they should be 
 The idea of \textit{composition over inheritance} is that rather than sharing behaviour with inheritance, we share it using interfaces and shared classes. If a lot of classes share the same implementation of a method, rather than using inheritance consider moving it into a separate class that they can all share. It might require a bit more code to get working, but it is much easier to make changes to.
 \\
 
-For example, in the case of \texttt{Mail} and \texttt{MailChimp} we could pull the repeated code out in an \texttt{Email} class which then both classes can use
+For example, in the case of \texttt{Mail} and \texttt{MailChimp} we could pull the email specific code out in an \texttt{Email} class, which both classes can use. This separates the \textit{generating} of an email from the \textit{sending} of an email, which is probably \href{https://en.wikipedia.org/wiki/Single-responsibility_principle}{no bad thing}.
 
 
 

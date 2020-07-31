@@ -54,11 +54,25 @@ A \textbf{private} property can only be read and changed within the class it bel
         {
             // ...does thing
         }
+
+        public function doOtherThing()
+        {
+            // can access private property with $this
+            $name = $this->name;
+
+            // can call private method with $this
+            $thing = $this->doThing();
+
+            // ...do other thing
+        }
     }
 
     // elsewhere
     $closed = new Closed();
+
+    // can't call doThing without $this – i.e. outside class
     $closed->doThing(); // PHP Fatal error: Call to private method Closed::doThing()
+    $closed->doOtherThing(); // does other thing
 
     dump($closed->name); // PHP Fatal error: Cannot access private property Closed::$name
     $closed->name = "Pickle Rick"; // PHP Fatal error: Cannot access private property Closed::$name
@@ -74,10 +88,11 @@ A \textbf{protected} property/method can only be used within the class it is dec
 We can think of \texttt{public} properties and methods as the surface-area of a class and the \texttt{private} properties and methods as the insides. The smaller the surface-area, the less we have to remember to use the class. Remember, if all our insides are outside then shit goes everywhere.
 \\
 
-As a general rule we want to make as much \texttt{private} as possible. Many of your methods will be \texttt{public}, but if the method is only useful internally then you should make it \texttt{private}.
-\\
+As a general rule we want to make as much \texttt{private} as possible. Many of your methods will be \texttt{public} (definitely the getters and setters), but if the method is only useful internally then you should make it \texttt{private}.
 
-In particular there is generally no reason to make properties \texttt{public}: we should write ``getter'' and ``setter'' methods to access these values:
+\pagebreak
+
+In particular there is generally no reason to make properties \texttt{public}: we should write getter and setter methods to access these values:
 
 \begin{minted}{php}
     class Closed
@@ -121,11 +136,13 @@ For example, going back to our \texttt{Mail} class, if the \texttt{\$to} propert
 This would then cause issues when we call the \texttt{mail()} method later on: it will try to send an email to a number and probably throw an error. It will look like something has gone wrong \textit{inside} \texttt{Mail}, when really it was the usage of \texttt{Mail} – setting the \texttt{\$to} property to a number – that caused the issue.
 \\
 
-If all the properties are private we can protect against this:
+If all the properties are \texttt{private} we can protect against this:
 
 \php{}{11-encapsulation/figures/01-Mail}
 
 Now the user of the class \textit{has} to use the \texttt{to()} method – as the property is \texttt{private} – and if they pass in something that is not a valid email address they will get en error message \textbf{that points to where they called \texttt{to()}}. In other words, the error will not be \textit{inside} the \texttt{Mail} class and encapsulation is preserved.
+
+\pagebreak
 
 \begin{infobox}{Exceptions}
     In the above example we \textbf{throw} an \textbf{Exception}. An Exception is just an error that will stop the code from running, just as if we'd written some invalid syntax or called a method that doesn't exist.
@@ -163,7 +180,7 @@ Next we can add type declarations to the \texttt{to()} method:
     }
 \end{minted}
 
-The parameter (\texttt{\$address}) is given an explicit type (\texttt{string}). We also add a ``return'' type – the type of value the function returns – after the parameter brackets. In this case the \texttt{to()} method returns \texttt{\$this}, which is an instance of a \texttt{Mail} object, so we use the class name as the return type.
+The parameter (\texttt{\$address}) is given an explicit type (\texttt{string}). We also add a ``return'' type – the type of value the method returns – after the parameter brackets. In this case the \texttt{to()} method returns \texttt{\$this}, which is an instance of a \texttt{Mail} object, so we use the class name as the return type.
 \\
 
 The possible type declarations are:
@@ -193,6 +210,9 @@ If a method doesn't return anything, we can use the special \texttt{void} return
 \end{minted}
 
 But generally it's better to return \texttt{\$this} if there's no obvious choice.
+
+
+\pagebreak
 
 
 \section{Type Systems}
@@ -250,7 +270,7 @@ Now we've guaranteed that the thing being passed in is of the type \texttt{Mail}
     TypeError: Argument 1 passed to MailingList::send() must be an instance of Mail
 \end{minted}
 
-Encapsulation has been restored.
+Encapsulation has been restored. Everything is good again\footnote{Everything is \textit{not} good again}.
 
 
 

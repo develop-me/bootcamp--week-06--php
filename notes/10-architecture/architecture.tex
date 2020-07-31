@@ -5,7 +5,7 @@ Because of PHP's history we always need a little bit of procedural code to get o
 
 \php{bootstrap.php}{10-architecture/figures/01-bootstrap}
 
-Once we've created our first object the idea of object-oriented programming is that we \textbf{use objects from that point onwards.}. Each object might use a few objects itself, which in turn might use a few more objects, creating a complex cascade of behaviours:
+Once we've created our first object the idea of object-oriented programming is that we \textbf{use objects from that point onwards}. Each object might use a few objects itself, which in turn might use a few more objects, creating a complex cascade of behaviours:
 
 \begin{minted}{text}
     Application->start()
@@ -121,7 +121,7 @@ You can \textbf{alias} a class to give it a different name in the file you're wo
 
     \begin{minted}{php}
         $class = Services\Slack\Post::class;
-        dump($class); // string(19) "Services\Slack\Post"
+        dump($class); // "Services\Slack\Post"
     \end{minted}
 
     This is particularly useful as backslashes need escaping in strings, meaning if you were to write the string out by hand you'd have to write:

@@ -37,7 +37,7 @@ For example, we might want a separate \texttt{static} method that returns the la
     You will sometimes see \texttt{self} instead of \texttt{static} to reference the current class. Using \texttt{static} in this way was only added in PHP 5.3, so a lot of older code uses \texttt{self}.
     \\
 
-    If you're not using inheritance, then it doesn't make any difference which one you use. If you do then \texttt{self} refers to class that it is written in and \texttt{static} refers to the class it is called in (which might be different from where it was written if you're using inheritance).
+    If you're not using inheritance, then it doesn't make any difference which one you use. If you do, then \texttt{self} refers to class that it is \textit{written} in and \texttt{static} refers to the class it is \textit{called} in (which might be different from where it was written if you're using inheritance).
 \end{infobox}
 
 
@@ -49,6 +49,8 @@ You can also have \texttt{static} properties. Because they belong to the class t
 Say we needed to create a \texttt{\$renderer} object that all our object instances can use to render\textellipsis{} something. We could use a \texttt{static} property to store it, so that we only create it one time:
 
 \php{}{08-static/figures/03-properties}
+
+\texttt{static} properties can be very useful for things like caching, although there are often other alternatives.
 
 
 \section{Additional Resources}
