@@ -1,0 +1,179 @@
+\quoteinline{I don't know how to stop it, there was never any intent to write a programming language \textellipsis{} I have absolutely no idea how to write a programming language, I just kept adding the next logical step on the way.}{Rasmus Lerdorf, Creator of PHP}
+
+PHP is a general purpose programming language that is frequently used to run the \textbf{server-side} code for websites. It was originally created as a simple \textbf{templating language}, based loosely on Perl, to allow outputting HTML with repeated elements – PHP originally stood for ``Personal Home Page''\footnote{More recently ``PHP: Hypertext Preprocessor''}. But, over the years, it has evolved into a fully \textbf{object-oriented programming language}.
+\\
+
+PHP should look quite familiar if you've done JavaScript as they are both ``C-based'' languages, meaning that they share a syntax style: semi-colons, curly braces, and brackets.
+\\
+
+We can run PHP in the command-line similarly to how we did in Week 3 with JavaScript:
+
+\begin{minted}{bash}
+    php file.php # run the given file
+\end{minted}
+
+
+\section{Hello, World!}
+
+As is tradition, we should write a ``Hello, World!'' program before moving forward:
+
+\begin{minted}{php}
+    <?php
+
+    echo "Hello, World!";
+\end{minted}
+
+We ``echo'' the string ``Hello, World!'', this is PHP's equivalent of using \texttt{console.log()} – although it's only useful when used with strings. \texttt{echo} is \textit{not} a function (or method), but instead a \textbf{keyword}. All that really means is that you don't \textit{call} it.
+\\
+
+As you can see, it's not that different from JavaScript. The main difference is that on line 1 we have to tell PHP that it's PHP. If we don't do this then PHP has a bit of an identity crisis and doesn't know what's going on.
+\\
+
+\textbf{Make sure you never have anything before the opening \texttt{<?php} tag – no spaces, line breaks, or comments – as this will break most modern PHP apps.}
+
+
+\begin{infobox}{Ye Olde PHP}
+    The opening \texttt{<?php} tag can seem a bit strange in modern PHP, as it doesn't seem to serve any purpose – surely it knows it's PHP?
+    \\
+
+    When PHP was used mainly as a templating language PHP files would be made up mostly of HTML with only snippets of PHP:
+
+    \begin{minted}{html}
+        <body>
+            <h1><?php echo $header ?></h1>
+            <div>
+                <?php echo $content ?>
+            </div>
+        </body>
+    \end{minted}
+
+    PHP is still used like this in some PHP frameworks such as WordPress. Nowadays templating languages like Blade and Twig are more commonly used, thus separating the program logic from the templating language.
+\end{infobox}
+
+In JavaScript you could get away without semi-colons at the end of lines. PHP isn't nearly so forgiving: if you forget a semi-colon you will get a syntax error and the code will refuse to run.
+\\
+
+\textbf{From now on code examples won't include the opening tag, but you will need to add it as the first line in all your files.}
+
+
+\section{Composer}
+
+Composer is the PHP package manager. It lets us easily download code that other people have written and use it in our own code. Although it's technically not necessary to use it at this point, we're going to be using Composer to make our PHP experience more pleasant.
+
+\subsection{REPL}
+
+First, let's get a PHP REPL, as there isn't one built in:
+
+\begin{minted}{bash}
+    composer global require psy/psysh
+\end{minted}
+
+This will install \href{https://psysh.org/}{PsySH}. You only need to run this once on your machine. The \texttt{global} bit means that it will install it so that you can use it anywhere on your computer.
+\\
+
+You should now be able to run \texttt{psysh} from any directory to get a PHP REPL up and running. This can be useful for quickly checking bits of code.
+\\
+
+Just type \texttt{exit} if you want to get back to the command-line.
+
+\subsection[Taking a Dump]{Taking a Dump\footnote{Teehee}}
+
+As mentioned above \texttt{echo} is actually pretty useless for anything other than strings\footnote{Try \texttt{echo}ing \texttt{true} if you don't believe me}. If we want to be able to log out any data type, then we'll need to use something else.
+\\
+
+PHP does have the \texttt{var\_dump()} function, which will log out different data types, but it's still fairly horrible.
+
+\begin{minted}{php}
+    var_dump(12); // int(12)
+    var_dump([1, 2]); // array(3) { [0]=> int(1) [1]=> int(2) }
+\end{minted}
+
+We're going to use the \texttt{symfony/var-dumper} package\footnote{Part of the \href{https://symfony.com/}{Symfony framework}, but written so that it can be used with any PHP code} to allow us to get behaviour much more similar to \texttt{console.log()} in JS. We'll need to install this on a \textbf{per-project} basis. To do this, first choose the directory that you want to work from, and then run:
+
+\begin{minted}{bash}
+    composer require symfony/var-dumper
+\end{minted}
+
+This will create \texttt{composer.json} and \texttt{composer.lock} files and a \texttt{vendor} directory.
+
+\begin{infobox}{Composer \& Git}
+    The \texttt{composer.json} tracks which packages you've installed (as well as other bits of Composer configuration). The \texttt{composer.lock} file keeps track of the \textit{exact} versions of packages that have been installed so that another developer could recreate an identical set of packages.
+    \\
+
+    You can recreate your \texttt{vendor} directory by running \texttt{composer install} after cloning a repository.
+    \\
+
+    As such, your \texttt{composer.json} and \texttt{composer.lock} files \textit{should} go into version control. Your \texttt{vendor} directory should \textit{not} go into version control. So you should immediately create a \texttt{.gitignore} file when adding Composer:
+
+    \code{.gitignore}{text}{01-php/figures/01-gitignore}
+
+\end{infobox}
+
+\pagebreak
+
+To use the package (and any other packages that we install) we need to let PHP know to use the Composer files. We do this by adding the following line to the top of any PHP files that need to use it:
+
+\begin{minted}{php}
+    // load in the Composer configuration
+    // __DIR__ just means the directory this file is in
+    require __DIR__ . "/vendor/autoload.php";
+\end{minted}
+
+We now have access to the glamorously named \texttt{dump()} function\footnote{And the even more glamorously named ``dump and die'' function \texttt{dd()}}. \texttt{dump()} is our \texttt{console.log()} equivalent: it outputs things nicely and automatically adds syntax highlighting to the output. Having installed the package, we could rewrite our ``Hello, World!'' example as follows:
+
+\begin{minted}{php}
+    <?php
+
+    require __DIR__ . "/vendor/autoload.php";
+
+    dump("Hello, World!");
+\end{minted}
+
+We'll be using \texttt{dump()} from now on.
+
+\pagebreak
+
+\section{Variables}
+
+In PHP we don't \textit{declare} variables, we just start using them. This is possible because variables have to start with a \texttt{\$} (this is because of PHP's Perl influence).
+\\
+
+This makes it much easier to accidentally change the values of existing variables, as there is no difference between creating a new variable and reassigning an existing one. So be very careful when naming things.
+
+\begin{minted}{php}
+    $name = "Archie";
+
+    $age = 4;
+    $houseNumber = 21;
+
+    $name = "Ben"; // changes the value of $name - deliberate?
+
+    // using variables
+    $notUseful = $age + $houseNumber; // 25
+\end{minted}
+
+Variables must start with a dollar, followed by a letter or underscore, followed by any number of letters, numbers, or underscores. Variable names are case-sensitive.
+\\
+
+As with JavaScript it is a standard convention to use \texttt{\$camelCase} for variable names in PHP, although you may see \texttt{\$snake\_case} used in older code.
+
+
+\section{Documentation: A Warning}
+
+Be careful using the official PHP documentation: \textit{anyone} can submit ``User Contributed Notes'' and they often contain code samples that are to be avoided. This is often because the notes were added years ago when PHP was a very different language.
+\\
+
+As a general rule, don't look at the ``User Contributed Notes'' section: use Stack Overflow if the documentation hasn't cleared it up for you.
+
+\pagebreak
+
+\section{Additional Resources}
+
+\begin{itemize}[leftmargin=*]
+    \item \href{https://getcomposer.org/}{Composer}
+    \item \href{https://psysh.org/}{PsySH}
+    \item \href{https://symfony.com/doc/current/components/var_dumper.html}{Symfony: The VarDumper Component}
+    \item \href{http://php.net/manual/en/language.variables.basics.php}{PHP: Variable Basics}
+    \item \href{https://en.wikipedia.org/wiki/PHP}{Wikipedia: PHP}
+    \item \href{https://en.wikipedia.org/wiki/Perl}{Wikipedia: Perl}
+\end{itemize}

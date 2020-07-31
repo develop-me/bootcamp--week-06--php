@@ -1,0 +1,9 @@
+[submodule "templates/bootcamp--week-06--interfaces-base"]
+	path = templates/bootcamp--week-06--interfaces-base
+	url = git@github.com:develop-me/bootcamp--week-06--interfaces-base.git
+[submodule "templates/bootcamp--week-06--inheritance-base"]
+	path = templates/bootcamp--week-06--inheritance-base
+	url = git@github.com:develop-me/bootcamp--week-06--inheritance-base.git
+[submodule "templates/bootcamp--week-06--encapsulation-base"]
+	path = templates/bootcamp--week-06--encapsulation-base
+	url = git@github.com:develop-me/bootcamp--week-06--encapsulation-base.git
