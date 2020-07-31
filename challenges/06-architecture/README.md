@@ -19,7 +19,7 @@
 
 ### Instructions
 
-For each question, create the class(es) in the correct namespace and then copy and paste the given code into `bootstrap.php`. Don't get rid of the previous questions, as some of them rely on each other's variables. You'll end up with a fairly long `bootstrap.php` file [like this](https://github.com/develop-me/bootcamp--week-06--php/blob/master/challenges/06-architecture/bootstrap.php). To check your answers run `php bootstrap.php`.
+For each question, create the class(es) in the correct namespace and then copy and paste the given code into `bootstrap.php`. Don't get rid of the previous questions, as some of them rely on each other's variables. You'll end up with a fairly long `bootstrap.php` file [like this](https://github.com/develop-me/bootcamp--week-06--php/blob/master/challenges/06-architecture/answers/bootstrap.php). To check your answers run `php bootstrap.php`.
 
 ### Answers
 
