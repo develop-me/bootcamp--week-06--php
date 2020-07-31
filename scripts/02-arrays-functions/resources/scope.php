@@ -3,7 +3,9 @@
 $message = "Hello";
 
 function sayHello($name) {
+    $message = "Goodbye";
     return "{$message} {$name}";
 }
 
-var_dump(sayHello("Jim"));
+dump(sayHello("Jim"));
+dump($message);

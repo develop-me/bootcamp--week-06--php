@@ -7,4 +7,4 @@ $say = function ($a) use ($message) {
 };
 
 $result = $say("Wombat");
-var_dump($result); // string(12) "Hello Wombat"
+dump($result); // "Hello Wombat"

@@ -2,10 +2,14 @@
 
 ## PHP
 
+> I don't know how to stop it, there was never any intent to write a programming language ... I have absolutely no idea how to write a programming language, I just kept adding the next logical step on the way - Rasmus Lerdorf, Creator of PHP
+
 - General purpose programming language
 - Often used for server-side code
 - Based loosely on Perl
 - Originally written as a templating language
+    - Personal Home Page
+    - PHP: HyperText Preprocessor
 - Now a fully functional OOP language
 - C-style language, so similar to JS syntax
 - Demonstrate running a PHP file
@@ -14,9 +18,14 @@
     - Briefly demonstrate mixed with HTML
     - Now use templating languages like Blade/Twig
 - Semi-colons are not optional
-- We'll be using `var_dump()` instead of `echo`
+- Composer
+- REPL: `composer global require psy/psysh`
+- We'll be using `dump()` instead of `echo`
     - Better output for non-strings
-    - Will look at nicer alternatives later in week
+    - `composer require symfony/var-dumper`
+    - `composer.json` and `composer.lock`
+    - `vendor` (`.gitignore` it)
+    - `require __DIR__ . "/vendor/autoload.php";`
 - PHP documentation: avoid user contributed notes!
 
 ### Variables

@@ -1,4 +1,4 @@
-# Day 1: Afternoon
+# Day 1: Late Morning
 
 ## Functions
 
@@ -10,8 +10,6 @@
 - Don't declare variables
 - Variables inside a function are assumed to be local
     - Demonstrate: `scope.php`
-- Use the `global` keyword to say otherwise
-    - e.g. `global $message`
 - Harder to write impure functions
 
 ### Anonymous Functions
@@ -21,27 +19,11 @@
 - Can pass to functions
     - e.g. `array_map($fn, $arr)`
     - A "callable"
+- In PHP 7.4+ – fat arrow functions: `array_map(fn($value) => $value * $multiplyBy, [1, 2, 3]);`
 - Need to use `use` keyword to access variables
     - Demonstrate: `anon.php`
-
-### Strict Types
-
-- Can limit what can be passed to a function
-- Type declarations ("hints" pre-7.0)
-- Turn on strict types: `declare(strict_types=1);`
-- Parameters: `function add(float $a, float $b)`
-- Return type: `function add(float $a, float $b) : float`
-- Can be a mix of types
-    - e.g. a repeat string function
-- Possible types:
-    - `int`
-    - `float`: includes `int`
-    - `string`
-    - `bool`
-    - `array`
-    - `callable`
-- `void` if no return type
-- Will get an error if pass wrong type
+    - Usually used inside methods
+    - Read only
 
 
 ## Arrays
@@ -69,5 +51,8 @@
     - just with value
     - with key too
     - key is index for numerical array
-- Array iterator functions do exist, but horrible to use
-    - Will look at `Collection` later in the week
+- Collections:
+    - `composer require illuminate/support`
+    - demonstrate `map`, `filter`, `reduce` and `pluck`
+    - `all()` to get back array
+    - using an object under the hood
