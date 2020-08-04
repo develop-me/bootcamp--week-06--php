@@ -6,6 +6,8 @@
 
 **Create a new Git repo in a directory for this week and use a sensible directory structure for the challenges. Every time you get a challenge working do a commit with a sensible message.**
 
+[A guide to this week's setup](https://github.com/develop-me/bootcamp--week-06--php/tree/master/challenges)
+
 - Make sure you install the `symfony/var-dumper` package with Composer and include `vendor/autoload.php` in each file
 - Make sure `vendor` is added to your `.gitignore` file
 
