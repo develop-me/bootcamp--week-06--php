@@ -28,6 +28,8 @@ For each question, create the class(es) in the correct namespace and then copy a
 
 ## Challenges
 
+**Hint**: You can use `dd()` instead of `dump()` to stop the PHP at a specific point. This can be useful if later lines are causing errors.
+
 1) Create a class `Hello` in the `App` namespace. It should have a method called `hello` which accepts a string. **Don't overthink this one!** It's more about the namespaces than the class.
 
     ```php

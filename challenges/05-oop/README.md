@@ -10,7 +10,7 @@ Create a new `.php` file for each challenge and call it something sensible. Copy
 
 You'll need to look at how the class is being used in the test code to work out how to write the class.
 
-**Hint**: Remember, it's good practice to declare all of your properties at the top of the class and to make them private.
+**Hint**: You can use `dd()` instead of `dump()` to stop the PHP at a specific point. This can be useful if later lines are causing errors.
 
 1) Go back over your previous classes and add chaining where appropriate. **Make sure you test everything still works**.
 
