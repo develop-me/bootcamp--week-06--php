@@ -128,3 +128,9 @@ Create a new file for each challenge. If a code block is provided, copy the prov
     dump(validEmail("blah@fish.horse ")); // true
     dump(validEmail(" blah@fish.horse ")); // true
     ```
+
+---
+
+## RegEx Crosswords
+
+Try doing some [RegEx Crosswords](https://regexcrossword.com). Make sure you read the ["How to Play"](https://regexcrossword.com/howtoplay) example solution – otherwise it won't make any sense.
