@@ -270,7 +270,7 @@ Make sure you add parameter and return types to all your functions
 
     require __DIR__ . "/vendor/autoload.php";
 
-    function total($items) : float {
+    function total($items) {
         // … your code here
     };
 
