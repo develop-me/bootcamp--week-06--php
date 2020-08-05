@@ -1,7 +1,8 @@
 ## To Do
 
+- OOP: Keep objects as objects for as long as possible
+- Pre-week reading, to get through basic-PHP stuff and regex in one day?
 - Need to demonstrate `require` at least once in notes about namespaces
-- Mention single responsibility principle in OOP notes
 - Explain when to use interfaces
     > When you write a class that takes an object as an argument to a method
 - More regex challenges
@@ -33,3 +34,4 @@
     * [x] Only use inheritance for definitely shared behaviour
 - Talk about return type declarations
     * [x] Clear up type hint vs type declaration
+- Mention single responsibility principle in OOP notes
