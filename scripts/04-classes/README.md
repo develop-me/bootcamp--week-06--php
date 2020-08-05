@@ -29,3 +29,4 @@
 - Takes values passed from `new`
 - Stores values on properties
 - Don't need for default values
+- Not necessary if not passing anything in and no setup to do

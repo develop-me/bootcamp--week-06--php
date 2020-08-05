@@ -65,31 +65,31 @@ Notice that we can use brackets to quantify more than one character.
 
 \pagebreak
 
-\subsection{Groups \& Ranges}
+\subsection{Character Sets \& Ranges}
 
-Groups and ranges allow us to specify a range of characters that we're interested in.
+Character sets and ranges allow us to specify a range of characters that we're interested in.
 
 \begin{center}
     \begin{small}
         \begin{tabularx}{\textwidth}{r l}
-            \textbf{Range}          & \textbf{Description} \\
+            \textbf{Character Set}          & \textbf{Description} \\
+            \texttt{[abc]}          & 'a', 'b', or 'c' \\
+            \texttt{[\textasciicircum abc]}         & \textbf{not} 'a', 'b', or 'c' \\
             \texttt{[a-z]}          & all lowercase letters \\
             \texttt{[A-Z]}          & all uppercase letters \\
             \texttt{[0-9]}          & all numbers \\
-            \texttt{[abc]}          & 'a', 'b', or 'c' \\
             \texttt{[0-9afg]}       & all numbers plus 'a', 'f', and 'g' \\
             \texttt{[a-zA-Z]}       & all letters, case-insensitive \\
             \texttt{[a-zA-Z0-9]}    & alphanumeric characters \\
             \texttt{[0-9A-F]}       & valid hexadecimal digits \\
-            \texttt{[\textasciicircum abc]}         & \textbf{not} 'a', 'b', or 'c'
         \end{tabularx}
     \end{small}
 \end{center}
 
-A group is a set of characters wrapped with square brackets that will match \textit{any} character in the group.
+A character set is a set of characters wrapped with square brackets that will match \textit{any} character in the set.
 \\
 
-A range, which must always be used \textit{inside} a group, represents a series of characters, e.g. all the letters between \texttt{a} and \texttt{z}.
+A range, which must always be used \textit{inside} a character set, represents a specified series of characters, e.g. all the letters between \texttt{a} and \texttt{z}.
 \\
 
 For example:

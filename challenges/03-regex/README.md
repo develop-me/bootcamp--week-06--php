@@ -131,6 +131,12 @@ Create a new file for each challenge. If a code block is provided, copy the prov
 
 ---
 
+## RegEx with JS
+
+Try doing some regexes with JavaScript [on freeCodeCamp](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/regular-expressions/using-the-test-method).
+
+---
+
 ## RegEx Crosswords
 
 Try doing some [RegEx Crosswords](https://regexcrossword.com). Make sure you read the ["How to Play"](https://regexcrossword.com/howtoplay) example solution – otherwise it won't make any sense.

@@ -20,7 +20,7 @@
 
     ```php
     spl_autoload_register(function ($class) {
-      require_once __DIR__ . "classes/{$class}.php";
+      require_once __DIR__ . "/classes/{$class}.php";
     });
     ```
 
@@ -40,7 +40,15 @@
 
 ### PSR-4
 
-- See `composer.json`
+- Set up composer.json
+
+    ```json
+    "autoload": {
+      "psr-4": {"App\\": "app/"}
+    }
+        
+    ```
+
 - Links `App` root namespace to `app` directory
     - Convention Laravel uses
     - Links namespace to sub-directories

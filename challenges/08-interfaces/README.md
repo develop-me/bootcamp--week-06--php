@@ -18,6 +18,8 @@ To check your answers run `php bootstrap.php`.
 
 ## Challenges
 
+**Hint**: You can use `dd()` instead of `dump()` to stop the PHP at a specific point. This can be useful if later lines are causing errors.
+
 1) Create a `ShapeInterface` with an `area()` method in the `App\Shapes` namespace. Then create three further classes which implement the interface: `Square`, `Circle`, and `Rectangle`. `Square` should be given a side length on construction, `Circle` should be given a radius, and `Rectangle` should be give a width and height.
 
     **Hint**: PHP has a [`pi`](http://php.net/manual/en/function.pi.php) function

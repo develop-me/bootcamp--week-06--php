@@ -10,7 +10,7 @@ Create a new `.php` file for each challenge and call it something sensible. Copy
 
 You'll need to look at how the class is being used in the test code to work out how to write the class.
 
-**Hint**: Remember, it's good practice to declare all of your properties at the top of the class and to make them private.
+**Hint**: You can use `dd()` instead of `dump()` to stop the PHP at a specific point. This can be useful if later lines are causing errors.
 
 1) Go back over your previous classes and add chaining where appropriate. **Make sure you test everything still works**.
 
@@ -61,7 +61,7 @@ You'll need to look at how the class is being used in the test code to work out 
     dump($string2->repeat(2)->upper()->append("!")->get()); // "SPOONSPOON!"
 
     $string3 = new StringyRedux("Na");
-    dump($string3->repeat(2)->append(" ")->repeat(8)->append(" ")->append("Batman!")->get()); // "NaNa NaNa NaNa NaNa NaNa NaNa NaNa NaNa  Batman!"
+    dump($string3->repeat(2)->append(" ")->repeat(8)->append("Batman!")->get()); // "NaNa NaNa NaNa NaNa NaNa NaNa NaNa NaNa Batman!"
     ```
 
 
@@ -191,6 +191,7 @@ First, read the Read-Only Chapter 8 on the `static` keyword. And then work throu
     dump(House::averageAge([$house1])); // 28.5
     ```
 
+## Tricksy
 
 1) In your `Recipe` class, working out how to display the recipe takes quite a bit of processing. As does checking the dietary requirements. Update the `Recipe` class so that it caches the result of the `display()` and `dietary()` methods. Make sure the cache is cleared when you add a new ingredient or method.
 

@@ -28,13 +28,13 @@
 - Brackets
     - `kanga(ro)*`
 
-- Groups/Character Sets & Ranges:
-    - Groups/Character Sets:
+- Character Sets & Ranges:
+    - Character Sets:
         - Square brackets: any items in brackets
         - `[abc]`
         - `[^abc]`: **not** `a`, `b`, or `c`
     - Ranges:
-        - Only inside groups
+        - Only inside character sets
         - `[a-z]`
         - `[A-Z]`
         - `[0-9]`

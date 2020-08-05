@@ -21,6 +21,8 @@ To check your answers run `php bootstrap.php`.
 
 ## Challenges
 
+**Hint**: You can use `dd()` instead of `dump()` to stop the PHP at a specific point. This can be useful if later lines are causing errors.
+
 1) Go back over *all* of your previous class-based challenges (`04-classes` and onwards) and add:
 
     - Parameter types
