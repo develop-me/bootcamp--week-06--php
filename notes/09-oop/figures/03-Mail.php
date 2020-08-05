@@ -4,21 +4,34 @@ class Mail
 {
   private $to;
   private $from;
-  private $characterSet = "utf8";
+  private $subject;
+  private $message;
 
-  public function to($address)
+  public function to($to)
   {
-    $this->to = $address;
+    $this->to = $to;
     return $this;
   }
 
-  public function from($address)
+  public function from($from)
   {
-    $this->from = $address;
+    $this->from = $from;
     return $this;
   }
 
-  public function send($subject, $message)
+  public function subject($subject)
+  {
+    $this->subject = $subject;
+    return $this;
+  }
+
+  public function message($message)
+  {
+    $this->message = $message;
+    return $this;
+  }
+
+  public function mail()
   {
     // ... code to send mail
     // we can use $this to access the values
@@ -30,7 +43,6 @@ class Mail
 $mail = new Mail();
 $mail->to("bob@bob.com")
      ->from("hello@wombat.io")
-     ->send(
-       "A Wombat Welcome",
-       "Welcome to the best app for finding wombats near you"
-     );
+     ->subject("A Wombat Welcome")
+     ->message("Welcome to the best app for finding wombats near you")
+     ->mail();

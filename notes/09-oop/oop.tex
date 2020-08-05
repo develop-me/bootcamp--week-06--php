@@ -92,6 +92,8 @@ If the methods hadn't returned \texttt{\$this} we'd have had to write it using t
     );
 \end{minted}
 
+You can only use chaining on ``setter'' methods: ones that change a property on the object but don't have an obvious return value. The whole purpose of ``getter'' methods is to return a specific value, so it wouldn't make sense to use chaining on those.
+
 
 
 \section{Object-to-Object}
@@ -99,10 +101,10 @@ If the methods hadn't returned \texttt{\$this} we'd have had to write it using t
 In OOP objects use other objects to get things done. The key skill of OOP is getting the right objects to talk to one another.
 \\
 
-For example, say that you wanted to send some emails to a mailing list. Rather than having the mailing list object do all of the work, we could instead have one object that deals with keeping track of who is in the mailing list and another that deals with sending the email.
+For example, say that you wanted to send some emails to a mailing list. Rather than having the mailing list object do all of the work, we could instead have one object that deals with keeping track of who is in the mailing list and another that deals with sending the email. This is known as the ``single responsibility principle'': objects shouldn't try to do more than one sort of thing.
 \\
 
-For example, we could create a \texttt{Mail} class that just deals with creating and sending an email:
+For example, we've already got a \texttt{Mail} class that just deals with creating and sending an email:
 
 \php{}{09-oop/figures/05-Mail}
 

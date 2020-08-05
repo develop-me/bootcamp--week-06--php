@@ -13,10 +13,13 @@
 - Show `mail()` using object (see `Mail.php`)
     - Easy to add extra stuff: add `bcc` array
     - All the info in one place
+- Object don't have to be **things** (e.g. a car)
 - Chaining
+    - Only if nothing else to return
 
 ## Object-to-Object
 
 - Demonstrate `Mail` and `MailingList` talking to each other (use `MailingList.php` and `Mail.php`)
+    - **Do in same file**
     - Single responsibility principle
 - Law of Demeter

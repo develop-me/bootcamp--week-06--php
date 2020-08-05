@@ -13,7 +13,7 @@ class Mail
     return $this;
   }
 
-  public function send($subject, $message)
+  public function mail()
   {
     // updated to use $this->bcc as well
   }
@@ -23,11 +23,11 @@ class Mail
 // elsewhere
 // can now add bcc as an option
 $mail = new Mail();
-$mail->to("bob@bob.com")->from("hello@wombat.io")
+$mail->to("bob@bob.com")
+     ->from("hello@wombat.io")
+     ->subject("A Wombat Welcome")
+     ->message("Welcome to the best app for finding wombats near you")
      ->bcc([
        "ada@lovelace.dev",
        "donald@knuth.horse",
-     ])->send(
-       "A Wombat Welcome",
-       "Welcome to the best app for finding wombats near you"
-     );
+     ])->mail();
