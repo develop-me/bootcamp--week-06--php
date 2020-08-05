@@ -191,6 +191,7 @@ First, read the Read-Only Chapter 8 on the `static` keyword. And then work throu
     dump(House::averageAge([$house1])); // 28.5
     ```
 
+## Tricksy
 
 1) In your `Recipe` class, working out how to display the recipe takes quite a bit of processing. As does checking the dietary requirements. Update the `Recipe` class so that it caches the result of the `display()` and `dietary()` methods. Make sure the cache is cleared when you add a new ingredient or method.
 
