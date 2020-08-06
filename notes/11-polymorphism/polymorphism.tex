@@ -29,14 +29,14 @@ So it needs to be an object that has a \texttt{to()} method that takes a string 
 
 We could create an interface for this:
 
-\php{MailInterface.php}{12-polymorphism/figures/01-MailInterface}
+\php{MailInterface.php}{11-polymorphism/figures/01-MailInterface}
 
 The interface consists of \textbf{method signatures}: definitions of the methods that anything implementing the interface must stick to. We should add as much typing information to these as possible: if we didn't include the return type on \texttt{to()} then we couldn't guarantee that it returns something with a \texttt{mail()} method.
 \\
 
 We can then say that \texttt{Mail} \textbf{implements} this interface:
 
-\php{Mail.php}{12-polymorphism/figures/02-Mail}
+\php{Mail.php}{11-polymorphism/figures/02-Mail}
 
 Our class already has matching methods, so this should work without needing to change anything. If we created a class that doesn't fully implement an interface then your code won't even run: you'll get an error straight away.
 
@@ -58,11 +58,11 @@ Rather than using the \texttt{Mail} type declaration we've used the \textit{inte
 
 But now we could also pass in \textit{any} class that implements \texttt{MailInterface}. Which means we could create a \texttt{MailChimp} class:
 
-\php{MailChimp.php}{12-polymorphism/figures/03-MailChimp}
+\php{MailChimp.php}{11-polymorphism/figures/03-MailChimp}
 
 And use it instead:
 
-\php{}{12-polymorphism/figures/04-app}
+\php{}{11-polymorphism/figures/04-app}
 
 The \texttt{Mail} and \texttt{MailChimp} classes are \textbf{polymorphic} in respect to how they can be used inside \texttt{MailingList}. Either class in guaranteed to work because they both implement \texttt{MailerInterface}, which guarantees that the code in \texttt{MailingList} that uses the passed-in object will work.
 \\
@@ -109,14 +109,14 @@ For example, both \texttt{Mail} and \texttt{MailChimp} will be responsible for s
 
 We could create a parent \texttt{Mailer} class that contains all of this repeated functionality:
 
-\php{Mailer.php}{12-polymorphism/figures/05-Mailer}
+\php{Mailer.php}{11-polymorphism/figures/05-Mailer}
 
 Notice that the properties are all \texttt{protected}: if they were \texttt{private} they would not be accessible inside any of the children classes.
 \\
 
 We don't put the \texttt{mail()} method into the \texttt{Mailer} class, as it will be different for each implementation. We can then \textbf{extend} the \texttt{Mailer} class to copy its behaviour into \texttt{Mail} and \texttt{MailChimp}:
 
-\php{Mail.php}{12-polymorphism/figures/06-Mail}
+\php{Mail.php}{11-polymorphism/figures/06-Mail}
 
 \pagebreak
 
@@ -158,7 +158,7 @@ We can also create \texttt{abstract} method signatures. These allow us to say th
 
 This gets round both issues: we won't be able to instance \texttt{Mailer} and we can make sure any of its children have a \texttt{mail()} method:
 
-\php{Mailer.php}{12-polymorphism/figures/07-MailerRedux}
+\php{Mailer.php}{11-polymorphism/figures/07-MailerRedux}
 
 
 \subsection{Overriding}
@@ -167,18 +167,18 @@ Children classes can \textbf{override} methods and properties from parent classe
 
 \pagebreak
 
-\php{MailChimp.php}{12-polymorphism/figures/08-override}
+\php{MailChimp.php}{11-polymorphism/figures/08-override}
 
 If necessary it's possible to stop a child class from overriding a method by adding the \texttt{final} keyword in front of it:
 
-\php{Mailer.php}{12-polymorphism/figures/09-final}
+\php{Mailer.php}{11-polymorphism/figures/09-final}
 
 
 \subsection{\texttt{parent}}
 
 Sometimes when we're overriding a method it can be useful to still have access to the parent object's version. For example, we might want to override the \texttt{to()} method of \texttt{Mailer}, but only to add a bit of functionality. We can do this by calling the method name on \texttt{parent}. Make sure you pass along the arguments when you do this:
 
-\php{MailChimp.php}{12-polymorphism/figures/10-parent}
+\php{MailChimp.php}{11-polymorphism/figures/10-parent}
 
 You can call the parent's constructor method with \texttt{parent::\_\_construct()}.
 

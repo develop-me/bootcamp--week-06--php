@@ -1,38 +1,4 @@
-Many object oriented languages \textit{only} use objects. For example in Java everything lives inside a class and you specify which class your app should create first when you run it.
-\\
-
-Because of PHP's history we always need a little bit of procedural code to get our objects up and running. This is often called the \textbf{bootstrap} file:
-
-\php{bootstrap.php}{10-architecture/figures/01-bootstrap}
-
-Once we've created our first object the idea of object-oriented programming is that we \textbf{use objects from that point onwards}. Each object might use a few objects itself, which in turn might use a few more objects, creating a complex cascade of behaviours:
-
-\begin{minted}{text}
-    Application->start()
-        Router->parseURL()
-            URLParser->splitURL()
-                String->separateWith()
-        Request->generate()
-            Request->getHeaders()
-            Request->getBody()
-            Request->parseBody()
-                JSON->toObject()
-        Application->callController()
-            Controller->index()
-                Post->all()
-                    Model->query()
-                        DB->select()
-                        DB->toArray()
-                View->render()
-                    Blade->loadTemplate()
-                    Blade->parseTemplate()
-                    Blade->interpolate()
-                Response->generate()
-                    Response->body()
-                        JSON->fromObject()
-\end{minted}
-
-However, currently we only know how to use PHP when everything is in one \texttt{.php} file. As we start to build more complex code with multiple classes it would be good to keep things separate. Ideally we'd have one \texttt{class} per file in an easy to find location.
+We only know how to use PHP when everything is in one \texttt{.php} file. As we start to build more complex code with multiple classes it would be good to keep things separate. Ideally we'd have one \texttt{class} per file in an easy to find location.
 
 
 \section{Autoloading}
@@ -45,9 +11,22 @@ Currently, if you put one of your classes in a separate PHP file and then try an
     $app = new App(); // PHP Fatal error: Class 'App' not found
 \end{minted}
 
+We could require the file this is in manually:
+
+\begin{minted}{php}
+    <?php
+
+    require_once __DIR__ . "/classes/App.php";
+
+    $app = new App(); // success!
+\end{minted}
+
+But this will only work for a few files before it becomes tedious.
+\\
+
 Thankfully, modern PHP supports \textbf{autoloading}: we can programmatically tell PHP how to find a class that it doesn't know about yet. Technically we could do this in whatever way we like:
 
-\php{bootstrap.php}{10-architecture/figures/02-autoload}
+\php{}{08-autoloading/figures/01-autoload}
 
 But it's generally better if everyone does things in the same way, which is where the \href{https://www.php-fig.org/psr/psr-4/}{PSR-4 Autoloader standard} comes in.
 \\
@@ -143,7 +122,7 @@ The PSR-4 autoloading spec basically ties namespaces to a directory structure wi
 
 First, create a directory called \texttt{app}. Then edit the \texttt{composer.json} so that it looks like this:
 
-\code{composer.json}{json}{10-architecture/figures/03-composer.json}
+\code{composer.json}{json}{08-autoloading/figures/02-composer.json}
 
 Here we've told Composer that any namespace starting with the root \texttt{App} should look for files in the \texttt{app} directory. We could use anything as the root namespace or directory name, but this is the convention.
 \\
@@ -163,19 +142,10 @@ Because namespaces and classes in PHP are usually capitalised and, with PSR-4, t
 \\
 
 For example, if we had a class called \texttt{Post} that just sat inside the \texttt{app} directory, it should be in a file called \texttt{Post.php} and have the namespace \texttt{App\textbackslash Post}. If we had a class \texttt{Post} that did something with Slack we could create a directory \texttt{app/Slack} and then put the file \texttt{Post.php} in it with the namespace \texttt{App\textbackslash Slack\textbackslash Post}.
-\\
-
-\hr
-
-Our final \texttt{bootstrap.php} file will look something like:
-
-\php{bootstrap.php}{10-architecture/figures/04-bootstrap}
-
-Everything else is going to be in separate classes in separate files.
 
 
 \section{Additional Resources}
 
 \begin{itemize}[leftmargin=*]
-    \item \href{https://github.com/laravel/laravel/blob/master/bootstrap/app.php}{The Laravel Bootstrap File}
+    \item \href{http://www.php.net/manual/en/language.namespaces.rationale.php}{PHP: Namespaces Overview}
 \end{itemize}

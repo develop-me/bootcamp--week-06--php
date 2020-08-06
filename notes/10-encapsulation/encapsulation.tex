@@ -138,7 +138,7 @@ This would then cause issues when we call the \texttt{mail()} method later on: i
 
 If all the properties are \texttt{private} we can protect against this:
 
-\php{}{11-encapsulation/figures/01-Mail}
+\php{}{10-encapsulation/figures/01-Mail}
 
 Now the user of the class \textit{has} to use the \texttt{to()} method – as the property is \texttt{private} – and if they pass in something that is not a valid email address they will get en error message \textbf{that points to where they called \texttt{to()}}. In other words, the error will not be \textit{inside} the \texttt{Mail} class and encapsulation is preserved.
 
