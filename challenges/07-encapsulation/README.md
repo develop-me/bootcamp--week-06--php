@@ -1,5 +1,18 @@
 # Encapsulation
 
+1) Go back over *all* of your previous class-based challenges (`04-classes` and onwards) and add:
+
+    - Parameter types
+    - Return types
+    - Make sure you're only using `private` properties
+
+    You should add `declare(strict_types=1);` to the top of your `bootstrap.php` file from the `06-architecture` challenges
+
+    **Make sure you run *every single file* to check it still works as it should.**
+
+---
+
+
 **Keep using Git! Every time you get a challenge working do a commit with a sensible message.**
 
 
@@ -23,17 +36,6 @@ To check your answers run `php bootstrap.php`.
 
 **Hint**: You can use `dd()` instead of `dump()` to stop the PHP at a specific point. This can be useful if later lines are causing errors.
 
-1) Go back over *all* of your previous class-based challenges (`04-classes` and onwards) and add:
-
-    - Parameter types
-    - Return types
-    - Make sure you're only using `private` properties
-
-    You should add `declare(strict_types=1);` to the top of your `bootstrap.php` file from the `06-architecture` challenges
-
-    **Make sure you run *every single file* to check it still works as it should.**
-
----
 
 1) Create a class `App\Counter\Counter` which has an `increment` and `count` method. When you call `count` it should return the number of times that `increment` has been called.
 
