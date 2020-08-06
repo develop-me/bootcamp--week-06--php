@@ -5,8 +5,8 @@
 **Keep using Git! Every time you get a challenge working do a commit with a sensible message.**
 
 - Create a new project directory
-- Get Composer setup to use auto-loading with `App` as the root namespace pointing at the `app` directory
 - Add the `symfony/var-dumper` package
+- Get Composer setup to use auto-loading with `App` as the root namespace pointing at the `app` directory
 - Create a single `bootstrap.php` file in the **root** directory:
 
     ```
