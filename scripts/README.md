@@ -15,14 +15,14 @@
     - Object instances
     - Properties
     - Methods
-- OOP
-    - Objects using other objects
-
-## Day 3
-
 - Architecture
     - Namespaces
     - PSR-4 Autoloading
+
+## Day 3
+
+- OOP
+    - Objects using other objects
 - Encapsulation
     - Types
     - Visibility
