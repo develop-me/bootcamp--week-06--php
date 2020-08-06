@@ -29,13 +29,13 @@
       public function to($address)
       {
         if (filter_var($address, FILTER_VALIDATE_EMAIL) === $address) {
-          $this->to === $address;
+          $this->from = $address;
           return $this;
         }
 
         throw new InvalidArgumentException("Invalid email address");
       }
-      ```
+    ```
 
 ### Types
 
