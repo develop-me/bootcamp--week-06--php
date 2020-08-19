@@ -24,9 +24,9 @@
 
     Would break when `mail()` used, breaks encapsulation
 
-- `declare(strict_types=1);` in `bootstrap.php`
 - Can add parameter types
 - Can add return types
+- PHP will coerce values: can use "strict typing" – see link in notes
 - class name, `int`, `float`, `string`, `bool`, `array`, `callable`
 - `void`: better to return `$this`
 

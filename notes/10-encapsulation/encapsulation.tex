@@ -163,15 +163,7 @@ PHP can do some of the work for us when it comes to checking that the right sort
 As a general rule methods should only accept arguments of a specific type and return arguments of a specific type. We can enforce this using ``type declarations''\footnote{In previous versions of PHP these were called ``type hints''}.
 \\
 
-First we turn on strict typing in our \texttt{bootstrap.php} file:
-
-\begin{minted}{php}
-    <?php
-
-    declare(strict_types=1); // first line after opening tag
-\end{minted}
-
-Next we can add type declarations to the \texttt{to()} method:
+For example, we can add type declarations to the \texttt{to()} method:
 
 \begin{minted}{php}
     public function to(string $address) : Mail
@@ -211,8 +203,20 @@ If a method doesn't return anything, we can use the special \texttt{void} return
 
 But generally it's better to return \texttt{\$this} if there's no obvious choice.
 
+\begin{infobox}{Strict Typing}
+    By default PHP will coerce scalar values to the appropriate type if it sees a type declaration. For example passing \texttt{12} (a number) to the \texttt{to()} method would convert the number into a string (\texttt{"12"}). We can enable ``strict'' typing to disable this behaviour. To do this we add a declaration to the file that \textit{calls} the relevant method:
 
-\pagebreak
+    \begin{minted}{php}
+        <?php
+
+        declare(strict_types=1);
+    \end{minted}
+
+    This should go as the very first line after the PHP opening tag (before any \texttt{namespace} declarations).
+    \\
+
+    Once strict typing is turned PHP will throw an error if the types do not match.
+\end{infobox}
 
 
 \section{Type Systems}

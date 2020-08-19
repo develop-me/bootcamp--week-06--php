@@ -6,8 +6,6 @@
     - Return types
     - Make sure you're only using `private` properties
 
-    You should add `declare(strict_types=1);` to the top of your `bootstrap.php` file from the `06-architecture` challenges
-
     **Make sure you run *every single file* to check it still works as it should.**
 
 ---
