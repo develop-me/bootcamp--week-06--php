@@ -1,5 +1,16 @@
 # Encapsulation
 
+1) Go back over *all* of your previous class-based challenges (`04-classes` and onwards) and add:
+
+    - Parameter types
+    - Return types
+    - Make sure you're only using `private` properties
+
+    **Make sure you run *every single file* to check it still works as it should.**
+
+---
+
+
 **Keep using Git! Every time you get a challenge working do a commit with a sensible message.**
 
 
@@ -23,57 +34,70 @@ To check your answers run `php bootstrap.php`.
 
 **Hint**: You can use `dd()` instead of `dump()` to stop the PHP at a specific point. This can be useful if later lines are causing errors.
 
-1) Go back over *all* of your previous class-based challenges (`04-classes` and onwards) and add:
-
-    - Parameter types
-    - Return types
-    - Make sure you're only using `private` properties
-
-    You should add `declare(strict_types=1);` to the top of your `bootstrap.php` file from the `06-architecture` challenges
-
-    **Make sure you run *every single file* to check it still works as it should.**
-
----
 
 1) Create a class `App\Counter\Counter` which has an `increment` and `count` method. When you call `count` it should return the number of times that `increment` has been called.
 
+    Uncomment line 16 of `app/Challenges.php` to run the following code:
+
     ```php
-    public function counter()
-    {
-        echo "\n01)\n";
+    $counter = new Counter\Counter();
+    $counter->increment();
+    $counter->increment();
+    $counter->increment();
 
-        $counter = new Counter\Counter();
-        $counter->increment();
-        $counter->increment();
-        $counter->increment();
-
-        dump($counter->count()); // 3
-    }
+    dump($counter->count()); // 3
     ```
 
 1) Create a class `App\Counter\BeanCounter` which has an `addBean` and `howMany` method. It should accept an `App\Counter\Counter` object in the constructor. When you call `howMany` it should return the number of times that `addBean` has been called. Make sure you use the `Counter` class rather than rewriting the increment logic.
 
+    Uncomment line 17 of `app/Challenges.php` to run the following code:
+
     ```php
-    public function beanCounter()
-    {
-        echo "\n02)\n";
+    $counter = new Counter();
+    $beans = new BeanCounter($counter);
+    $beans->addBean()->addBean();
 
-        $counter = new Counter\Counter();
-        $beans = new Counter\BeanCounter($counter);
-        $beans->addBean()->addBean();
+    dump($beans->howMany()); // 2
 
-        dump($beans->howMany()); // 2
-
-        // don't worry too much about what this bit of code does
-        // you just want it to echo "Not accepted. Good work!"
-        // if you try to pass anything other than a Counter to BeanCounter
-        try {
-            new Counter\BeanCounter(12);
-            dump("Accepted. Oops!"); // if you see this, something's not right
-        } catch (\TypeError $e) {
-            dump("Not accepted. Good work!"); // if you see this, you've done it right
-        }
+    // don't worry too much about what this bit of code does
+    // you just want it to echo "Not accepted. Good work!"
+    // if you try to pass anything other than a Counter to BeanCounter
+    try {
+        BeanCounter(12);
+        dump("Accepted. Oops!"); // if you see this, something's not right
+    } catch (\TypeError $e) {
+        dump("Not accepted. Good work!"); // if you see this, you've done it right
     }
+    ```
+
+1) Create a `Shelf` class in the `App\Library` namespace. Also copy across your `Book` class from the Autoloading challenges. `Shelf` should have an `addBook()` method which gets passed a `Book`. It should also have a `titles()` method, which lists the titles of all the books on the shelf.
+
+    Uncomment line 18 of `app/Challenges.php` to run the following code:
+
+    ```php
+    $shelf = new Shelf();
+    $shelf->addBook($book);
+    $shelf->addBook(new Book("The Catcher in the Rye", 277));
+    $shelf->addBook(new Book("Stamped from the Beginning", 582));
+
+    dump($shelf->titles()); // ["Zero: The Biography of a Dangerous Idea", "The Catcher in the Rye", "Stamped from the Beginning"]
+    ```
+
+1) Create a class `Library` in the `App\Library` namespace. It should have an `addShelf()` method, which takes a `Shelf` object. It should have a `titles()` method that lists all the titles of all the books on all the shelves in the library.
+
+    Uncomment line 19 of `app/Challenges.php` to run the following code:
+
+    ```php
+    $library = new Library();
+    $library->addShelf($shelf);
+
+    $otherShelf = new Shelf();
+    $otherShelf->addBook(new Book("The Power Broker", 1336));
+    $otherShelf->addBook(new Book("Delusions of Gender", 338));
+
+    $library->addShelf($otherShelf);
+
+    dump($library->titles()); // ["Zero: The Biography of a Dangerous Idea", "The Catcher in the Rye", "Stamped from the Beginning", "The Power Broker", "Delusions of Gender"]
     ```
 
 
@@ -110,6 +134,8 @@ To check your answers run `php bootstrap.php`.
 
         It should also have a `describe` method which tells you: "I am a `frame-variation` framed bike. I am made of `frame-material`. I have `number-of-wheels` wheels"
 
+
+    Uncomment line 13 of `app/Tricksy/Challenges.php` to run the following code:
 
     ```php
     public function bike()

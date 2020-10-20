@@ -132,6 +132,8 @@ To check your answers run `php bootstrap.php`.
     }
     ```
 
+    **Why?** The `Iterator` class lets us create something that acts like an array for `foreach` loops, without actually needing to create all of the items in the array at the same time. Done cleverly, this can let us work with large datasets without needing to use large amounts of memory.
+
 1) Create a class `Range` in the `App\Tricksy` namespace, that implements the `Iterator` interface and then check that it works using `foreach`.
 
     ```php

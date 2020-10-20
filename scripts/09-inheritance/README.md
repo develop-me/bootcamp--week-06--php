@@ -14,4 +14,5 @@
 - As a result beginner OOPers try to use inheritance whenever two classes have similar behaviour
 - Ok to inherit from library classes, they do most the work
 - Don't start with an abstract class, write at least three classes that share identical code before using inheritance
-- Composition over inheritance: use interfaces and shared classes
+- Composition over inheritance
+- Use interfaces over inheritance

@@ -23,25 +23,10 @@
     ```
 
     Would break when `mail()` used, breaks encapsulation
-- Can make it impossible to break
 
-    ```php
-      public function to($address)
-      {
-        if (filter_var($address, FILTER_VALIDATE_EMAIL) === $address) {
-          $this->to === $address;
-          return $this;
-        }
-
-        throw new InvalidArgumentException("Invalid email address");
-      }
-      ```
-
-### Types
-
-- `declare(strict_types=1);` in bootstrap
 - Can add parameter types
 - Can add return types
+- PHP will coerce values: can use "strict typing" – see link in notes
 - class name, `int`, `float`, `string`, `bool`, `array`, `callable`
 - `void`: better to return `$this`
 

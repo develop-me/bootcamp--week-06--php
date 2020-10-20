@@ -23,28 +23,65 @@ The problem comes because we need to manage \textbf{state}: keeping track of all
     \quoteinline{There are only two kinds of languages: the ones people complain about and the ones nobody uses}{Bjarne Stroustrup, Creator of C++}
 \end{infobox}
 
+
+\section{Bootstrapping}
+
+Many object oriented languages \textit{only} use objects. For example in Java everything lives inside a class and you specify which class your app should create first when you run it.
+\\
+
+Because of PHP's history we always need a little bit of procedural code to get our objects up and running. This is often called the \textbf{bootstrap} file:
+
+\php{bootstrap.php}{09-oop/figures/01-bootstrap}
+
+Once we've created our first object the idea of object-oriented programming is that we \textbf{use objects from that point onwards}. Each object might use a few objects itself, which in turn might use a few more objects, creating a complex cascade of behaviours:
+
+\begin{minted}{text}
+    Application->start()
+        Router->parseURL()
+            URLParser->splitURL()
+                String->separateWith()
+        Request->generate()
+            Request->getHeaders()
+            Request->getBody()
+            Request->parseBody()
+                JSON->toObject()
+        Application->callController()
+            Controller->index()
+                Post->all()
+                    Model->query()
+                        DB->select()
+                        DB->toArray()
+                View->render()
+                    Blade->loadTemplate()
+                    Blade->parseTemplate()
+                    Blade->interpolate()
+                Response->generate()
+                    Response->body()
+                        JSON->fromObject()
+\end{minted}
+
 \pagebreak
 
 \section{Objectification}
 
 Say that our app includes some code to send an email. If we were using procedural code we would probably have a function called \texttt{sendMail} that we can pass various values to:
 
-\php{}{09-oop/figures/01-mail}
+\php{}{09-oop/figures/02-mail}
 
 But we might want to be able to customise more than just the to, from, and message parts of the email. Which means we'd either need to have a lot of optional arguments (which becomes unwieldy quickly) or rely on global variables:
 
-\php{}{09-oop/figures/02-aaargh}
+\php{}{09-oop/figures/03-aaargh}
 
 But this is horrible: we have no way of preventing other parts of our code from changing these values and we would start having to use long variable names to avoid ambiguity in bigger apps.
 \\
 
 So, we want to store the variables and the functionality together in one place and in such a way that values can't be accidentally changed. This is where objects come in:
 
-\php{}{09-oop/figures/03-Mail}
+\php{}{09-oop/figures/04-Mail}
 
 Now if we need to add additional fields, we can just add a property and setter method:
 
-\php{}{09-oop/figures/04-extra}
+\php{}{09-oop/figures/05-extra}
 
 Now we can add an array of \texttt{bcc} addresses. And because we've set it to an empty array by default it wouldn't matter if we didn't set any – the code should still work as before.
 \\
@@ -106,21 +143,21 @@ For example, say that you wanted to send some emails to a mailing list. Rather t
 
 For example, we've already got a \texttt{Mail} class that just deals with creating and sending an email:
 
-\php{}{09-oop/figures/05-Mail}
+\php{}{09-oop/figures/06-Mail}
 
 It has various methods for adding the necessary email fields and another for actually sending the mail (well, pretending to).
 \\
 
 The mailing list class can be relatively simple too – it just keeps track of all the subscribers and has a method for sending an email to each of them:
 
-\php{}{09-oop/figures/06-MailingList}
+\php{}{09-oop/figures/07-MailingList}
 
 But notice that the actual sending of the mail is done by calling methods on a \texttt{Mail} object that has been passed in.
 \\
 
 We could write something like the following to get it working together:
 
-\php{}{09-oop/figures/07-app}
+\php{}{09-oop/figures/08-app}
 
 By passing the \texttt{Mail} code \textit{into} the mailing list class we can \textbf{compose} their behaviour to create a more complex behaviour\footnote{We could probably split up the \texttt{Mail} class up even further so that the sending code was separate}.
 
@@ -138,10 +175,9 @@ The ``Law of Demeter'' is a guideline for OOP about how objects should use other
 
 In practice, this means that an object should only call methods on either itself or objects that it has been given/created. You should avoid calling a method which returns an object and then calling a method on that object: it requires too much knowledge about other objects.
 
-\php{}{09-oop/figures/08-demeter}
+\php{}{09-oop/figures/09-demeter}
 
 You should be careful using chaining (returning \texttt{\$this} from a method). If the method returns a \textit{different} type of object then it's easy to break the Law of Demeter without realising it.
-
 
 
 \section{Additional Resources}
@@ -149,4 +185,5 @@ You should be careful using chaining (returning \texttt{\$this} from a method). 
 \begin{itemize}[leftmargin=*]
     \item \href{ https://phpenthusiast.com/object-oriented-php-tutorials/chaining-methods-and-properties}{PHP Enthusiast: Chaining Methods and Properties}
     \item \href{https://en.wikipedia.org/wiki/Law_of_Demeter}{Wikipedia: The Law of Demeter}
+    \item \href{https://github.com/laravel/laravel/blob/master/bootstrap/app.php}{The Laravel Bootstrap File}
 \end{itemize}

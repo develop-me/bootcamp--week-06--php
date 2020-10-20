@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 function oap(array $person) : bool {
     return $person["age"] > 65;
 }

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Tricksy\Challenges as Tricksy;
+
 class Challenges
 {
     public function start()
@@ -11,12 +13,17 @@ class Challenges
         // load challenges
         $this->counter();
         $this->beanCounter();
-        $this->bike();
+        $shelf = $this->shelf();
+        $this->library($shelf);
+
+        // kick-off Tricksy challenges
+        $tricksy = new Tricksy();
+        $tricksy->start();
     }
 
     public function counter()
     {
-        echo "\n01)\n";
+        echo "\nQuestion 01\n";
 
         $counter = new Counter\Counter();
         $counter->increment();
@@ -28,7 +35,7 @@ class Challenges
 
     public function beanCounter()
     {
-        echo "\n02)\n";
+        echo "\nQuestion 02\n";
 
         $counter = new Counter\Counter();
         $beans = new Counter\BeanCounter($counter);
@@ -44,31 +51,47 @@ class Challenges
         }
     }
 
-    public function bike()
+    public function shelf()
     {
-        echo "\n03)\n";
+        echo "\nQuestion 03\n";
 
-        // Create two new wheels
-        $wheel1 = new Bike\Wheel(25, "hybrid");
-        $wheel2 = new Bike\Wheel(27, "hybrid");
+        $shelf = new Library\Shelf();
+        $shelf->addBook(new Library\Book("Zero: The Biography of a Dangerous Idea", 256));
+        $shelf->addBook(new Library\Book("The Catcher in the Rye", 277));
+        $shelf->addBook(new Library\Book("Stamped from the Beginning", 582));
 
-        // ignores invalid types
-        $wheel1->setType("wombat");
-        dump($wheel1->type()); // hybrid
+        dump($shelf->titles());
+        /* [
+         *   "Zero: The Biography of a Dangerous Idea",
+         *   "The Catcher in the Rye",
+         *   "Stamped from the Beginning"
+         * ]
+         */
 
-        // Create a frame
-        $frame = new Bike\Frame("diamond", "bamboo");
+        return $shelf;
+    }
 
-        // ignores invalid materials
-        $frame->setMaterial("steel");
-        $frame->setMaterial("wombat");
-        dump($frame->material()); // steel
+    public function library(Library\Shelf $shelf)
+    {
+        echo "\nQuestion 04\n";
 
-        // Create a bike, passing in the frame
-        $bike = new Bike\Bike($frame);
-        // Add wheels to the bike
-        $bike->addWheel($wheel1)->addWheel($wheel2);
+        $library = new Library\Library();
+        $library->addShelf($shelf);
 
-        dump($bike->describe()); // "I am a diamond framed bike. I am made of bamboo. I have 2 wheels"
+        $otherShelf = new Library\Shelf();
+        $otherShelf->addBook(new Library\Book("The Power Broker", 1336));
+        $otherShelf->addBook(new Library\Book("Delusions of Gender", 338));
+
+        $library->addShelf($otherShelf);
+
+        dump($library->titles());
+        /* [
+         *   "Zero: The Biography of a Dangerous Idea",
+         *   "The Catcher in the Rye",
+         *   "Stamped from the Beginning",
+         *   "The Power Broker",
+         *   "Delusions of Gender"
+         * ]
+         */
     }
 }
