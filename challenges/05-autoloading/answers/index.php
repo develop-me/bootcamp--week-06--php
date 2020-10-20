@@ -75,7 +75,7 @@ dump($item->priceFormatted()); // £3.50
 // 5
 echo "\nQuestion 5:\n";
 
-use App\Recipes\Ingredient;
+use App\Cooking\Ingredient;
 
 // ingredients take a name, followed by an array of dietary information
 $flour = new Ingredient("Flour", ["gluten"]);

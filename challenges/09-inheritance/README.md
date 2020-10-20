@@ -99,6 +99,8 @@ To check your answers run `php bootstrap.php`.
 
     Then create an abstract class `Vehicle` and three children classes `Car`, `Plane`, and `Boat` all in the `App\Tricksy\Vehicles` namespace.
 
+    **Hint**: try writing the classes out *without* inheritance first and then write the parent class **last**.
+
     - `Car`:
         - `setDriver()`: takes a single Person object
         - `setPassengers()`: takes an array of Person objects

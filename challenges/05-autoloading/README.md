@@ -6,7 +6,7 @@
 
 - Create a new project directory
 - Add the `symfony/var-dumper` package
-- Get Composer setup to use auto-loading with `App` as the root namespace pointing at the `app` directory
+- Get Composer setup to use [PSR-4 auto-loading](https://www.php-fig.org/psr/psr-4/) with `App` as the root namespace pointing at the `app` directory
 - Create a single `index.php` file in the **root** directory:
 
     ```
@@ -20,9 +20,9 @@
 
 ## Challenges
 
-For each challenge, create the class in the **correct location** and then copy the given code **into `index.php`** (do **not** put the code inside the same file as the `class`).
+For each challenge, create the class in the **correct location** and then copy the given code **into `index.php`** (do **not** put the code inside the same file as the `class`). Your `index.php` file will [get quite long](answers/index.php).
 
-**You should *only* run `php index.php` to check your code works** (i.e. don't try and run `php app/Phone.php`)
+**You should *only* run `php index.php` to check your code works** (i.e. don't try and run `php app/Hello.php`)
 
 **Hint**: You can use `dd()` instead of `dump()` to stop the PHP at a specific point. This can be useful if later lines are causing errors.
 
@@ -95,8 +95,7 @@ For each challenge, create the class in the **correct location** and then copy t
     dump($book->currentPage()); // 38
     ```
 
-1) Create a class `BasketItem` in the `App\Shopping` namespace. It should take a type and price when in the constructor. It should have `type()`, `price()`, and `priceFormatted()` methods. Put the following in `index.php` and then check that you get back the right results:
-
+1) Create a class `BasketItem` in the `App\Shopping` namespace. It should take a type and price in the constructor. It should have `type()`, `price()`, and `priceFormatted()` methods. Put the following in `index.php` and then check that you get back the right results:
 
     **Hint**: PHP has a [`number_format`](http://php.net/number_format) function
 
@@ -122,7 +121,7 @@ For each challenge, create the class in the **correct location** and then copy t
     ```php
     echo "\nQuestion 5:\n";
 
-    use App\Recipes\Ingredient;
+    use App\Cooking\Ingredient;
 
     // ingredients take a name, followed by an array of dietary information
     $flour = new Ingredient("Flour", ["gluten"]);
