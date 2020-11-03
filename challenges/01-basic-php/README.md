@@ -64,6 +64,13 @@ Create a new file for each challenge. If a code block is provided, copy the prov
 
 1) Write some code that lists all multiples of 13 up to 1,000 using a `for` loop
 
+    e.g.
+
+    - 13 * 1
+    - 13 * 2
+    - 13 * 3
+    - etc.
+
     Example output:
 
     ```
@@ -89,7 +96,7 @@ Create a new file for each challenge. If a code block is provided, copy the prov
     ```
 
 
-1) Write some code that outputs a cumulative total of the current line number for 1 to 50.
+1) Write some code that outputs a cumulative total for each integer between 1 and 50.
 
     e.g.
 
@@ -144,7 +151,7 @@ Make sure it's a nice elegant solution.
 
 ## Tricksy
 
-1) Write some code that outputs 50 lines so that, if the current line number is *n*, the output is the total of the first *n* odd numbers.
+1) Write some code that outputs 50 lines so that, if the number is *n*, the output is the total of the first *n* odd numbers.
 
     e.g.
 

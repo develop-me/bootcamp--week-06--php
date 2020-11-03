@@ -47,10 +47,10 @@ I'd suggest using PSR-4 namespacing to organise your files, but it's up to you. 
 
 Think about the pros and cons of refactoring the static methods of `Peep` to instance methods of `House`, e.g.:
 
-    ```php
-    $house->getAges();
-    $house->averageAge();
-    ```
+```php
+$house->getAges();
+$house->averageAge();
+```
 
 Do a Git commit and then give it a go. How could you avoid the static `census` method of `House`?
 
