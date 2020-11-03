@@ -56,7 +56,7 @@
     - `\D`: **not** digit
 
 - Dot:
-    - `.`: any character (not inside range)
+    - `.`: any character (not inside character set)
     - `\.`: the full-stop character
 
 - Anchors

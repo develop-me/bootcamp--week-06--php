@@ -19,16 +19,16 @@
 - Can pass to functions
     - e.g. `array_map($fn, $arr)`
     - A "callable"
-- In PHP 7.4+ – fat arrow functions: `array_map(fn($value) => $value * $multiplyBy, [1, 2, 3]);`
 - Need to use `use` keyword to access variables
-    - Demonstrate: `anon.php`
     - Usually used inside methods
     - Read only
+- In PHP 7.4+ – fat arrow functions: `array_map(fn($value) => $value * $multiplyBy, [1, 2, 3]);`
 
 
 ## Arrays
 
 - Numerically indexed and associative
+- Passed by value
 
 ### Numerical
 
