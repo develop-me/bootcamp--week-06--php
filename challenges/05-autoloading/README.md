@@ -116,7 +116,7 @@ For each challenge, create the class in the **correct location** and then copy t
     dump($item->priceFormatted()); // "£3.50"
     ```
 
-1) Create a class `Ingredient` in the `App\Recipes` namespace. It should take a name and an array of dietary information in the constructor. It should have a `name()` method which returns the name of the ingredient and a `vegan()` method which returns whether the ingredient contains "animal produce" in its dietary information. Put the following in `index.php` and then check that you get back the right results:
+1) Create a class `Ingredient` in the `App\Cooking` namespace. It should take a name and an array of dietary information in the constructor. It should have a `name()` method which returns the name of the ingredient and a `vegan()` method which returns whether the ingredient contains "animal produce" in its dietary information. Put the following in `index.php` and then check that you get back the right results:
 
     ```php
     echo "\nQuestion 5:\n";
