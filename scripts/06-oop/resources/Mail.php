@@ -1,45 +1,36 @@
 <?php
 
+namespace App;
+
 class Mail
 {
-  private $to;
-  private $from;
-  private $subject;
-  private $message;
-  private $characterSet = "utf8";
+    private $to;
+    private $from;
+    private $subject;
+    private $message;
 
-  public function to($to)
-  {
-    $this->to = $to;
-  }
+    public function to($to)
+    {
+        $this->to = $to;
+    }
 
-  public function from($from)
-  {
-    $this->from = $from;
-  }
+    public function from($from)
+    {
+        $this->from = $from;
+    }
 
-  public function subject($subject)
-  {
-    $this->subject = $subject;
-  }
+    public function subject($subject)
+    {
+        $this->subject = $subject;
+    }
 
-  public function message($message)
-  {
-    $this->message = $message;
-  }
+    public function message($message)
+    {
+        $this->message = $message;
+    }
 
-  public function mail()
-  {
-    // ... code to send mail
-    // we can use $this to access the values
-  }
+    public function mail()
+    {
+        echo "Sending...\n\nTo: {$this->to}\nFrom: {$this->from}\nSubject: {$this->subject}\n\n{$this->message}";
+    }
 }
-
-
-// elsewhere
-$mail = new Mail();
-$mail->to("bob@bob.com")
-     ->from("hello@wombat.io")
-     ->subject("A Wombat Welcome")
-     ->message("Welcome to the best app for finding wombats near you")
-     ->mail();

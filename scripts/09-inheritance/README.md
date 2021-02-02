@@ -12,7 +12,8 @@
 ### Inheritance Tax
 - Most books focus on inheritance
 - As a result beginner OOPers try to use inheritance whenever two classes have similar behaviour
+- Inheritance often means knowing about inside of an object
+- Composition over inheritance
 - Ok to inherit from library classes, they do most the work
 - Don't start with an abstract class, write at least three classes that share identical code before using inheritance
-- Composition over inheritance
 - Use interfaces over inheritance

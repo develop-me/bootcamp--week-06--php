@@ -25,10 +25,15 @@
     Would break when `mail()` used, breaks encapsulation
 
 - Can add parameter types
-- Can add return types
-- PHP will coerce values: can use "strict typing" – see link in notes
-- class name, `int`, `float`, `string`, `bool`, `array`, `callable`
-- `void`: better to return `$this`
+    - `$mail->bcc("blah")`
+    - `int`, `float`, `string`, `bool`, `array`, `callable`
+- PHP will coerce values: can use "strict typing"
+    - `$mail->to(12)`
+    - `declare(strict_typing=1)` at top (before namespace) of file that *uses* the class
+    - Put in all your files
+- Can also add return types
+    - `void`: better to return `$this`
+- Property types
 
 
 ### Type Systems
