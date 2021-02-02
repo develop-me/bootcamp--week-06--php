@@ -20,6 +20,8 @@ To check your answers run `php bootstrap.php`.
 
 **Hint**: You can use `dd()` instead of `dump()` to stop the PHP at a specific point. This can be useful if later lines are causing errors.
 
+**Hint**: Use split view in VS Code so that you have `Challenges.php` on the right and the class that you're working on on the left. Then you can always see how your class is being used.
+
 1) Create a class `Spoon` in the `App\Cutlery` namespace. It should have a `scoop()` method. When you call `howManyScoops()` it should tell you how many times it has been scooped. Also create a `RuncibleSpoon` class in the same namespace. It should `extend` the `Spoon` class. Override its `scoop()` method so that it does two scoops for each call of `scoop()`.
 
     ```php

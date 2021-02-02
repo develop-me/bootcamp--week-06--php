@@ -26,6 +26,8 @@ For each challenge, create the class in the **correct location** and then copy t
 
 **Hint**: You can use `dd()` instead of `dump()` to stop the PHP at a specific point. This can be useful if later lines are causing errors.
 
+**Hint**: Use split view in VS Code so that you have `index.php` on the right and the class that you're working on on the left. Then you can always see how your class is being used.
+
 1) Put the following class in the `App` namespace:
 
     ```php

@@ -22,6 +22,8 @@ To check your answers run `php bootstrap.php`.
 
 **Hint**: You can use `dd()` instead of `dump()` to stop the PHP at a specific point. This can be useful if later lines are causing errors.
 
+**Hint**: Use split view in VS Code so that you have `Challenges.php` on the right and the class that you're working on on the left. Then you can always see how your class is being used.
+
 0) Go back over your previous classes and add chaining where appropriate. **Make sure you test everything still works**.
 
 1) Create a class `Person` in the `App` namespace. It should accept a first and last name on creation. It should have a `sayHelloTo()` method that takes another `Person` and says hello to them. Make sure your properties are all private.
@@ -100,7 +102,7 @@ To check your answers run `php bootstrap.php`.
 
 Uncomment lines 23-24 of `app/Challenges.php` to get get the Tricksy code running.
 
-1) Create a new class `Recipe` in the `App\Recipes` namespace and copy across your `Ingredient` class from the Autoloading challenges. The Recipe class should accept `Ingredient`s and generate a recipe.
+1) Create a new class `Recipe` in the `App\Tricksy\Cooking` namespace and copy across your `Ingredient` class from the Autoloading challenges (you'll need to change its namespace). The Recipe class should accept `Ingredient`s and generate a recipe.
 
     **Hint**: you can use `"\n"` to add a line break to a string
 
@@ -117,6 +119,7 @@ Uncomment lines 23-24 of `app/Challenges.php` to get get the Tricksy code runnin
     $cake = new Recipe("Cake");
 
     // we can add ingredients plus amounts
+    // the amount belongs to the recipe, not the ingredient
     $cake->addIngredient($flour, "200g");
     $cake->addIngredient($butter, "100g");
     $cake->addIngredient($sugar, "50g");
