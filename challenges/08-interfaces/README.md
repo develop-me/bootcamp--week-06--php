@@ -14,7 +14,7 @@ To check your answers run `php bootstrap.php`.
 
 ### Answers
 
-[Answers on GitHub](https://github.com/develop-me/bootcamp--week-06--php/blob/master/challenges/08-interfaces/answers)
+[Answers on GitHub](https://github.com/develop-me/bootcamp--week-06--php/blob/main/challenges/08-interfaces/answers)
 
 ## Challenges
 

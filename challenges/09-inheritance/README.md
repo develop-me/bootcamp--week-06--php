@@ -14,7 +14,7 @@ To check your answers run `php bootstrap.php`.
 
 ### Answers
 
-[Answers on GitHub](https://github.com/develop-me/bootcamp--week-06--php/blob/master/challenges/09-inheritance)
+[Answers on GitHub](https://github.com/develop-me/bootcamp--week-06--php/blob/main/challenges/09-inheritance)
 
 ## Challenges
 
