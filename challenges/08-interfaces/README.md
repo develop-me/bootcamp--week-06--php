@@ -14,11 +14,13 @@ To check your answers run `php bootstrap.php`.
 
 ### Answers
 
-[Answers on GitHub](https://github.com/develop-me/bootcamp--week-06--php/blob/master/challenges/08-interfaces/answers)
+[Answers on GitHub](https://github.com/develop-me/bootcamp--week-06--php/blob/main/challenges/08-interfaces/answers)
 
 ## Challenges
 
 **Hint**: You can use `dd()` instead of `dump()` to stop the PHP at a specific point. This can be useful if later lines are causing errors.
+
+**Hint**: Use split view in VS Code so that you have `Challenges.php` on the right and the class that you're working on on the left. Then you can always see how your class is being used.
 
 1) Create a `ShapeInterface` with an `area()` method in the `App\Shapes` namespace. Then create three further classes which implement the interface: `Square`, `Circle`, and `Rectangle`. `Square` should be given a side length on construction, `Circle` should be given a radius, and `Rectangle` should be give a width and height.
 
@@ -77,7 +79,7 @@ To check your answers run `php bootstrap.php`.
     }
     ```
 
-1) Copy across your `Book`, `Shelf`, and `Library` classes from yesterday. Keep them in the `App\Library` namespace.
+1) Copy across your `Book`, `Shelf`, and `Library` classes from the Encapsulation challenges. Keep them in the `App\Library` namespace.
 
     Now create a `Titled` interface with a `public function title()` method signature.
 

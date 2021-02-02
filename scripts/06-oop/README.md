@@ -1,14 +1,33 @@
 # Day 2: Afternoon
 
+## Why Objects?
+
 - In large apps storing related bits of information becomes difficult
+- Keeping related values and functionality together
+- Show `mail()` function
+    - `mailfn.php`
+    - Adding functionality is tricky
+    - Using globals? Even worse
+- Show `mail()` using object (see `Mail.php`/`index.php`)
+    - Easy to add extra stuff: add `bcc` array
+    - All the info in one place
+
+## Chaining
+
+- Only if nothing else to return
+
+
+## Object Oriented Programming
+
 - Object Oriented Programming
 - Using objects for all the things
-    - keeping related values and functionality together
+
 
 ## Bootstrapping
 
 - Many OOP languages are pure objects (e.g. Java)
 - PHP has to have a bit of procedural code to kick things off
+    - `bootstrap.php`
 
     ```php
     $app = new Application();
@@ -17,37 +36,10 @@
 - Everything from then on is objects, talking to more objects
 - Creates a cascade of behaviour
 
-### Autoloading
 
-- If we try to use a class in a different file it won't work
-- Can tell PHP to load a file if it can't find a class
+## Example
 
-    ```php
-    spl_autoload_register(function ($class) {
-      require_once __DIR__ . "/classes/{$class}.php";
-    });
-    ```
-
-- But best to use a convention: PSR-4
-- But first, namespaces
-
-
-
-## Objectification
-
-- Show `mail()` function
-    - Adding functionality is tricky
-    - Using globals? Even worse
-- Show `mail()` using object (see `Mail.php`)
-    - Easy to add extra stuff: add `bcc` array
-    - All the info in one place
 - Object don't have to be **things** (e.g. a car)
-- Chaining
-    - Only if nothing else to return
-
-## Object-to-Object
-
-- Demonstrate `Mail` and `MailingList` talking to each other (use `MailingList.php` and `Mail.php`)
-    - **Do in same file**
-    - Single responsibility principle
+- Demonstrate `Mail` and `MailingList` talking to each other (use `Application.php`, `MailingList.php` and `Mail.php`)
+- Single responsibility principle
 - Law of Demeter

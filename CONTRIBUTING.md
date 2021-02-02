@@ -2,8 +2,8 @@ Please use [Git Flow](https://jeffkreeftmeijer.com/git-flow/)
 
 - Make most changes on `develop`: **this is the source of truth**, so all changes should get merged into it at some point
 - If you're making a chunk of related changes you can use a `feature` branch (these will get merged into `develop` when you're done)
-- If you need to make quick changes (e.g. whilst teaching the week) then use a `hotfix` (these should merge into `develop` and `master`)
-- Use a `release` to merge into `master` when the material is ready for students
+- If you need to make quick changes (e.g. whilst teaching the week) then use a `hotfix` (these should merge into `develop` and `main`)
+- Use a `release` to merge into `main` when the material is ready for students
 
 Generally works out as a `release` per cohort – a week or so before teaching – and maybe a few `hotfix`es whilst teaching.
 

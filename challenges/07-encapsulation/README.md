@@ -28,12 +28,13 @@ To check your answers run `php bootstrap.php`.
 
 ### Answers
 
-[Answers on GitHub](https://github.com/develop-me/bootcamp--week-06--php/blob/master/challenges/07-encapsulation/answers)
+[Answers on GitHub](https://github.com/develop-me/bootcamp--week-06--php/blob/main/challenges/07-encapsulation/answers)
 
 ## Challenges
 
 **Hint**: You can use `dd()` instead of `dump()` to stop the PHP at a specific point. This can be useful if later lines are causing errors.
 
+**Hint**: Use split view in VS Code so that you have `Challenges.php` on the right and the class that you're working on on the left. Then you can always see how your class is being used.
 
 1) Create a class `App\Counter\Counter` which has an `increment` and `count` method. When you call `count` it should return the number of times that `increment` has been called.
 
