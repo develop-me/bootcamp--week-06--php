@@ -8,37 +8,36 @@ class Range implements Iterator
 {
     private $start;
     private $end;
-    private $current;
+    private $index = 0;
 
     public function __construct(int $start, int $end)
     {
         $this->start = $start;
         $this->end = $end;
-        $this->rewind();
     }
 
     public function current()
     {
-        return $this->current;
+        return $this->index + $this->start;
     }
 
     public function key()
     {
-        return $this->current - $this->start;
+        return $this->index;
     }
 
     public function next()
     {
-        $this->current += 1;
+        $this->index += 1;
     }
 
     public function rewind()
     {
-        $this->current = $this->start;
+        $this->index = 0;
     }
 
     public function valid()
     {
-        return $this->current >= $this->start && $this->current <= $this->end;
+        return $this->current() <= $this->end;
     }
 }

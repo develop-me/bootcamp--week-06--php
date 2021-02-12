@@ -2,7 +2,7 @@
 
 ---
 
-## Challenges
+## Setup
 
 **Create a new Git repo in a directory for this week and use a sensible directory structure for the challenges. Every time you get a challenge working do a commit with a sensible message.**
 
@@ -10,6 +10,15 @@
 
 - Make sure you install the `symfony/var-dumper` package with Composer and include `vendor/autoload.php` in each file
 - Make sure `vendor` is added to your `.gitignore` file
+
+For every commit:
+
+- `git add <files>`
+- `git status`: check what you've changed
+- `git commit -m "informative commit message"`
+
+
+## Challenges
 
 Create a new file for each challenge. If a code block is provided, copy the provided code and then add your own code in the `// ... your code here` bit.
 

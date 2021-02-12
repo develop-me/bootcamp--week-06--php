@@ -7,6 +7,7 @@
 - Create a new project directory
 - Add the `symfony/var-dumper` package
 - Get Composer setup to use [PSR-4 auto-loading](https://www.php-fig.org/psr/psr-4/) with `App` as the root namespace pointing at the `app` directory
+    - Don't worry if VS Code says there are missing "description" and "name" properties – it will still work
 - Create a single `index.php` file in the **root** directory:
 
     ```
@@ -61,20 +62,20 @@ For each challenge, create the class in the **correct location** and then copy t
     use App\Stuff\Things\Potato;
 
     $potato = new Potato();
-    $potato->water(); // 1 water
-    $potato->water(); // 2 water
+    $potato->water();
+    $potato->water();
 
     dump($potato->hasGrown()); // false
 
-    $potato->water(); // 3 water
-    $potato->water(); // 4 water
+    $potato->water();
+    $potato->water();
     dump($potato->hasGrown()); // false
 
-    $potato->water(); // 5 water
+    $potato->water();
     dump($potato->hasGrown()); // true
 
-    $potato->water(); // 6 water
-    $potato->water(); // 7 water
+    $potato->water();
+    $potato->water();
     dump($potato->hasGrown()); // true
     ```
 
