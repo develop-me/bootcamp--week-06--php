@@ -1,7 +1,7 @@
 <?php
 
 function sendMail($to, $from, $subject, $message) {
-  // ...send the mail
+    echo "\nSending...\n\nTo: {$to}\nFrom: {$from}\nSubject: {$subject}\n\n{$message}\n";
 }
 
 

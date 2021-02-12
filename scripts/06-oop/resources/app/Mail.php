@@ -31,6 +31,6 @@ class Mail
 
     public function mail()
     {
-        echo "Sending...\n\nTo: {$this->to}\nFrom: {$this->from}\nSubject: {$this->subject}\n\n{$this->message}";
+        echo "\nSending...\n\nTo: {$this->to}\nFrom: {$this->from}\nSubject: {$this->subject}\n\n{$this->message}\n";
     }
 }

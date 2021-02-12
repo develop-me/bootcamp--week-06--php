@@ -2,7 +2,7 @@
 
 require __DIR__ . "/vendor/autoload.php";
 
-$mail = new Mail();
+$mail = new App\Mail();
 
 // set properties
 $mail->to("bob@bob.com");
