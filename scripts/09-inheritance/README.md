@@ -5,7 +5,7 @@
 - Update `LocalMailServer` to use `Mailer`
 - But could instance `Mailer`
 - Abstract classes: make `Mailer` abstract
-- Could create child with no `send()` method: abstract method
+- Could create child with no `mail()` method: abstract method
 - Overriding the `to()` method in `MailChimp`
 - Using `parent::` to call parent class
 

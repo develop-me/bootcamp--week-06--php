@@ -45,8 +45,9 @@
     - `\n`: new line
     - `\r`: carriage return
     - `\t`: tab
-    - Not just in Regexes
-
+    - `\`: escape character
+- Not just in Regexes
+    
 - Character Classes
     - `\s`: whitespace
     - `\S`: **not** whitespace
@@ -97,6 +98,7 @@
 ### Dangers of Regex
 
 - Only use for simple things
+- If you can't understand it in one glance then it's too complicated
 - It's not possible to do some things with RegEx - need a parser instead
     - e.g. parsing HTML tags
-- If you can't understand it in one glance then it's too complicated
+- https://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags/1732454#1732454
